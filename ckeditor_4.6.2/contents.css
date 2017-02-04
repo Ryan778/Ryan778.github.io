@@ -6,12 +6,11 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 body
 {
 	/* Font */
-	font-family: "Times New Roman", Arial, Verdana, "Trebuchet MS", sans-serif;
-	font-size: 12px;
+	font-family: Arial, Verdana, "Trebuchet MS", sans-serif;
 
 	/* Text color */
 	color: #333;
-b
+
 	/* Remove the background color to make it transparent */
 	background-color: #fff;
 
@@ -20,8 +19,10 @@ b
 
 .cke_editable
 {
-	font-size: 13px;
-	line-height: 1.6;
+	/*Copy MLA formatting*/
+	font-family: 'Times New Roman', Arial, sans-serif;
+	font-size: 16px;
+	line-height: 2;
 
 	/* Fix for missing scrollbars with RTL texts. (#10488) */
 	word-wrap: break-word;

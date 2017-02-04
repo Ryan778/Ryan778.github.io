@@ -1,0 +1,34 @@
+.cke_button_icon.cke_button__textcolor2_icon {
+	width: 0px;
+}
+.cke_button_icon.cke_button__bgcolor2_icon {
+	width: 0px;
+}
+
+.enhanced_color_button_text_color {
+	position: relative !important;
+	width: 14px !important;
+	height: 2px !important;
+	left: 1px !important;
+	bottom: 1px !important;
+	border: 1px solid #c0c0c0 !important;
+}
+.enhanced_color_button_bg_color {
+	position: relative !important;
+	width: 14px !important;
+	height: 14px !important;
+	left: 1px !important;
+	bottom: 14px !important;
+	border-radius: 3px !important;
+	margin-top: 1px !important;
+	/* IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)" !important;
+	/* IE 5-7 */
+	filter: alpha(opacity=50) !important;
+	/* Netscape */
+	-moz-opacity: 0.5 !important;
+	/* Safari 1.x */
+	-khtml-opacity: 0.5 !important;
+	/* Good browsers */
+	opacity: 0.5 !important;
+}

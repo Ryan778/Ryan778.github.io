@@ -6,12 +6,12 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 body
 {
 	/* Font */
-	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+	font-family: "Times New Roman", Arial, Verdana, "Trebuchet MS", sans-serif;
 	font-size: 12px;
 
 	/* Text color */
 	color: #333;
-
+b
 	/* Remove the background color to make it transparent */
 	background-color: #fff;
 

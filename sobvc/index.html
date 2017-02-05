@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <title>State of Being Verb Checker</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <span><!--Because AlertifyJS (old version) sucks and needs a span tag to work-->
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+    </span>
+    <script src="https://ryan778.github.io/ckeditor_4.6.2/ckeditor.js"></script>
+    <style>
+        html{
+            background: #fafafa;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            cursor: default;
+            font-family: "Open Sans", sans-serif;
+        }
+        #f{
+            line-height: 0;
+            font-size: 10px;
+            float: left;
+        }
+        #v{
+            line-height: 0;
+            font-size: 10px;
+            float: right;
+            padding-right: 3px;
+        }
+        #cke_38_label {
+           display: inline;
+        }
+        .alertify-logs{
+            z-index: 9996;
+        }
+        #cl{
+            color: #5589ff;
+            cursor: pointer;
+        }
+        .cke_editable{
+            /*Copy MLA formatting*/
+            font-family: 'Times New Roman', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 2;
+
+            /* Fix for missing scrollbars with RTL texts. (#10488) */
+            word-wrap: break-word;
+        }
+        button{
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid #bbb;
+            margin-right: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 3px 5px;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        button:focus{
+            border-color: #888;
+            outline: none;
+        }
+        button:hover{
+            border-color: #888;
+        }
+        button:active{
+            border-color: #555;
+        }
+        button[disabled]{
+            background-color: rgba(235, 240, 255, 0.5);
+            color: black;
+            cursor: default;
+        }
+        a{text-decoration: none}
+    </style>
+    <style id='altStyle'></style>
+</head>
+<body>
+    <h2>State of Being Verb Checker <span style='font-weight:400'>v2</span></h2>
+    <p>With a single button, finds all state of being verbs and sorts them into "in quotes" and "not in quotes"!<br>Now with a Past Tense Sentence checker! (May Contain False-Positives) <span id='cl' onclick='cl()'>Changelog from v1.1</span></p>
+    <p>Formatting: <button id='bfe0' disabled onclick='formatEditor(0)'>MLA Format</button><button id='bfe1' onclick='formatEditor(1)'>Regular Format</button></p>
+    <p>Search for Past Tense Verbs: <button onclick='togglePTVS()' style='background-color:#daffe7' id='bptv'>Active</button></p>
+     <textarea name="t" id="t" rows="20" cols="80">Paste text here...</textarea>
+    <br>
+    <p id='f'>&copy; 2017 Ryan Zhang | Licensed under <a target='_blank' href='license.txt'>GPL-3.0</a> | Favicon and mark text icon provided by <a href="//freepik.com">Freepik</a> from <a href="http://flaticon.com">www.flaticon.com</a></p>
+    <script src='script.min.js'></script>
+    <p id='v'>v2.0</p>
+</body>
+</html>

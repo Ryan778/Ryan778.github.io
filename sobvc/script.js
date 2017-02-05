@@ -43,7 +43,7 @@ editor.ui.addButton('checkTextButton', {
     label: "Check Text",
     command: 'ct',
     toolbar: 'others',
-    icon: '//50.155.208.17:8081/sobvc/highlighter.png'
+    icon: 'highlighter.png'
 });//Add the "Mark Text" button
 
 function checkForQuote(offset){

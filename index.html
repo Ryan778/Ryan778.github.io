@@ -1,8 +1,123 @@
 <!doctype html>
 <html>
 <head>
-<title>Hello World!</title>
+    <title>Ryan's Projects</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="icon" href="//favicon.ico" type="image/x-icon"/>
+    <style>
+        html{
+            background: #fafafa;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            cursor: default;
+            font-family: "Open Sans", sans-serif;
+            text-align: center;
+        }
+        #f{
+            line-height: 0;
+            font-size: 10px;
+        }
+        a, a:link{
+            text-decoration: none;
+            color: #5979ff;
+            transition: all 0.2s;
+        }
+        a:visited{
+            color: #7359ff;
+        }
+        a:hover{
+            text-shadow: 0px 0px 3px #cef;
+            color: #599fff;
+        }
+        a:active{
+            text-shadow: none;
+            color: #76b0ff;
+        }
+        a:hover .textOverlay{
+            opacity: 1;
+        }
+        img{
+            width: 600px;
+            filter: blur(0px);
+            -webkit-filter: blur(0px);
+            transition: all 0.2s;
+        }
+        .blur{
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+        }
+        #div-items{
+            margin-left: calc(50% - 350px);
+            text-align: center;
+            width: 700px;
+        }
+        .textOverlay{
+            position: absolute;
+            left: calc(50% - 80px);
+            top: 90px;
+            font-size: 60px;
+            color: white;
+            text-shadow: 1px 1px 8px black;
+            transition: all 0.2s;
+            opacity: 0;
+        }
+        hr{
+            border-bottom: none;
+        }
+        .div_rel{
+            position: relative;
+        }
+    </style>
+</head>
 <body>
-<p>Coming Soon...</p>
+    <h1>Ryan's Projects</h1>
+    <p>Hello there! I make random projects in my free time, mostly dynamic pages but some static pages;<br> On here are all of the static pages (as dynamic pages can't be hosted on GitHub Pages)</p>
+    <div id='div-items'>
+        <div id='div_noJS'>
+            <hr>
+            <h2>JavaScript Unavailable or Disabled</h2>
+            <p>It appears that you do not have JavaScript or JavaScript is disabled.<br>For full functionality, enable JavaScript or <a target='_blank' href='http://enable-javascript.com/'>click here</a> if you don't know how.<br>Note that most of the links below <b>require</b> JavaScript to work.</p>
+            <script>div_noJS.innerHTML=''</script>
+        </div>
+        <hr>
+        <div class='div_rel'>
+            <a id='a1' target='_blank' href='https://ryan778.github.io/sobvc'>
+        <img id='img1' class='noblur' src='images/sobvc.png'><br>
+            <span class='textOverlay'>Open</span>
+        State of Being Verb Checker</a>
+        </div>
+        <hr>
+        <div class='div_rel'>
+            <b>Protected Pages (Not on GitHub)</b><br>
+            <a id='a_showProtected' href='#' onclick='(function(){a_showProtected.innerHTML="";protectedPages.style.display="initial"})()'>Show Links (Requires JavaScript)</a>
+            <span id='protectedPages' style='display:none'>
+            <a href='http://50.155.208.17:8081/protected/yt'>YouTube Search API</a>
+            </span>
+        </div>
+        <hr>
+        <div class='div_rel'>
+            <b>Private Pages (Not on GitHub)</b><br>
+            <a id='a_showPrivate' href='#' onclick='(function(){a_showPrivate.innerHTML="";privatePages.style.display="initial"})()'>Show Links (Requires JavaScript)</a>
+            <span id='privatePages' style='display:none'>
+            <a href='http://50.155.208.17:8081/protected/private/yt'>YouTube Search API+</a>
+            <br>
+            <a href='http://50.155.208.17:8081/protected/private/files/scatterhack/obfuscated.js'>Quizlet Hack for Scatter/Match</a>
+            <br>
+            <a href='http://50.155.208.17:8081/protected/private/files/gravityhack/main.js'>Quizlet Hack for Gravity</a>
+            </span>
+        </div>
+        <hr>
+    </div>
+    <p id='f'>Favicon provided by <a href="//freepik.com">Freepik</a> from <a href="http://flaticon.com">www.flaticon.com</a></p>
+    <script>
+        img1.className = '';
+        a1.onmouseover = function(){
+            img1.className = 'blur';
+        }
+        a1.onmouseout = function(){
+            img1.className = '';
+        }
+    </script>
 </body>
 </html>

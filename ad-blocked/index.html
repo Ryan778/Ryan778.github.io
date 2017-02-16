@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html id='html'>
+<head>
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <title>Ad Blocked</title>
+</head>
+<body>
+    <div id='content'>
+        <div id='div-info'>i</div>
+        <h3>Ad Blocked</h3>
+        <a href='about' target='_blank'>More Info</a>
+    </div>
+    <script>
+        window.setTimeout(function(){
+            html.style.opacity = '0';
+            html.style.backgroundColor = 'transparent';
+            window.setTimeout(function(){
+                html.style.transition = 'all 0.75s';
+            }, 3000);
+        }, 6000);
+    </script>
+</body>
+</html>

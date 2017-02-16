@@ -1,0 +1,39 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Raleway:700';
+
+html{
+    position: fixed;
+    left: calc(50% - 63px);
+    top: calc(50% - 65px);
+    background: rgb(245,253,255);
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    line-height: 0.1;
+    cursor: default;
+    transition: all 3s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+html:hover{
+    background: rgb(245,253,255) !important;
+    opacity: 1 !important;
+}
+h3{
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+}
+a{
+    text-decoration: none;
+    font-size: 14px;
+}
+#div-info{
+    display: inline-block;
+    color: white;
+    font-size: 3em;
+    line-height: 1;
+    background: #6363ff;
+    width: 50px;
+    height: 50px;
+    border-radius: 29px;
+    padding: 4px;
+}

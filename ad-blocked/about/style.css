@@ -1,0 +1,38 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Raleway:700';
+
+html{
+    background: rgb(245,253,255);
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    margin-top: calc(8em)
+}
+
+h1{
+    font-family: "Raleway", sans-serif;
+    font-size: 3em;
+}
+
+p{
+    padding: 5px 10%;
+}
+
+button{
+    border: 1px solid lightgray;
+    background: rgb(220, 240, 255);
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+    font-size: 24px;
+}
+button:hover{
+    background: rgb(225, 245, 255);
+    border: 1px solid #aaa
+}
+button:active{
+    background: rgb(232, 252, 255);
+    border: 1px solid #777
+}

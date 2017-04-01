@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <!-- 
+        Hi! Looks like somebody's been messing with inspect element, right? 
+        Well, I mean, feel free to look around, I guess? I can't really stop you, can I?
+    -->
+    <title>Google Feud Answers</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Quick and easy answers to Google Feud. Find the top ten answers for anything in Google Feud, updated regularly!"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href='style.css' rel='stylesheet'/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.css" integrity="sha256-pMulKeKs7Hns5vhu0uluhawM68QSrKg/dFfttaXCKE8=" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js" integrity="sha256-hQ2PYbQiQS3xeguwt5BS+AMzn5V5JJ0P1kQnuoXdTnk=" crossorigin="anonymous"></script>
+    <script src='db.js'></script>
+    <script src='script.js'></script>
+    <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-91409078-1', 'auto');
+	  ga('send', 'pageview');
+	</script>
+    <span><!--Because AlertifyJS (old version) sucks and needs a span tag to work-->
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+    </span>
+    <script src="https://ryan778.github.io/ckeditor_4.6.2/ckeditor.js"></script>
+</head>
+<body>
+    <h2 id='header' class='noselect'><span><span class='c_b'>G</span><span class='c_r'>o</span><span class='c_y'>o</span><span class='c_b'>g</span><span class='c_g'>l</span><span class='c_r'>e</span></span> <span class='c_b'>F</span><span class='c_r'>e</span><span class='c_y'>u</span><span class='c_g'>d</span> <span style='font-weight:400'>Answers</span></h2>
+    <span id='desc'>Quick, accurate answers for <a href='http://www.googlefeud.com' target='_blank'>Google Feud</a>!</span>
+    <br><br>
+    <input id='input' oninput='checkInput(this)' placeholder='Enter Phrase...'>
+    
+    <table id='table'>
+        <tr><td id='t1'>[1]</td><td id='t6'>[6]</td></tr>
+        <tr><td id='t2'>[2]</td><td id='t7'>[7]</td></tr>
+        <tr><td id='t3'>[3]</td><td id='t8'>[8]</td></tr>
+        <tr><td id='t4'>[4]</td><td id='t9'>[9]</td></tr>
+        <tr><td id='t5'>[5]</td><td id='t10'>[10]</td></tr>
+    </table>
+    
+    <div id='footer'><span class='footer-action' onclick='showInfo(0)'>about</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(1)'>legal</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(2)'>contact</span></div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+html{
+    background: #fafafa;
+    cursor: default;
+    font-family: "Open Sans", sans-serif;
+}
+::selection {
+    background: #ccddff;
+}
+::-moz-selection{
+    background: #ccddff;
+}
+body{
+    text-align: center;
+}
+.noselect{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.alertify-logs{
+    z-index: 9996;
+}
+#cl{
+    color: #5589ff;
+    cursor: pointer;
+}
+button{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #bbb;
+    margin-right: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 3px 5px;
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+button:focus{
+    border-color: #888;
+    outline: none;
+}
+button:hover{
+    border-color: #888;
+}
+button:active{
+    border-color: #555;
+}
+button[disabled]{
+    background-color: rgba(235, 240, 255, 0.5);
+    color: black;
+    cursor: default;
+}
+a{text-decoration: none}
+
+#input{
+    font-size: 20px;
+    padding: 6px 6px;
+    width: 400px;
+    border: 1px solid #aaa;
+    transition: all 0.2s;
+}
+#input:hover, #input:focus{
+    border-color: #888;
+    outline: none;
+}
+#footer{
+    margin-top: 40px;
+    color: #5589ff;
+}
+.footer-action:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.lgspace{
+    display: inline-block;
+    width: 25px;
+}
+
+.alertify .alert>*, .alertify .dialog>*{
+    width: 75% !important;
+    max-width: 700px;
+}
+
+div.awesomplete mark{
+    background-color: #a2d1ff !important;
+}
+div.awesomplete{
+    text-align: left;
+}
+table{
+    margin-top: 40px;
+    width: 800px;
+    margin-left: calc(50% - 400px);
+    border-collapse: collapse;
+    background: white;
+}
+tr, td{
+    border: 1px solid #888;
+    height: 32px;
+    width: 325px;
+    font-size: 16px;
+}
+.tres{
+    display: inline-block;
+    width: 315px;
+    text-align: left;
+}
+.tpts{
+    float: right;
+    color: #467fff;
+}
+#desc{
+    font-size: 20px;
+}
+
+#email{
+	width: 900px;
+	height: 400px;
+	resize: vertical;
+}
+
+#email_demo{
+	width: 600px;
+	height: 100px;
+	resize: none;
+	background: #eee;
+}
+
+#div_results{
+	width: 900px;
+	margin-left: calc(50% - 450px);
+}

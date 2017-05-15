@@ -249,7 +249,7 @@
         img.src = getImageURL(img_id);
         img_new_preload.src = getImageURL(img_new_id);
         a.download='img_'+img_id;
-        a.href="http://unsplash.it/0/0/?image="+img_id;
+        a.href="https://unsplash.it/0/0/?image="+img_id;
         img_num.innerHTML = img_id;
         
         window.addEventListener('error', function(e) {
@@ -257,7 +257,7 @@
             img_id = Math.round(Math.random()*1084);
             img.src = getImageURL(img_id);
             a.download='img_'+img_id;
-            a.href="http://unsplash.it/0/0/?image="+img_id;
+            a.href="https://unsplash.it/0/0/?image="+img_id;
         }
         else{
             img_new_id = Math.round(Math.random()*1084);
@@ -276,7 +276,7 @@
             img_2.src = img_new_preload.src;
             img_num.innerHTML = img_id;
             a.download='img_'+img_id;
-            a.href="http://unsplash.it/0/0/?image="+img_id;
+            a.href="https://unsplash.it/0/0/?image="+img_id;
             eval(img_2.onload);
         }
         else{   
@@ -306,7 +306,7 @@
             img_2.style.opacity = 1;
             setTimeout(function(){
                 a.download='img_'+img_id;
-                a.href="http://unsplash.it/0/0/?image="+img_id;
+                a.href="https://unsplash.it/0/0/?image="+img_id;
                 img_num.innerHTML = img_id;
             },300);
             setTimeout(function(){
@@ -320,7 +320,7 @@
         else{
             img.src=img_2.src;
             a.download='img_'+img_id;
-            a.href="http://unsplash.it/0/0/?image="+img_id;
+            a.href="https://unsplash.it/0/0/?image="+img_id;
             img_num.innerHTML = img_id;
         }
         if(settings.preload_new_image){

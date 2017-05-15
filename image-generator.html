@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Image Generator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontawesome/4.6.3/css/font-awesome.min.css" integrity="sha256-AIodEDkC8V/bHBkfyxzolUMw57jeQ9CauwhVW6YJ9CA=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/alertifyjs/1.7.1/css/alertify.min.css" integrity="sha256-VrGdaC2DyLqLjPoKF216eWxd9npawW945841nhMgN/g=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/alertifyjs/1.7.1/alertify.min.js" integrity="sha256-Gj0TIJzzR6EEFOjmsUJeo75RJZp+qMmJoP3nsf28JfE=" crossorigin="anonymous"></script>
+    <meta charset='utf-8'/>
+    <style>
+        html, body{
+            margin: 0;
+            overflow: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            background: #bbb;
+        }
+        a, p{
+            z-index: 4;
+            color: white;
+            position: fixed;
+            font-size: 16px;
+            font-family: sans-serif;
+            text-shadow: 1px 1px 4px black;
+            display: inline;
+            line-height: 0;
+            transition: all 0.2s;
+        }
+        #img, #img_2{
+            position: fixed;
+            transition: all 0.6s;
+        }
+        #img{
+            z-index: 1;
+        }
+        #img_2{
+            z-index: 2;
+            opacity: 0;
+        }
+        #p1{
+            left:15px;
+            top:8px;
+            cursor: default
+        }
+        #p2{
+            left:15px;
+            bottom:5px;
+            cursor: pointer;
+        }
+        #p3{
+            right:15px;
+            top: 8px;
+            cursor: pointer;
+        }
+        #a{
+            right: 15px;
+            bottom: 20px;
+            text-decoration: none;
+        }
+        .ajs-header, .ajs-body{
+            font-family: sans-serif;
+        }
+        .ajs-ok{
+            border: 1px solid #eee;
+            box-shadow: 1px 1px 2px #ddd;
+            background: #ffffff;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .ajs-ok:hover{
+            background-color: #fdfdfd;
+            cursor: pointer
+        }
+        .ajs-ok:focus{
+            border: 1px solid #ddd;
+        }
+        .ajs-ok:active{
+            position: relative;
+            top: 1px;
+            left: 1px;
+            box-shadow: 0px 0px 0px #ddd;            
+        }
+        
+        .custom[type="checkbox"]:not(:checked),
+        .custom[type="checkbox"]:checked {
+          position: absolute;
+          left: -9999px;
+        }
+        .custom[type="checkbox"]:not(:checked) + label,
+        .custom[type="checkbox"]:checked + label {
+          position: relative;
+          padding-left: 27px;
+          cursor: pointer;
+        }
+
+        
+        label{
+            font-size: 15px;
+            line-height: 1.1;
+        }
+        /* checkbox aspect */
+        .custom[type="checkbox"]:not(:checked) + label:before,
+        .custom[type="checkbox"]:checked + label:before {
+          content: '';
+          position: absolute;
+          left:0; top: 0px;
+          width: 14px; height: 14px;
+          border: 1px solid #aaa;
+          background: #f8f8f8;
+          border-radius: 3px;
+          box-shadow: inset 0 1px 3px rgba(0,0,0,.3);
+          transition: all .2s;
+        }
+        /* checked mark aspect */
+        .custom[type="checkbox"]:not(:checked) + label:after,
+        .custom[type="checkbox"]:checked + label:after {
+          content: '✓';
+          font-weight: 700;
+          position: absolute;
+          top: 4px; left: 3px;
+          padding: 0;
+          font-size: 13px;
+          line-height: 0.8;
+          color: #004991;
+          transition: all .2s;
+        }
+        /* checked mark aspect changes */
+        .custom[type="checkbox"]:not(:checked) + label:after {
+          opacity: 0;
+          transform: scale(0);
+        }
+        .custom[type="checkbox"]:checked + label:after {
+          opacity: 1;
+          transform: scale(1);
+        }
+        /* disabled checkbox */
+        .custom[type="checkbox"]:disabled:not(:checked) + label:before,
+        .custom[type="checkbox"]:disabled:checked + label:before {
+          box-shadow: none;
+          border-color: #bbb;
+          background-color: #ddd;
+        }
+        .custom[type="checkbox"]:disabled:checked + label:after {
+          color: #999;
+        }
+        .custom[type="checkbox"]:disabled + label {
+          color: #aaa;
+        }
+        /* accessibility */
+        .custom[type="checkbox"]:checked:focus + label:before,
+        .custom[type="checkbox"]:not(:checked):focus + label:before {
+          border: 1px solid #0a367c;
+        }
+
+        .custom[type="checkbox"]:checked:hover + label:before,
+        .custom[type="checkbox"]:not(:checked):hover + label:before {
+          border: 1px solid #3c68bf;
+        }
+
+        /* hover style just for information */
+        .custom label:hover:before {
+          border: 1px solid #4778d9!important;
+        }
+    </style>
+</head>
+<body>
+    <img id='img'/>
+    <img id='img_2'/>
+    <p id='p1'>Image #<span id='img_num'></span></p>
+    <p id='p2' onclick='newImage()'>New</p>
+    <p id='p3' onclick='showSettings()'>Settings</p>
+    <a download='img' id='a'>Save</a>
+    <div id='st_html' style='display: none'>
+        <input class='custom' id='setting1' onchange='updateSetting(1)' type='checkbox'/>
+        <label for='setting1'>Preload New Images</label>
+        <br>
+        <input class='custom' id='setting2' onchange='updateSetting(2)' type='checkbox'/>
+        <label for='setting2'>Crossfade Images</label>
+        <br>
+        <input class='custom' id='setting3' onchange='updateSetting(3)' type='checkbox'/>
+        <label for='setting3'>Use Icons</label>
+    </div>
+    <script>
+        var st_html = document.getElementById('st_html').innerHTML;
+        document.getElementById('st_html').innerHTML = '';
+        
+        var settings = {
+            preload_new_image: true,
+            crossfade_images: true,
+            use_icons: false
+        }
+        
+        function updateSetting(x){
+            if(x===1){
+                if(setting1.checked){
+                    settings.preload_new_image = true;
+                }
+                else{
+                    settings.preload_new_image = false;
+                }
+            }
+            else if(x===2){
+                if(setting2.checked){
+                    settings.crossfade_images = true;
+                }
+                else{
+                    settings.crossfade_images = false;
+                }
+            }
+            else if(x===3){
+                if(setting3.checked){
+                    settings.use_icons = true;
+                    p2.innerHTML = '<i class="fa fa-plus"></i>';
+                    p3.innerHTML = '<i class="fa fa-gear"></i>';
+                    p3.style.top = '-2px';
+                    a.innerHTML = '<i class="fa fa-download"></i>';
+                    p2.style.bottom = '-5px';
+                    a.style.bottom = '10px';
+                }
+                else{
+                    settings.use_icons = false;
+                    p2.innerHTML = 'New';
+                    p3.innerHTML = 'Settings';
+                    p3.style.top = '';
+                    a.innerHTML = 'Save';
+                    p2.style.bottom = '';
+                    a.style.bottom = '';
+                }
+            }
+        }
+        
+        function getImageURL(input){
+            return "http://unsplash.it/"+window.innerWidth+"/"+window.innerHeight+"/?image="+input;
+        }
+        
+        var img_new_preload = new Image();
+        var img_new_id = 0;
+        
+        var img_id = Math.round(Math.random()*1084);
+        var img_new_id = Math.round(Math.random()*1084);
+        img.src = getImageURL(img_id);
+        img_new_preload.src = getImageURL(img_new_id);
+        a.download='img_'+img_id;
+        a.href="http://unsplash.it/0/0/?image="+img_id;
+        img_num.innerHTML = img_id;
+        
+        window.addEventListener('error', function(e) {
+        if(e.target.id==='img'){
+            img_id = Math.round(Math.random()*1084);
+            img.src = getImageURL(img_id);
+            a.download='img_'+img_id;
+            a.href="http://unsplash.it/0/0/?image="+img_id;
+        }
+        else{
+            img_new_id = Math.round(Math.random()*1084);
+            img_new_preload.src = getImageURL(img_new_id);
+        }
+        }, true);
+        
+        window.onresize = function(){
+            img.style.width = window.innerWidth+'px';
+            img.style.height = window.innerHeight+'px';
+            img.src = getImageURL(img_id);
+        }
+        function newImage(){
+        if(settings.preload_new_image){
+            img_id = img_new_id;
+            img_2.src = img_new_preload.src;
+            img_num.innerHTML = img_id;
+            a.download='img_'+img_id;
+            a.href="http://unsplash.it/0/0/?image="+img_id;
+            eval(img_2.onload);
+        }
+        else{   
+            img_id = Math.round(Math.random()*1084);
+            img_2.src = getImageURL(img_id);
+        }
+        }
+        
+        var st;
+        function showSettings(){
+            st = alertify.alert('');
+            st.setHeader('Settings')
+            st.setContent(st_html);
+            if(settings.preload_new_image){
+                setting1.checked = true;}
+            if(settings.crossfade_images){
+                setting2.checked = true;}
+            if(settings.use_icons){
+                setting3.checked = true;}
+        }
+        
+        var remOpacity;
+        img_2.onload = function(){
+        if(settings.crossfade_images){
+            clearTimeout(remOpacity);
+            img.style.opacity = 0;
+            img_2.style.opacity = 1;
+            setTimeout(function(){
+                a.download='img_'+img_id;
+                a.href="http://unsplash.it/0/0/?image="+img_id;
+                img_num.innerHTML = img_id;
+            },300);
+            setTimeout(function(){
+                img.src=img_2.src;
+                img.style.opacity = 1;
+            },600);
+            remOpacity = setTimeout(function(){
+                img_2.style.opacity = 0;
+            },900)
+        }
+        else{
+            img.src=img_2.src;
+            a.download='img_'+img_id;
+            a.href="http://unsplash.it/0/0/?image="+img_id;
+            img_num.innerHTML = img_id;
+        }
+        if(settings.preload_new_image){
+            img_new_id = Math.round(Math.random()*1084);
+            img_new_preload.src = getImageURL(img_new_id);
+        }
+        }
+    </script>
+</body>
+</html>

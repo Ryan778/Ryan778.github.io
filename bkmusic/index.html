@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <title>Background Music Troller</title>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+  <link href="style.css" rel="stylesheet"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-91409078-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <span><!--Because AlertifyJS (original ver.) sucks and needs a span tag to work-->
+  <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+  </span>
+  <script src='script.js'></script>
+</head>
+<body>
+  <audio id='audio' loop></audio>
+  <h2>Background Music Player Troll</h2>
+  <p>Prank your friends (or enemies) by playing one of the three super annoying tunes in the background!<br>Temporarily stop the music by muting your computer, or permanently stop the music by restarting your computer.<br>Use responsibly, I am not liable for your actions. No warrenty is included. See <a target='_blank' href='https://creativecommons.org/licenses/by-nc/4.0/'>license</a> for more information.<br><b>Warning</b>: These scripts are <b>not</b> signed and may give security warnings when run, press OK when prompted.</p>
+  <div id='main'>
+    <h2>Pick One:</h2>
+    <div id='opt_sandstorm' class='option' onclick='selectOption("sandstorm")'>
+      <img src='images/sandstorm.jpg'/>
+      <p class='optname optname_long'>Darude Sandstorm</p>
+    </div>
+    <div id='opt_rick' class='option selected' onclick='selectOption("rick")'>
+      <img src='images/rick.jpg'/>
+      <p class='optname'>Rick Roll</p>
+    </div>
+    <div id='opt_sax' class='option' onclick='selectOption("sax")'>
+      <img src='images/sax.jpg'/>
+      <p class='optname'>Epic Sax Guy</p>
+    </div>
+    <hr style='opacity:0'>
+    <input id='agree' type='checkbox' class='custom' onclick='showDL(this.checked)'><label for='agree'>I agree to use the downloaded files responsibly and under the <a target='_blank' href='https://creativecommons.org/licenses/by-nc/4.0/'>CC-BY-NC 4.0</a> license.</label>
+    <h3>Preview: <button id='previewbtn' onclick='preview()'><i class='fa fa-play fa-fw'></i></button> | File: <button id='dlbtn' disabled><a id='dl'>Download</a></button></h3>
+  </div>
+
+  <p id='f'>Copyright &copy; 2017 Ryan Zhang | Page and scripts are licensed under <a target='_blank' href='https://creativecommons.org/licenses/by-nc/4.0/'>CC-BY-NC 4.0 International</a>.</p>
+</body>
+</html>

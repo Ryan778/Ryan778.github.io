@@ -52,7 +52,7 @@ a:hover{
 }
 #main{
   width: 880px;
-  height: 350px;
+  height: 560px;
   margin-left: calc(50% - 440px);
   background: white;
   box-shadow: 2px 2px 4px gray;
@@ -170,4 +170,25 @@ a:hover{
 /* hover style just for information */
 .custom label:hover:before {
   border: 1px solid #4778d9!important;
+}
+
+.clickable{
+  color: #3e3eff;
+  cursor: pointer;
+}
+
+.clickable:hover{
+  text-decoration: underline;
+}
+
+.clickable:active{
+  color: #ff0b56;
+}
+
+a, .clickable{
+  transition: all 0.1s;
+}
+
+.alertify .alert>*, .alertify .dialog>*{
+  width: 750px;
 }

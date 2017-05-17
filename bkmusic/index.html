@@ -25,7 +25,7 @@
 <body>
   <audio id='audio' loop></audio>
   <h2>Background Music Player Troll</h2>
-  <p>Prank your friends (or enemies) by playing one of the three super annoying tunes in the background!<br>Temporarily stop the music by muting your computer, or permanently stop the music by restarting your computer.<br>Use responsibly, I am not liable for your actions. No warrenty is included. See <a target='_blank' href='https://creativecommons.org/licenses/by-nc/4.0/'>license</a> for more information.<br><b>Warning</b>: These scripts are <b>not</b> signed and may give security warnings when run, press OK when prompted.</p>
+  <p>Prank your friends (or enemies) by playing one of the three super annoying tunes in the background!<br>Temporarily stop the music by muting your computer, or permanently stop the music by restarting your computer.<br>Use responsibly, I am not liable for your actions. No warrenty is included. See the <a target='_blank' href='https://creativecommons.org/licenses/by-nc/4.0/'>license</a> for more information.<br><b>Warning</b>: These scripts are <b>not</b> signed and may give security warnings when run, press OK when prompted.</p>
   <div id='main'>
     <h2>Pick One:</h2>
     <div id='opt_sandstorm' class='option' onclick='selectOption("sandstorm")'>
@@ -40,11 +40,23 @@
       <img src='images/sax.jpg'/>
       <p class='optname'>Epic Sax Guy</p>
     </div>
+    <div id='opt_nyan' class='option' onclick='selectOption("nyan")'>
+      <img src='images/nyan.jpg'/>
+      <p class='optname'>Nyan Cat</p>
+    </div>
+    <div id='opt_tacos' class='option' onclick='selectOption("tacos")'>
+      <img src='images/taco.jpg'/>
+      <p class='optname'>Raining Tacos</p>
+    </div>
+    <div id='opt_whitenoise' class='option' onclick='selectOption("whitenoise")'>
+      <img src='images/whitenoise.jpg'/>
+      <p class='optname'>White Noise</p>
+    </div>
     <hr style='opacity:0'>
     <input id='agree' type='checkbox' class='custom' onclick='showDL(this.checked)'><label for='agree'>I agree to use the downloaded files responsibly and under the <a target='_blank' href='https://creativecommons.org/licenses/by-nc/4.0/'>CC-BY-NC 4.0</a> license.</label>
     <h3>Preview: <button id='previewbtn' onclick='preview()'><i class='fa fa-play fa-fw'></i></button> | File: <button id='dlbtn' disabled><a id='dl'>Download</a></button></h3>
   </div>
 
-  <p id='f'>Copyright &copy; 2017 Ryan Zhang | Page and scripts are licensed under <a target='_blank' href='https://creativecommons.org/licenses/by-nc/4.0/'>CC-BY-NC 4.0 International</a>.</p>
+  <p id='f'>Copyright &copy; 2017 Ryan Zhang | Page and scripts are licensed under <a target='_blank' href='https://creativecommons.org/licenses/by-nc/4.0/'>CC-BY-NC 4.0 International</a>. | <span class='clickable' onclick='showAbout()'>About</span> | <span class='clickable' onclick='showDMCA()'>DMCA</span></p>
 </body>
 </html>

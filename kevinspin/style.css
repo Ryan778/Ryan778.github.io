@@ -16,7 +16,7 @@ h1 a:hover{
   cursor: pointer;
   text-decoration: underline;
 }
-#p{
+#p, .p{
   position: fixed;
   width: 100%;
   text-align: center;

@@ -24,7 +24,9 @@
   <audio id='audio' loop src='tobu-hope.mp3'></audio>
   <video id='vid' loop src='vid.mp4'></video>
   <div id='vidoverlay'>
-    <p id='load'>Loading...</p>
+    <p id='load'></p>
+    <script>load.innerHTML = 'Loading...'</script>
+    <noscript><p id='load'>JavaScript must be enabled to use this</p></noscript>
   </div>
   <p id='p'>You've been watching Kevin spin for <b id='time'>0:00:00</b> (Total: <span><b id='time_all'>0:00:00</b></span>)<br><span style='color: #888; font-size:12px;'>&copy; 2017 Ryan Zhang and Kevin Chen. All Rights Reserved.</span></p>
 </body>

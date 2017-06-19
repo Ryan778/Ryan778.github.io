@@ -43,10 +43,9 @@ window.onload = function(){
     displayTime();
   }, 1000);
   if(window.innerHeight < 640 || window.mobileCheck()){
-    var c = alertify.confirm("Would you like to visit the mobile version of Kevin Spin?", function(){
+    alertify.confirm("Would you like to visit the mobile version of Kevin Spin?", function(){
       window.open('../kevinspinmobile', '_self');
     });
-    c.setHeader('Mobile Version')
   }
 }
 

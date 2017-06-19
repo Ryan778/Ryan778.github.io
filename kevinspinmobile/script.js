@@ -42,11 +42,11 @@ window.onload = function(){
     localStorage.kevinSpin_totalTime = timeSpun_all;
     displayTime();
   }, 1000);
-  if(window.innerHeight < 640 || window.mobileCheck()){
-    var c = alertify.confirm("Would you like to visit the mobile version of Kevin Spin?", function(){
-      window.open('../kevinspinmobile', '_self');
+  if(!window.mobileCheck()){
+    var c = alertify.confirm("Would you like to visit the desktop version of Kevin Spin?", function(){
+      window.open('../kevinspin', '_self');
     });
-    c.setHeader('Mobile Version')
+    c.setHeader('Desktop Version')
   }
 }
 

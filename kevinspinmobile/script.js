@@ -32,6 +32,9 @@ window.mobileCheck = function() {
 };
 
 window.onload = function(){
+  if(window.innerWidth <= 320){
+    p.style.fontSize = '14px';
+  }
   displayTime();
   load.innerHTML = '';
   audio.play();
@@ -42,6 +45,8 @@ window.onload = function(){
     localStorage.kevinSpin_totalTime = timeSpun_all;
     displayTime();
   }, 1000);
+  sendGlobalTime();
+  setInterval(sendGlobalTime, 15000);
   if(!window.mobileCheck()){
     alertify.confirm("Would you like to visit the desktop version of Kevin Spin?", function(){
       window.open('../kevinspin', '_self');
@@ -53,6 +58,46 @@ function msConfirm(){
   var c = alertify.confirm('<b>External Link</b><br>Are you sure you would like to visit Meat Spin?<br><span style="color: #888">We take zero responsibility for any mental damage potentially caused from visiting this site.</span>', function(){
     window.open('http://meatspin.com', '_blank');
   }, function(){
-    window.open('http://leekspin.com', '_blank');
+    window.open('http://tacospin.com', '_blank');
   })
+}
+
+function toggleVolume_func(){
+  if(toggleVolume.className === 'fa fa-fw fa-volume-up'){
+    toggleVolume.className = 'fa fa-fw fa-volume-off';
+    audio.muted = true;
+  }
+  else{
+    toggleVolume.className = 'fa fa-fw fa-volume-up';
+    audio.muted = false;
+  }
+}
+
+function sendGlobalTime(){
+  try{
+    localStorage.setItem('ks_test', '1');
+    if(localStorage.getItem('ks_test') !== '1'){
+      return false;
+    }
+  }
+  catch(err){
+    return false;
+  }
+  $.post('https://ryan778.herokuapp.com/kevinspin/sendGlobalTime', {time: timeSpun_all, KSSID: localStorage.ks_sid}, function(res){
+    if(res.KSSID){
+      localStorage.ks_sid = res.KSSID;
+    }
+  })
+}
+
+
+function showGlobalTime(){
+  alertify.alert('<span id="tmp_globalTime"><i class="fa fa-cog fa-spin"></i> Loading global time...<br><span style="color:#888">If it doesn\'t load within 15 seconds, press OK and open this again. If the problem persists, the global time server may be down.</span></span>');
+  $.get('https://ryan778.herokuapp.com/kevinspin/getGlobalTime', function(res){
+    document.getElementById('tmp_globalTime').innerHTML = '<b>Kevin Spin - Global Time</b><br><i class="fa fa-fw fa-clock-o"></i> Cumulative Global Time: '+res.time+'<br><i class="fa fa-fw fa-clock-o"></i> Currently Active Global Time: '+res.activeTime+'<br><i class="fa fa-fw fa-user"></i> Total Unique Users: '+res.uniqueUsers+'<br><i class="fa fa-fw fa-user-plus"></i> Currently Active Users: '+res.activeUsers;
+  })
+}
+
+function showDisclaimer(){
+  alertify.alert('<b>Disclaimer</b><br>This site is for entertainment purposes only. Don\'t waste your life on here. Please. No seriously.<br><br>Global times really don\'t mean anything. You (or anyone else) can leave your (or their) computer/phone/tablet on overnight and look, the time went up by eight hours!<br><br>Don\'t leave this open 24/7. You\'ll slow down the time tracking servers (and may be IP blocked). Not to mention it\'s a huge waste of CPU resources...')
 }

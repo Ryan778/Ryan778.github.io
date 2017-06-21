@@ -17,10 +17,15 @@
 	</script>
   <span><!--Because AlertifyJS (old version) sucks and needs a span tag to work-->
   <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+  <script async
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
   </span>
 </head>
 <body>
-  <h1>Kevin Spin<br><span style='font-size: 18px; font-weight: 400'>Not from the creators of <a href='#' onclick='msConfirm()'>meat spin</a><br>"We were bored"</span></h1>
+  <h1>Kevin Spin <i class='fa fa-fw fa-volume-up' id='toggleVolume' onclick='toggleVolume_func()'></i><br><span style='font-size: 18px; font-weight: 400'>Not from the creators of <a href='#' onclick='msConfirm()'>meat spin</a><br>Now with Global Time :D<br>"We were bored" (<span class='blue' onclick='showDisclaimer()'>Disclaimer</span>)</span></h1>
   <audio id='audio' loop src='../kevinspin/tobu-hope.mp3'></audio>
   <video id='vid' loop src='../kevinspin/vid.mp4'></video>
   <div id='vidoverlay' onclick='vid.play()'>
@@ -28,6 +33,6 @@
     <script>load.innerHTML = 'Loading...'</script>
     <noscript><p id='load' class='p'>JavaScript must be enabled to use this</p></noscript>
   </div>
-  <p id='p'>You've been watching Kevin spin for <b id='time'>0:00:00</b><br>Total Time: <span><b id='time_all'>0:00:00</b></span><br><span style='color: #888; font-size:12px;'>&copy; 2017 Ryan Zhang and Kevin Chen. All Rights Reserved.</span></p>
+  <p id='p'>You've been watching Kevin spin for <b id='time'>0:00:00</b><br>Total Time: <span><b id='time_all'>0:00:00</b> | <span class='blue' onclick='showGlobalTime()'>Global Time</span></span><br><span style='color: #888; font-size:12px;'>&copy; 2017 Ryan Zhang and Kevin Chen. All Rights Reserved.</span></p>
 </body>
 </html>

@@ -10,12 +10,13 @@ h1{
   text-align: center;
   top: 0;
   height: 15%;
+  line-height: 0.8;
 }
-h1 a{
+h1 a, .blue{
   text-decoration: none;
   color: #0062ff;
 }
-h1 a:hover{
+h1 a:hover, .blue:hover{
   color: #156fff;
   cursor: pointer;
   text-decoration: underline;

@@ -1,0 +1,370 @@
+/* Peeking into the code of the webpage? Don't expect too much. seriously. 
+   At least it's not a huge mess and somewhat organized :D
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.15;
+}
+ol, ul {
+  padding-left: 20px;
+	list-style: initial;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Template / Preparation CSS
+   (C) 2017 Ryan Zhang. All Rights Reserved. 
+*/
+
+html{
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+h1{
+  font-weight: bold;
+  font-size: 3rem}
+h2{
+  font-weight: bold;
+  font-size: 2.5rem}
+h3{
+  font-size: 2rem}
+h4{
+  font-size: 1.5rem}
+h5{
+  font-size: 1.25rem}
+
+a{
+  color: #0366d6;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover, a:focus{
+  text-decoration: underline;
+}
+
+a:focus{
+  outline: none;
+  background: rgba(3, 102, 214, 0.3);
+}
+
+.a-lt{
+  color: #8ac1ff;
+}
+
+.div-inner{
+  padding: 20px;
+  max-width: 800px;
+  line-height: 1.4;
+  margin: auto;
+}
+
+/* Main Page CSS
+   (C) 2017 Ryan Zhang. All Rights Reserved.
+*/
+
+::selection{
+  background: #c7e7ff;
+}
+
+html::-webkit-scrollbar-track{
+  background: #eee;
+  box-shadow: 0 0 1px 1px #bbb, inset 0 0 4px rgba(0,0,0,0.2)
+}
+
+html::-webkit-scrollbar{
+	width: 12px;
+	background-color: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: #b8b4af;
+  box-shadow: inset 0 0 1px 1px #ada098;
+}
+
+html::-webkit-scrollbar-thumb:hover{
+  background: #c4b8b4;
+  cursor: pointer;
+}
+
+.noselect, button{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+#intro{
+  width: 100%;
+  height: 720px;
+  position: relative;
+  color: white;
+  background-image: url(images/tianjin.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+#intro_me{
+  position: relative;
+  padding: 20px;
+  font-size: 1.2em;
+  text-shadow: 2px 2px 4px #333;
+  max-width: 800px;
+  bottom: -10px;
+  opacity: 0;
+  font-family: 'Raleway', serif;
+  transition: opacity 1.2s, bottom 1.2s;
+  margin: auto;
+}
+
+#intro_me_outer{
+  position: absolute;
+  width: 100%;
+  bottom: 40px;
+}
+
+#intro_photoCredit{
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 12px;
+  opacity: 0.4;
+  transition: all 0.2s;
+}
+
+#intro_photoCredit:hover, #intro_photoCredit:focus-within{
+  opacity: 1;
+}
+
+#about{
+  width: 100%;
+  position: relative;
+  background: #fafafa;
+}
+
+#social{
+  width: 100%;
+  position: relative;
+  background: #eee;
+}
+
+#sm_icons{
+  color: #888;
+}
+
+.social{
+  position: relative;
+  color: white;
+  width: 150px;
+  height: 32px;
+  background: #fafafa;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.social:hover, .social:focus{
+  outline: none;
+  cursor: pointer;
+}
+
+.social:active{
+  border-color: #555;
+  box-shadow: 0px 0px 6px #3795ff;
+}
+
+.social-inner{
+  padding-right: 5px;
+  width: 20px;
+  text-align: center;
+  display: inline-block;
+  border-right: 1px solid #ddd;
+  margin-right: 4px;
+}
+
+.social a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.sp{
+  transition: all 0.2s;
+}
+
+#btn_fb{
+  background: #3B5998;
+}
+#btn_fb:hover, #btn_fb:focus, #btn_tb:hover, #btn_tb:focus, #btn_st:hover, #btn_st:focus{
+  border-color: navy;
+  box-shadow: 0px 0px 4px #416dff;
+}
+#btn_fb:active{
+  background: #4667aa;
+  box-shadow: 0px 0px 8px #2a5cff;
+}
+
+#btn_tw{
+  background: #00aced;
+  text-shadow: 1px 1px 2px #555;
+}
+#btn_tw:hover, #btn_tw:focus{
+  border-color: #008bbf;
+  box-shadow: 0px 0px 4px #55a5ff;
+}
+#btn_tw:active{
+  background: #0eb8f8;
+  box-shadow: 0px 0px 8px #3393ff;
+}
+
+#btn_ig{
+  background: #9b6954;
+  text-shadow: 1px 1px 2px #555;
+}
+#btn_ig:hover, #btn_ig:focus{
+  border-color: #8d5239;
+  box-shadow: 0px 0px 4px #aa4405;
+}
+#btn_ig:active{
+  background: #aa6e55;
+  box-shadow: 0px 0px 8px #e25700;
+}
+
+#btn_sc{
+  background: #ffff00;
+  color: #555;
+}
+#btn_sc:hover, #btn_sc:focus{
+  color: black;
+  border-color: #555;
+  box-shadow: 0px 0px 4px #ffff00;
+}
+#btn_sc:active{
+  background: #fff500;
+  box-shadow: 0px 0px 8px #ffeb00;
+}
+
+#btn_rd{
+  background: #ff6314;
+  text-shadow: 1px 1px 2px #555;
+}
+#btn_rd:hover, #btn_rd:focus{
+  border-color: #f8651a;
+  box-shadow: 0px 0px 4px #eb5e07;
+}
+#btn_rd:active{
+  background: #ff7631;
+  box-shadow: 0px 0px 8px #ff5600;
+}
+
+#btn_tb, #btn_st{
+  background: #36465d;
+}
+#btn_tb:active, #btn_st:active{
+  background: #3b5171;
+  box-shadow: 0px 0px 8px #2a5cff;
+}
+
+#discord-icon{
+  vertical-align: bottom;
+}
+#btn_dc{
+  background: #7289DA;
+  text-shadow: 1px 1px 2px #555;
+}
+#btn_dc:hover, #btn_dc:focus{
+  border-color: #4d65bc;
+  box-shadow: 0px 0px 4px #7289DA;
+}
+#btn_dc:active{
+  background: #7c96f2;
+  box-shadow: 0px 0px 8px #6379c6;
+}
+
+#btn_yt, #btn_gp{
+  background: #f2171e;
+  text-shadow: 1px 1px 2px #555;
+}
+#btn_yt:hover, #btn_yt:focus, #btn_gp:hover, #btn_gp:focus{
+  border-color: #c3151c;
+  box-shadow: 0px 0px 4px #eb2a07;
+}
+#btn_yt:active, #btn_gp:active{
+  background: #f74046;
+  box-shadow: 0px 0px 8px #ff0000;
+}
+
+#btn_gh{
+  color: purple;
+}
+#btn_gh:hover, #btn_gh:focus{
+  border-color: #783298;
+  box-shadow: 0px 0px 2px #a227a2;
+}
+#btn_gh:active{
+  box-shadow: 0px 0px 8px purple;
+  background: #fcf0ff;
+}
+
+#btn_wk{
+  color: black;
+}
+#btn_wk:hover, #btn_wk:focus{
+  border-color: #7f75ef;
+  box-shadow: 0px 0px 2px #9f97ff;
+}
+#btn_wk:active{
+  box-shadow: 0px 0px 8px #7064ff;
+  background: #f0f6ff;
+}
+
+#btn_wc{
+  background: #05c30d;
+  text-shadow: 1px 1px 2px #555;
+}
+#btn_wc:hover, #btn_wc:focus{
+  border-color: #029108;
+  box-shadow: 0px 0px 4px #05c30d;
+}
+#btn_wc:active{
+  background: #00d409;
+  box-shadow: 0px 0px 8px #05c30d;
+}
+
+#footer{
+  width: 100%;
+  background: #fafafa;
+  color: #aaa;
+  font-size: 12px;
+}

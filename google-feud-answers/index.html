@@ -7,12 +7,13 @@
     -->
     <title>Google Feud Answers</title>
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <meta name="description" content="Quick and easy answers to Google Feud. Find the top ten answers for anything in Google Feud, updated regularly!"/>
+    <meta name="description" content="The only site with accurate, up-to-date answers directly from Google Feud. Find the top ten answers for anything in Google Feud!"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href='style.css' rel='stylesheet'/>
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.css" integrity="sha256-pMulKeKs7Hns5vhu0uluhawM68QSrKg/dFfttaXCKE8=" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.1/awesomplete.min.js" integrity="sha256-hQ2PYbQiQS3xeguwt5BS+AMzn5V5JJ0P1kQnuoXdTnk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <script src='db.js'></script>
     <script src='script.js'></script>
     <script>
@@ -31,7 +32,9 @@
 <body>
     <h2 id='header' class='noselect'><span><span class='c_b'>G</span><span class='c_r'>o</span><span class='c_y'>o</span><span class='c_b'>g</span><span class='c_g'>l</span><span class='c_r'>e</span></span> <span class='c_b'>F</span><span class='c_r'>e</span><span class='c_y'>u</span><span class='c_g'>d</span> <span style='font-weight:400'>Answers</span></h2>
     <span id='desc'>Quick, accurate answers for <a href='http://www.googlefeud.com' target='_blank'>Google Feud</a>!</span>
-    <br><br>
+    <br>
+    <span id='desc_upd'>New: Click an answer to copy it to your clipboard!</span>
+    <br>
     <input id='input' oninput='checkInput(this)' placeholder='Enter Phrase...'>
     
     <table id='table'>
@@ -42,6 +45,6 @@
         <tr><td id='t5'>[5]</td><td id='t10'>[10]</td></tr>
     </table>
     
-    <div id='footer'><span class='footer-action' onclick='showInfo(0)'>about</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(1)'>legal</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(2)'>contact</span></div>
+    <div id='footer'><span class='footer-action' onclick='showInfo(0)'>about</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(1)'>legal</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(2)'>contact</span><br><p id='footerp'>created by <a href='../about-me/' class='footer-action'>Ryan Zhang</a></p></div>
 </body>
 </html>

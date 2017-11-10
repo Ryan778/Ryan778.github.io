@@ -12,7 +12,7 @@ html{
 body{
     text-align: center;
 }
-.noselect{
+.noselect, .tpts, .footer-action{
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
@@ -81,9 +81,21 @@ a{text-decoration: none}
     margin-top: 40px;
     color: #5589ff;
 }
+#footerp{
+  color: black;
+}
+#footerp a{
+  color: #5589ff;
+}
+.footer-action{
+  transition: all 0.2s;
+}
 .footer-action:hover{
     text-decoration: underline;
     cursor: pointer;
+}
+.footer-action:focus, .footer-action:active{
+  background: #e4edff
 }
 .lgspace{
     display: inline-block;
@@ -119,10 +131,25 @@ tr, td{
     width: 315px;
     text-align: left;
 }
+.tans{
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tans:hover{
+  color: #009600;
+}
 .tpts{
     float: right;
     color: #467fff;
 }
 #desc{
     font-size: 20px;
+}
+#desc_upd{
+    margin-top: 3px;
+    display: block;
+    color: #777;
+}
+.green{
+    color: #00ad00;
 }

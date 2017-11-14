@@ -5,11 +5,11 @@ var edata;//Define the edata variable
 var sobv = ["is", "be", "am", "are", "was", "were", "been", "has", "have", "had", "do", "does", "did", "can", "could", "shall", "should", "will", "would", "may", "might", "must", "being"];//The list of 22 SOBV
 var wc = [" ", ".", ",", "\n", ":", "'", '"', "|", "!", "?", "<", ">", "&"];//Whitespace characters
 for(var i = 0; i<sobv.length; i++){sobv[i]='\.'+sobv[i]+'\.'}//Add wildcards to every one
-var other_words = ["due date", "sample text", "sample title"];//The other phrases you don't want
+var other_words = ["due date", "sample text", "sample title", "template title"];//The other phrases you don't want
 var hwords = sobv.concat(other_words);//Highlighted words
 for(var i = 0; i<hwords.length; i++){
     hwords[i] = new RegExp(hwords[i], "ig")}
-var ptv = [/\swas\s/ig,/\sgot\s/ig,/\sdrank\s/ig,/\shad\s/ig,/\sbought\s/ig,/\sate\s/ig, /\swent\s/ig, /\swere\s/ig, /\sran\s/ig, /\ssat\s/ig, /\Sed\s/ig];
+var ptv = [/\swas\s/ig,/\sgot\s/ig,/\sdrank\s/ig,/\shad\s/ig,/\sdid\s/ig,/\sbought\s/ig,/\sate\s/ig, /\swent\s/ig, /\swere\s/ig, /\sran\s/ig, /\ssat\s/ig, /\sblew\s/ig, /\sflew\s/ig, /\S+ed\s/ig]; //Last item detects verbs ending in "ed" (usually past tense)
 //Convert the list to rexexp
 
 var stats = {
@@ -120,9 +120,12 @@ function markQuotes(str){
 
 var ptmarked = [];
 function ptreplacer(match, offset){
-    if(['bed','red'].indexOf(match.toLocaleLowerCase())!==-1){return match}//False positives
+    let term = match.toLocaleLowerCase();
+    if(wc.indexOf(term.slice(-1)) !== -1){term = term.slice(0, term.length-1)}
+    if(['bed','red','need','reed', 'breed', 'seed','deed','feed'].indexOf(term)!==-1){return match}//False positives (not completely inclusive)
     var lastChar = match.slice(match.length-1, match.length);
-    var firstChar = match.slice(0, 1);
+    var firstChar = '';
+    if(wc.indexOf(match.slice(0, 1)) !== -1){firstChar = match.slice(0, 1); match = match.slice(1)}
     var id = createString(6);
     ptmarked[ptmarked.length] = offset;
     var inQuote = checkForQuote(offset);
@@ -131,7 +134,7 @@ function ptreplacer(match, offset){
         stats.pastTense ++;
         ptmarked[ptmarked.length] = id;
     }
-    return firstChar+'<span data-pt'+id+' style="text-decoration:underline">'+match.slice(1, match.length-1)+'</span>'+lastChar;
+    return firstChar+'<span data-pt'+id+' style="text-decoration:underline">'+match.slice(0, match.length-1)+'</span>'+lastChar;
 };
 
 function ptmark(){
@@ -179,6 +182,7 @@ function markText(){
     if(searchPastTense){
         for(var i = 0; i < ptv.length; i++){
             markQuotes(edata);
+            console.log(ptv[i]);
             edata = edata.replace(ptv[i],ptreplacer);
             ptmark(edata);
         }
@@ -202,7 +206,7 @@ function markText(){
 }
 
 function cl(){
-    alertify.alert('<b>Changes</b><br><ul style="text-align:left"><li>Better, simpler, updated editor</li><li>Now uses MLA styling: "12px" font (16px actual size) w/ Double Spacing (Customizable)</li><li>Results now differentiate between verbs in quotes and verbs outside of quotes</li><li>Basic past tense checker (looks for sentences written with past tense verbs)</li><li>Different colored highlighting for SOBV/Past Tense</li></ul>')
+    alertify.alert('<p style="text-align:left;padding:0px 12px;margin-top:0"><b>Changelog</b><br><br>Relase v2.1 (11/13/17): </p><ul style="text-align:left"><li>Improved past tense checker (fewer false positives, more detections, minor improvements)</li><li>Improved site metadata/descriptions</li><li>Several minor aesthetic changes</li><li>Changed license to CC-BY-NC-SA 4.0</li></ul><p style="text-align:left;padding:12px;padding-bottom:0px;line-height:0">Release v2.0 (2/15/17): </p><ul style="text-align:left"><li>Better, simpler, updated editor</li><li>Now uses MLA styling: "12px" font (16px actual size) w/ Double Spacing (Customizable)</li><li>Results now differentiate between verbs in quotes and verbs outside of quotes</li><li>Basic past tense checker (looks for sentences written with past tense verbs)</li><li>Different colored highlighting for SOBV/Past Tense</li></ul>')
 }
 
 function formatEditor(v){

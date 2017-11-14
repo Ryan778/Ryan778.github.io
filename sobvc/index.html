@@ -3,6 +3,9 @@
 <head>
     <title>State of Being Verb Checker</title>
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="Find every state of being verb in your writing with a single button! Now ignores quotes and checks for past tense!"/>
+    <meta name="keywords" content="state of being verb checker,sobv checker,verb checker,sobvc"/>
+    <meta charset="utf-8"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <script>
@@ -29,12 +32,12 @@
         }
         #f{
             line-height: 0;
-            font-size: 10px;
+            font-size: 11px;
             float: left;
         }
         #v{
             line-height: 0;
-            font-size: 10px;
+            font-size: 11px;
             float: right;
             padding-right: 3px;
         }
@@ -44,13 +47,17 @@
         .alertify-logs{
             z-index: 9996;
         }
-        #cl{
+        #cl, a{
             color: #5589ff;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+        #cl:hover, a:hover{
+            color: #8bafff;
         }
         .cke_editable{
             /*Copy MLA formatting*/
-            font-family: 'Times New Roman', Arial, sans-serif;
+            font-family: 'Times New Roman', 'Arial', sans-serif;
             font-size: 16px;
             line-height: 2;
 
@@ -83,18 +90,21 @@
             cursor: default;
         }
         a{text-decoration: none}
+        .alertify .alert>*, .alertify .dialog>*{
+            width: 500px;
+        }
     </style>
     <style id='altStyle'></style>
 </head>
 <body>
     <h2>State of Being Verb Checker <span style='font-weight:400'>v2</span></h2>
-    <p>With a single button, finds all state of being verbs and sorts them into "in quotes" and "not in quotes"!<br>Now with a Past Tense Sentence checker! (May Contain False-Positives) <span id='cl' onclick='cl()'>Changelog from v1.1</span></p>
+    <p>With a single button, find every single state of being verb in your writing! (is, are, be, etc.)<br>Now with a past tense sentence checker! (May contain false-positives)<br><i>(After pasting your text, select the "Check Text" button in the toolbar) </i><br><i style='color:#aaa;font-size:14px'>Disclaimer: Contractions are not supported (and should be avoided in the first place anyways)</i></p>
     <p>Formatting: <button id='bfe0' disabled onclick='formatEditor(0)'>MLA Format</button><button id='bfe1' onclick='formatEditor(1)'>Regular Format</button></p>
     <p>Search for Past Tense Verbs: <button onclick='togglePTVS()' style='background-color:#daffe7' id='bptv'>Active</button></p>
      <textarea name="t" id="t" rows="20" cols="80">Paste text here...</textarea>
     <br>
-    <p id='f'>&copy; 2017 Ryan Zhang | Licensed under <a target='_blank' href='license.txt'>GPL-3.0</a> | Favicon and mark text icon provided by <a href="//freepik.com">Freepik</a> from <a href="http://flaticon.com">www.flaticon.com</a></p>
-    <script src='script.min.js'></script>
-    <p id='v'>v2.0</p>
+    <p id='f'>&copy; 2017 <a href='../about-me/'>Ryan Zhang</a> | Licensed under <a target='_blank' href='https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode'>CC-BY-NC-SA 4.0</a> | Highlighter icon provided by <a href="//freepik.com">Freepik</a> from <a href="http://flaticon.com">www.flaticon.com</a> | <span id='cl' onclick='cl()'>Changelog</span></p>
+    <script src='script.js'></script>
+    <p id='v'>v2.1</p>
 </body>
 </html>

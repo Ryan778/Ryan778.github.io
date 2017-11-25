@@ -49,21 +49,27 @@
       <h1>Ryan Zhang</h1>
       <br>
       <p>&ldquo;A person who never made a mistake never tried anything new.&rdquo;</p>
-      <p>High School Student, Your Typical Asian Person</p>
+      <p>High School Student, A Typical Asian Person</p>
       <br>
       <p><i class='fa fa-map-marker fa-fw'></i> Colorado, United States</p>
       <p><i class='fa fa-share-alt fa-fw'></i> <a class='a-lt' href='#social' target='_self'>Lots of Social Media Accounts</a></p>
-      <p><i class='fa fa-envelope fa-fw'></i> <a class='a-lt' href='mailto:rjoker778@gmail.com'>rjoker778@gmail.com</a></p>
+      <p><i class='fa fa-envelope fa-fw'></i> <a id='a-email' class='a-lt' href='mailto:spamryan@mail.com'>&lt;loading, please wait... (is JS enabled?)&gt;</a></p>
       <p><i class='fa fa-link fa-fw'></i> <a class='a-lt' href='https://ryan778.github.io' target='_blank'>ryan778.github.io</a></p>
     </div>
     </div>
     <p id='intro_photoCredit'><i class='fa fa-camera'></i> Photo: <a class='a-lt' href='https://pixabay.com/en/tianjin-twilight-city-scenery-2185510/' target='_blank'>Tianjin, China</a> (Not mine :p)</p>
   </div>
+  <script>
+    let n = '778';
+    $('#a-email').attr('href','mailto:rjoker'+n+'@gmail.com');
+    $('#a-email').text('rjoker'+n+'@gmail.com');
+    //make it harder for automated scrapers to steal my email
+  </script>
   <div id='about'>
     <div id='about-inner' class='div-inner'>
       <h3>About Me</h3>
       <br>
-      <p><a href='#social'><i class='fa fa-angle-double-down'></i> Skip to Social Media</a></p>
+      <p><a href='#social'><i class='fa fa-angle-double-down'></i> Skip to Social Media</a> (I like being noticed)</p>
       <br>
       <h5>Who is This Guy?</h5>
       <p>Hi! I'm Ryan. High school student, knows a thing or two about web design (for example, this page), yet has ever taken a web design class at school (internet is useful). I'm Asian, speak multiple languages (including Chinese) (but only English fluently).</p><br><p>I enjoy coding (ex. this page), video games (but not that much), biking (recreationally), as well as social events in general. I used to be a complete introvert, but now I enjoy social activities  - things that I never would've done three years ago that I do now (or have recently done), feel free to ask!</p>
@@ -79,6 +85,44 @@
         <li>I'm on Google for some reason (go try it)</li>
         <li>Responsive design (making this page look good on a small phone) is a pain and I spent around an hour making this page responsive</li>
       </ul>
+    </div>
+  </div>
+  <div id='projects'>
+    <div id='projects-inner' class='div-inner'>
+      <h3>Projects</h3>
+      <p>Some of the things I've made in my spare time</p>
+      <br>
+      <h4>Public Projects</h4>
+      <br>
+      <b>This Page</b>
+      <p>My first real attempt at making a responsive webpage (meaning it doesn't look horrible on a phone) because I wanted a cool link for <a href='https://www.instagram.com/ryanz778' onclick='handleOutboundLinkClicks(this.href)' target='_blank'>my Instagram</a> bio link. Even though I'll probably make a dedicated Instagram landing page similar to linktr.ee (eventually). </p>
+      <br>
+      <a href='../google-feud-answers/'>Google Feud Answers</a>
+      <p>Originally made because I was tired of kids in my class scrolling through endless blogs named "Google Feud Answers" and then complaining that the answers were outdated... decided against actually telling them about the existence of this site because I was shy. </p>
+      <br>
+      <a href='../kevinspin/'>Kevin Spin</a>
+      <p>When one of my friends moved, we decided to make this site for reasons unrelated to the fact that they moved. It just so happened to occur at the same time. We were bored alright?</p>
+      <br>
+      <a href='..'>More projects on this site</a>
+      <p>There's a lot more stuff on this site, and links to (almost) all of them are on this site's homepage. There's a lot of random stuff there, go check it out! </p>
+      <br>
+      <a href='https://www.khanacademy.org/profile/ryanz/projects' target='_blank'>Khan Academy Projects</a>
+      <p>My original inspiration for coding back when I was 10 (yay...) - half of my projects don't work anymore after KA changed their runtime and sandboxed a ton of stuff, which was what made me turn to learning Web Design instead of continuing on KA. Expect some cringy stuff there. </p>
+      <br>
+      <a href='https://codecademy.com/Jackson778/codebits/' target='_blank'>Codecademy "Codebits"</a>
+      <p>My next step in learning web design (around when I was 11-12). Would definitely not have recommended it when I took their lessons (~2015), but they've improved a lot. Expect more cringy stuff there.</p>
+      <br>
+      <h4>Personal Projects</h4>
+      <br>
+      <a href='https://ryan778.herokuapp.com/mscp/dl' target='_blank'>MSCP (Minecraft Server Control Panel)</a>
+      <p>A cross-platform application to make running Minecraft servers super easy. (Use the link above to see screenshots of the application, it's not currently publicly released)</p>
+      <br>
+      <a onclick='alertify.alert("Sorry, this application is not available for download.")'>GameHub</a>
+      <p>My own version/spin-off of the GameJolt Client app - manage, download, update games and also generates charts based on your activity. </p>
+      <br>
+      <a href='https://ryan778.herokuapp.com/personal/servers/' target='_blank'>More Random Servers</a>
+      <p>Because I have many random servers, all of which do some random task. Feel free to explore!</p>
+      <br>
     </div>
   </div>
   <div id='social'>
@@ -133,7 +177,7 @@
               <span id='btnp_rd' class='sp'>Reddit</span>
             </a>
           </button>
-          <span class='sm-desc'>I waste too much time on there</span>
+          <span class='sm-desc'>My pinned post leads right back here</span>
         </p>
         <br>
         <p>
@@ -210,7 +254,7 @@
   </div>
   <div id='footer'>
     <div id='footer-inner' class='div-inner'>
-      <p>&copy; 2017 Ryan Zhang. All Rights Reserved. Coded with <i class='fa fa-heart-o'></i> (kinda) using HTML, CSS, JS, and jQuery. <a href='#intro'><i class='fa fa-angle-double-up'></i> Back to Top</a></p>
+      <p>&copy; 2017 Ryan Zhang. All Rights Reserved. Made with <i class='fa fa-heart-o'></i> from scratch without website templates. <a href='#intro'><i class='fa fa-angle-double-up'></i> Back to Top</a></p>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zenscroll/4.0.0/zenscroll-min.js" integrity="sha256-e6Fy9H620fwYwylY6YUqXoIAEuXCO7ZNwNDUS4C9+dM=" crossorigin="anonymous"></script>

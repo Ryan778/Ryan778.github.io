@@ -12,7 +12,7 @@ html{
 body{
     text-align: center;
 }
-.noselect, .tpts, .footer-action{
+.noselect, .tpts, #footer, button{
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
@@ -26,6 +26,12 @@ body{
 #cl{
     color: #5589ff;
     cursor: pointer;
+}
+#nojs{
+  background: #fdd;
+  width: 750px;
+  margin: auto;
+  padding: 5px;
 }
 button{
     background-color: rgba(255, 255, 255, 0.5);
@@ -52,6 +58,23 @@ button[disabled]{
     color: black;
     cursor: default;
 }
+#clear{
+  position: absolute;
+  right: -1px;
+  top: 1px;
+  margin: 0;
+  width: 33px;
+  height: 33px;
+  border: none;
+  background: white;
+  font-weight: 700;
+}
+#clear:hover, #clear:focus{
+  background: #eee;
+}
+#clear:active{
+  background: #eef;
+}
 a{text-decoration: none}
 
 .c_b{   
@@ -66,16 +89,24 @@ a{text-decoration: none}
 .c_y{
     color: rgb(245, 180, 1);
 }
+#inputDiv{
+  width: 420px;
+  margin: auto;
+  position: relative;
+}
 #input{
     font-size: 20px;
-    padding: 6px 6px;
-    width: 400px;
+    padding:  5px 35px 5px 5px;
+    width: 380px;
     border: 1px solid #aaa;
     transition: all 0.2s;
-}
-#input:hover, #input:focus{
-    border-color: #888;
     outline: none;
+}
+#input:hover{
+    border-color: #888;
+}
+#input:focus{
+  border-color: #555;
 }
 #footer{
     margin-top: 40px;

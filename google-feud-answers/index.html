@@ -7,7 +7,7 @@
     -->
     <title>Google Feud Answers</title>
     <meta name=viewport content="width=device-width, initial-scale=1">
-    <meta name="description" content="The only site with accurate, up-to-date answers directly from Google Feud. Find the top ten answers for anything in Google Feud!"/>
+    <meta name="description" content="The only site with accurate, up-to-date answers directly from Google Feud. Find out the top ten answers for anything in Google Feud within seconds!"/>
     <meta name="keywords" content="google feud answers,google feud answers unblocked,google feud"/>
     <meta charset="utf-8"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -33,12 +33,17 @@
 </head>
 <body>
     <h2 id='header' class='noselect'><span><span class='c_b'>G</span><span class='c_r'>o</span><span class='c_y'>o</span><span class='c_b'>g</span><span class='c_g'>l</span><span class='c_r'>e</span></span> <span class='c_b'>F</span><span class='c_r'>e</span><span class='c_y'>u</span><span class='c_g'>d</span> <span style='font-weight:400'>Answers</span></h2>
+    <noscript>
+    <div id='nojs'>It appears that you do not have JavaScript enabled. Googe Feud Answers <b>will not work</b> without it. <br>If you need instructions on how to enable JavaScript, <a href='https://enable-javascript.com/' target='_blank'>click here</a> for more information.</div><br>
+    </noscript>
     <span id='desc'>Quick, accurate answers for <a href='http://www.googlefeud.com' target='_blank'>Google Feud</a>!</span>
     <br>
-    <span id='desc_upd'>New: Click an answer to copy it to your clipboard!</span>
+    <span id='desc_upd'>Click an answer to copy it to your clipboard!</span>
     <br>
-    <input id='input' oninput='checkInput(this)' placeholder='Enter Phrase...'>
-    
+    <div id='inputDiv'>
+      <input id='input' oninput='checkInput(this)' placeholder='Enter Phrase...'>
+      <button id='clear' onclick='input.value="";checkInput(input);input.focus()' title='Clear Input'>x</button>
+    </div>
     <table id='table'>
         <tr><td id='t1'>[1]</td><td id='t6'>[6]</td></tr>
         <tr><td id='t2'>[2]</td><td id='t7'>[7]</td></tr>
@@ -47,6 +52,6 @@
         <tr><td id='t5'>[5]</td><td id='t10'>[10]</td></tr>
     </table>
     
-    <div id='footer'><span class='footer-action' onclick='showInfo(0)'>about</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(1)'>legal</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(2)'>contact</span><br><p id='footerp'>created by <a href='../about-me/' class='footer-action'>Ryan Zhang</a></p></div>
+    <div id='footer'><span class='footer-action' onclick='showInfo(0)'>about</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(1)'>legal</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(2)'>contact</span><span class='lgspace'></span><span class='footer-action' onclick='showInfo(3)'>changelog</span><br><p id='footerp'>created by <a href='../about-me/' class='footer-action'>Ryan Zhang</a></p></div>
 </body>
 </html>

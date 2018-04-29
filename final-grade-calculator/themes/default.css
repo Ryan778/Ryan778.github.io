@@ -1,0 +1,112 @@
+/* Everything NOT part of the calc box*/
+html{
+  background: #fafafa;
+  color: #000;
+}
+.halert-warn{
+  background: #fdc;
+}
+.halert-info{
+  background: #dde6ff;
+}
+#main{
+  background: #ebf8ff;
+}
+#calc{
+  background: #edffff;
+}
+#footer{
+  color: #555;
+}
+hr{
+  border: 1px solid #cde;
+  border-bottom: none;
+}
+a{
+  text-decoration: none;
+  color: #16f;
+}
+
+/* Formatting*/
+.gray{
+  color: #888}
+.gr{
+  color: #8c8}
+.gr-b{
+  border-color: #8c8}
+.gr-b:hover, .gr-b:focus{
+  border-color: #7a7}
+.gr-bk{
+  background: #efffef}
+.org{
+  color: #f90}
+.org-b{
+  border-color: #f90}
+.org-bk{
+  background: #ffefea}
+.org-b:hover{
+  border-color: #a75}
+.red{
+  color: #a00}
+.red-b{
+  border-color: #a00}
+.red-b:hover{
+  border-color: #744}
+
+.bl{
+  color: #16f;
+}
+.bl_i{
+  color: #16f;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.bl_i:hover{
+  color: #48f;
+}
+
+::selection{
+  background: #bdf;
+}
+
+/* Everything that IS part of the calc box*/
+button, input, select{
+  border: 1px solid #ddd;
+}
+input:hover, select:hover{
+  border-color: #aaa;
+}
+input:focus, select:focus{
+  border-color: #555;
+  outline: none;
+}
+.btn-opt{
+  background: #eee;
+}
+.btn-opt:focus{
+  border-color: #558;
+  outline: none;
+}
+.btn-opt:hover{
+  border-color: #aba;
+  background: #e8f8ea;
+}
+.btn-opt:disabled{
+  background: #d9ffdd;
+  border-color: #9ade9a;
+  color: black;
+}
+#calcBtn{
+  font-size: 16px;
+  padding: 4px 6px;
+}
+#res_return{
+  background: rgb(235, 242, 255);
+  padding: 1px 4px;
+  margin-bottom: 5px;
+}
+#res_return_or{
+  background: rgb(255, 248, 240);
+  padding: 1px 4px;
+  margin-bottom: 5px;
+}

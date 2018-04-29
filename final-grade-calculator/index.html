@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta name="description" content="Determine what score you need on your final to get a certain grade; supports both weighted (percentage) and unweighted (points). Also supports test dropping policies or grade replacement direcly (unlike RogerHub)! Designed to be simple and efficient. "/>
+  <meta name="keywords" content="final grade calculator, test grade calculator, final grade calculator points, final grade calculator with weights"/>
+  <title>Final / Test Grade Calculator</title>
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:400,400i,600" rel="stylesheet">
+  <link rel='icon' href='favicon.ico'/>
+  <link rel='stylesheet' href='styles.css'>
+  <link rel='stylesheet' href='themes/default.css'>
+  <script async src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+  <script defer src='http://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
+  <script defer src='main.js'></script>
+  <script async src='core.js'></script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/zenscroll/4.0.0/zenscroll-min.js" integrity="sha256-e6Fy9H620fwYwylY6YUqXoIAEuXCO7ZNwNDUS4C9+dM=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id='main-outer'>
+    <div id='main'>
+      <h1 id='header'>Final / Test Grade Calculator</h1>
+      <noscript>
+        <div class='halert halert-warn'>
+          <p><i class='material-icons'>warning</i> <b>Warning: </b><br>It looks like JavaScript is disabled in your browser and this tool will not work without it. <br>If you need help on enabling javascript, you can <a href='https://www.enable-javascript.com' target='_blank'>click here</a> and refresh the page afterwards.</p>
+        </div>
+        <br>
+        <style>
+          #calc-load{display: none}
+          #calc-loadErr{display: block}
+        </style>
+      </noscript>
+      <div class='halert halert-info' style='display: none'>
+        <p><i class='material-icons'>info</i> <b>Notice: </b><br>Final Grade Calculator is currently in <b>alpha</b> and is missing many features that will be in the final version. <br>FGC will likely enter beta in the next few days while any major bugs are being fixed and features are being finalized. Thanks!</p>
+      </div>
+      <div class='halert halert-info' style='display: block'>
+        <p><i class='material-icons'>info</i> <b>Notice: </b><br>Final Grade Calculator is currently in <b>beta</b>, and certain, smaller features are incomplete. There may also be bugs which may affect the overall result. While this app should be fairly stable, please let me know if something is clearly wrong. Thanks!</p>
+      </div>
+      <p>A tool designed to help you figure out what grade you need to get on your final in order to reach a certain grade, or to see how your test score will affect your grade. Supports both <b>weighted (percentage)</b> grades and <b>unweighted (points) </b>grades. Lowest test dropped? Test replacement policy? They're supported too! </p>
+      <div id='calc'>
+        <div id='calc-load'>
+          <i class='material-icons spin'>autorenew</i> Loading...
+          <br>
+          <i class='gray'>If this takes too long, try reloading the page. </i>
+        </div>
+        <div id='calc-loadErr'>
+          <i class='material-icons'>error</i> Unable to load Final Grade Calculator.
+          <br>
+          <i class='gray'>Make sure that JavaScript is enabled, and try again. </i>
+        </div>
+        <div id='calc-inner' style='display: none'>
+          <p><span class='rln'>First, is your grade weighted?</span> <button class='btn-opt' data-for='gradeType' data-val='0' disabled>Weighted</button> <button class='btn-opt' data-for='gradeType' data-val='1'>Unweighted</button> <a data-alertmsg='weight' class='infoLink'>How do I know?</a></p>
+          <p>What do you want to find?
+            <select class='rln' data-for='calcType'>
+              <option value='0'>What do I need to get a ___% in class?</option>
+              <option value='1'>I took the test/final, what's my grade now?</option>
+              <option value='2'>What do I need to keep my letter grade? *</option>
+              <option style='color: #888' value='3'>How will a test (not final) affect my grade?</option>
+            </select>
+            <span id='info_opt2' class='gray blk' style='display:none'>*This will also tell you what you need to raise your letter grade up if possible!</span>
+          </p>
+          <hr/>
+          <p><span class='p_q'>What is your current grade?</span> <span class='rln'>
+            <input data-for='currentGrade' data-val='%v' data-vald='grd' placeholder='e.g. 88 or B+'> <span class='percSign'>%</span> <span class='input-status'><i data-infoitem='1' class='material-icons'></i> <span class='input-st-text'></span></span>
+          </span></p>
+          <p id='opt_targetGrade'><span class='p_q'>What grade do you want to get?</span> <span class='rln'>
+            <input data-for='targetGrade' data-val='%v' data-vald='grd' placeholder='e.g. 90 or A--'> <span class='percSign'>%</span> <span class='input-status'><i data-infoitem='1' class='material-icons'></i> <span class='input-st-text'></span></span>
+          </span></p>
+          <p id='opt_finalGrade' style='display: none'><span class='p_q'>What did you get on your final?</span> <span class='rln'>
+            <input data-for='finalGrade' data-val='%v' data-vald='grd' placeholder='e.g. 90 or A--'> <span class='percSign'>%</span> <span class='input-status'><i data-infoitem='1' class='material-icons'></i> <span class='input-st-text'></span></span>
+          </span></p>
+          <p><span class='p_q'>How much is your final worth?</span> <span class='rln'>
+            <input data-for='finalWorth' data-val='%v' data-vald='weight' pattern='\d*' placeholder='e.g. 20'> <span class='percSign'>%</span> <span class='input-status'><i data-infoitem='1' class='material-icons'></i> <span class='input-st-text'></span></span>
+          </span></p>
+          <hr/>
+          <p>Any test adjustment policies?
+            <select class='rln' data-for='testPolicy'>
+              <option value='0'>No test adjustment policies (normal)</option>
+              <option value='1'>Lowest test is completely dropped</option>
+              <option value='2'>Get back difference bewteen test/final</option>
+              <option value='3'>Get half of test/final difference back</option>
+            </select>
+          </p>
+          <p id='p_testAdjInfo' class='p_testAdj'><i class='material-icons'>info_outline</i> <i><span id='sp_testAdjInfo'></span></i></p>
+          <p id='opt_testWorth' class='p_testAdj'><span class='p_q'>How much are the tests worth?</span> <span class='rln'>
+            <input data-for='testWorth' data-val='%v' data-vald='weight' pattern='\d*' placeholder='e.g. 30'> <span class='percSign'>%</span> <span class='input-status'><i data-infoitem='1' class='material-icons'></i> <span class='input-st-text'></span></span>
+          </span></p>
+          <p id='opt_testAvg' class='p_testAdj'><span class='p_q'>What is your test average? *</span> <span class='rln'>
+            <input data-for='testAvg' data-val='%v' data-vald='sp:testAvg' placeholder='e.g. 82 or B-'> <span class='percSign'>%</span> <span class='input-status'><i data-infoitem='1' class='material-icons'></i> <span class='input-st-text'></span></span>
+          </span></p>
+          <p id='p_testAvgInfo' class='gray p_testAdj'>*You can put either the overall value (ex. 95%) or the weighed value (ex. 45% (out of a 50% weight))</p>
+          <p id='opt_totalTests' class='p_testAdj'><span class='p_q'>How many tests did you take?</span> <span class='rln'>
+            <input data-for='totalTests' data-val='%v' data-vald='num' pattern='\d*' placeholder='e.g. 5'> <span class='input-status'><i data-infoitem='1' class='material-icons'></i> <span class='input-st-text'></span></span>
+          </span></p>
+          <p id='opt_lowestTest' class='p_testAdj'><span class='p_q'>What's your lowest test grade?</span> <span class='rln'>
+            <input data-for='lowestTest' data-val='%v' data-vald='grd' placeholder='e.g. 65 or D'> <span class='percSign'>%</span> <span class='input-status'><i data-infoitem='1' class='material-icons'></i> <span class='input-st-text'></span></span>
+          </span></p>
+          <br/>
+          <button id='calcBtn'>Calculate / Tell Me!</button>
+          <br/>
+          <div id='calcErr' style='display: none' class='calcRes org-b org-bk'>
+            <p><i class='material-icons'>error</i> <b>Sorry, it looks like you're missing something!</b></p>
+            <p>The missing/invalid inputs have been highlighted in red. Please fix them and press "calculate" again. </p>
+            <a id='res_return_or' class='res_return' href='#calc'>Back to Top</a>
+          </div>
+          <div id='calcRes' style='display: none' class='calcRes gr-b gr-bk'>
+            <p id='res-warn' style='display: none'><i class='material-icons'>info_outline</i> <i>It looks like one or more of the inputs above may have a typo. </i></p>
+            <p id='res-warn-grdAdj' style='display: none'><i class='material-icons'>info_outline</i> <i>Your grade adjustment policy wasn't used as the grade needed is lower than your lowest test grade.</i></p>
+            <p id='res-finalGrade-testAdj' class='p-res' style='display: none'><i class='material-icons'>info_outline</i> <i>An additional <b>0.00</b>% was added due to your grade adjustment policy.</i></p>
+            <p id='res-finalGrade-noTestAdj' class='p-res' style='display: none'><i class='material-icons'>info_outline</i> <i>Your grade adjustment policy wasn't used as it wasn't applicable here.</i></p>
+            <p id='res-0' class='p-res'>You'll need <span id='res-an-0'>a</span> <b id='res-val-0'>??.??% (??)</b> in order to get <span id='res-an-0b'>a</span> <b id='res-val-0b'>??.??% (??)</b> in your class.</p>
+            <p id='res-1' class='p-res'>Your overall grade in the class would be  <span id='res-an-1'>a</span> <b id='res-val-1'>??.??% (??)</b>.</p>
+            <p id='res-0s' class='p-res'>If you want to keep your current letter grade, you'll only need to get <span id='res-an-0s'>a</span> <b id='res-val-0s'>??.??% (??)</b>.</p>
+            <p id='res-1s' class='p-res'>If you get a perfect score (100%) on your final, you'll end with <span id='res-an-1s'>a</span> <b id='res-val-1s'>??.??% (??)</b>.</p>
+            <p class='gray'><span id='res_sub'>You'll do just fine!</span> <a id='res_moreInfo' style='display: none'>[More Info]</a></p>
+            <div id='calcRes_moreInfo' class='p-res'>
+              <hr>
+              <p id='resi' class='p-res'>Your current test grade is <b>0.00</b>% (<b>0.00</b>% out of <b>0.00</b>% weighted), before any adjustments.</p>
+              <p id='resi_a' class='p-res'>After dropping your lowest test, your test average increased to <b>0.00</b>% (<b>0.00</b>% weighted)</p>
+              <p id='resi_b' class='p-res'>You'll get <b>0.00</b>% back on your lowest test, increasing your test average by <b>0.00</b>% (unweighted).</p>
+              <p id='resi_c'>Overall, you'll get <span>a</span> <b>0.00</b>% increase in your final/combined grade from test adjustments. </p>
+            </div>
+            <a id='res_return' class='res_return' href='#calc'>Back to Top</a>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <hr/>
+      <p><b>Questions that aren't frequently asked but you're probably wondering anyways:</b><br>1) Why use this site? Why not RogerHub?</p>
+      <ul>
+        <li>A (hopefully) more intuitive and modern design</li>
+        <li>Supports more features with fewer steps (ex. unweighted grades, test grades, typo catching, etc)</li>
+        <li>A developer that still actively develops this site and listens to feedback (<a href='https://bit.ly/fgc-feedback' target='_blank'>send feedback here</a>)</li>
+        <li>Completly ad free because ads are annoying and GitHub hosts this site for free anyways</li>
+        <li class='gray'>Support someone who's still a HS student and <a href='https://rogerhub.com/'>doesn't already have a job at Google</a> (congrats Roger?)</li>
+      </ul>
+      <p>2) Why does this site exist?</p>
+      <ul>
+        <li>I was bored and was procrastinating on my homework</li>
+        <li>Wanted a tool that supported more grading policies w/o needing to use RogerHub's "advanced" mode</li>
+        <li>^ even though it would definitely uses a lot more time <a href='https://xkcd.com/1205/'>in the long run</a></li>
+        <li>Make something people actually want and search for (but currently doesn't exist)</li>
+        <li class='gray'>Get more traffic on my website so I might eventually make a small profit off of here</li>
+        <li class='gray'>If this gets support and is noticed on Google, I might have an easier time getting into colleges for CS?</li>
+      </ul>
+      <div id='footer'>
+        <hr/>
+        <p>&copy; 2018 Ryan Zhang - All Rights Reserved. Not affiliated with RogerHub in any way.<br>v0.1.0 beta | <a href='https://bit.ly/fgc-feedback' target='_blank'>Send Feedback</a> | <a href='#'>Return to Top</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

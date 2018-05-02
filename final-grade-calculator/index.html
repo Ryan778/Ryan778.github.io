@@ -107,11 +107,12 @@
           <button id='calcBtn'>Calculate / Tell Me!</button>
           <br/>
           <div id='calcErr' style='display: none' class='calcRes org-b org-bk'>
-            <p><i class='material-icons'>error</i> <b>Sorry, it looks like you're missing something!</b></p>
+            <p><i class='material-icons'>error</i> <b>Sorry, it looks like something is not right!</b></p>
             <p>The missing/invalid inputs have been highlighted in red. Please fix them and press "calculate" again. </p>
             <a id='res_return_or' class='res_return' href='#calc'>Back to Top</a>
           </div>
           <div id='calcRes' style='display: none' class='calcRes gr-b gr-bk'>
+            <p id='res-warn-gr' style='display: none'><i class='material-icons'>info_outline</i> <i>Note that letter grades are not as accurate as percentages, and can result in slight inaccuracies. </i></p>
             <p id='res-warn' style='display: none'><i class='material-icons'>info_outline</i> <i>It looks like one or more of the inputs above may have a typo. </i></p>
             <p id='res-warn-grdAdj' style='display: none'><i class='material-icons'>info_outline</i> <i>Your grade adjustment policy wasn't used as the grade needed is lower than your lowest test grade.</i></p>
             <p id='res-finalGrade-testAdj' class='p-res' style='display: none'><i class='material-icons'>info_outline</i> <i>An additional <b>0.00</b>% was added due to your grade adjustment policy.</i></p>
@@ -128,6 +129,8 @@
               <p id='resi_b' class='p-res'>You'll get <b>0.00</b>% back on your lowest test, increasing your test average by <b>0.00</b>% (unweighted).</p>
               <p id='resi_c'>Overall, you'll get <span>a</span> <b>0.00</b>% increase in your final/combined grade from test adjustments. </p>
             </div>
+            <hr>
+            <p class='gray'><i class='material-icons lbl'>info</i> Since this app is still fairly early in development, feedback is greatly appreciated! You can <a href='https://bit.ly/fgc-feedback'>leave feedback here</a> or tell me in person (if you know me), thanks!</p>
             <a id='res_return' class='res_return' href='#calc'>Back to Top</a>
           </div>
         </div>
@@ -153,7 +156,7 @@
       </ul>
       <div id='footer'>
         <hr/>
-        <p>&copy; 2018 Ryan Zhang - All Rights Reserved. Not affiliated with RogerHub in any way.<br>v0.1.0 beta | <a href='https://bit.ly/fgc-feedback' target='_blank'>Send Feedback</a> | <a href='#'>Return to Top</a></p>
+        <p>&copy; 2018 Ryan Zhang - All Rights Reserved. Not affiliated with RogerHub in any way.<br>v0.1.1 beta (5.2.18) | <a href='https://bit.ly/fgc-feedback' target='_blank'>Send Feedback</a> | <a href='#'>Return to Top</a></p>
       </div>
     </div>
   </div>

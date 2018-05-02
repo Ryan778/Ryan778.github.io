@@ -81,6 +81,24 @@ function convToLetter(grade){
   return letter;
 }
 
+function handleQueryAction(t, n) {
+  //Returns undefined, sends event to ga
+  ga('send', 'event', {
+    eventCategory: 'Interactive',
+    eventAction: 'query',
+    eventLabel: 'Final Grade Calculator (Type '+(t)+')',
+    eventValue: n
+  });
+  if(globalData.calcType === 0){
+    ga('send', 'event', {
+      eventCategory: 'Interactive',
+      eventAction: 'data',
+      eventLabel: 'Final Grade Calculator (Target Grade)',
+      eventValue: Math.round(globalData.targetGrade*100)
+    });
+  }
+}
+
 function validateInput(val, type){
   //Returns object {st: number, val: number, msg: string}; status 0=success, 1=warn, 2=error
   if(typeof val !== 'string'){return {st: 2, msg: `An error occured and it's not your fault (report this as a bug!) - Invalid Data Type (${typeof val})`}}
@@ -96,7 +114,7 @@ function validateInput(val, type){
         return {st: 0, val: parseFloat(val)}
       }
       else if(convToGrade(val) !== -1){
-        return {st: 0, val: convToGrade(val), msg: `Using ${val.toUpperCase()} as ${convToGrade(val)}%`}
+        return {st: 0, val: convToGrade(val), msg: `<span class='nt-hidden-ltGrd'></span>Using ${val.toUpperCase()} as ${convToGrade(val)}%`}
       }
       return {st: 2, msg: `Invalid input (is it a number/letter grade?)`}
       break;
@@ -118,6 +136,9 @@ function validateInput(val, type){
           return {st: 1, val: parseInt(val), msg: 'This looks rather high. Is there a typo?'};
         }
         else if(parseFloat(val) < 2){
+          if(parseFloat(val) < 1){
+            return {st: 2, msg: `You need a positive integer here!`}
+          }
           return {st: 1, val: parseInt(val), msg: 'This looks rather low. Is there a typo?'};
         }
         return {st: 0, val: parseInt(val)}
@@ -173,7 +194,7 @@ function setStatusText(eleIn, id, msg){
   //msg is optional
   let ele = $(eleIn).parent().find('.input-status');
   ele.removeClass('red org gr');
-  ele.children('span').text(msg);
+  ele.children('span').html(msg);
   if(!msg){ele.children('span').text('');}
   switch(id){
     case 2:
@@ -233,7 +254,9 @@ function validateInputs(vars){
 }
 
 function getSubtitle(grade){
-  if (grade > 100){
+  if (grade > 115){
+    return 'Unless your teacher gives that much extra credit, you may have to lower your expectations slightly.'}
+  else if (grade > 100){
     return 'Maybe there\'s extra credit? Or you can lower your expectations slightly?'}
   else if(grade >= 95){
     return "Looks like it might be a bit challenging, but you got this!"}
@@ -338,6 +361,10 @@ function processCalculations(){
   $('#res_moreInfo').hide();
   $('#res_warn-grdAdj').hide();
   $('#res-warn').hide();
+  if($('.nt-hidden-ltGrd').length > 0){ //Letter grade used somewhere
+    $('#res-warn-gr').show()}
+  else{
+    $('#res-warn-gr').hide()}
   let t = globalData.targetGrade, w = globalData.finalWorth, c = globalData.currentGrade, f = globalData.finalGrade, r, vald;
   if(globalData.testPolicy !== 0){
     let valdArray = ['testWorth', 'totalTests', 'lowestTest'];
@@ -353,7 +380,8 @@ function processCalculations(){
       $('#resi_a').show()}
     else{
       $('#resi_b').show()}
-    $('#res_moreInfo').show();
+    if(globalData.testPolicy !== 2){
+      $('#res_moreInfo').show()}
   }
   switch(globalData.calcType){
     case 0:
@@ -365,6 +393,7 @@ function processCalculations(){
         return}
       r = calcTargetGrade(t);
       //r = (t-c*(1-(w/100)))/(w/100); //Algebraic manipulation
+      handleQueryAction(1, Math.round(c*100));
       $('#res-0').show();
       $('#res-an-0').text(detPlu(r));
       $('#res-val-0').text(`${r.toFixed(2)}% (${convToLetter(r)})`);
@@ -400,6 +429,7 @@ function processCalculations(){
         else{
           $('#res-finalGrade-noTestAdj').show()}
       };
+      handleQueryAction(2, Math.round(c*100));
       $('#res-1').show();
       $('#res-an-1').text(detPlu(r));
       $('#res-val-1').text(`${r.toFixed(2)}% (${convToLetter(r)})`);
@@ -410,6 +440,7 @@ function processCalculations(){
       if(!vald){
         $('#calcErr').show();
         return}
+      handleQueryAction(3, Math.round(c*100));
       let upper = Math.ceil(c/10)*10, lower = Math.floor(c/10)*10;
       let r1 = calcTargetGrade(upper);
       let r2 = calcTargetGrade(lower);
@@ -503,6 +534,7 @@ function registerHandlers(){
   });
   $('#calc').find('select').each((n, ele) => {
     $(ele).change(() => {
+      $('#calcRes').hide();
       let val = ele.value;
       if(ele.dataset.for==='calcType'){
         $('#info_opt2').hide()

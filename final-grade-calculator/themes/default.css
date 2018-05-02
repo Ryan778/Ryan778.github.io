@@ -10,10 +10,10 @@ html{
   background: #dde6ff;
 }
 #main{
-  background: #ebf8ff;
+  background: #f1faff;
 }
 #calc{
-  background: #edffff;
+  background: #f9fffe;
 }
 #footer{
   color: #555;
@@ -55,6 +55,9 @@ a{
 
 .bl{
   color: #16f;
+}
+.lbl{
+  color: #83a5e2;
 }
 .bl_i{
   color: #16f;

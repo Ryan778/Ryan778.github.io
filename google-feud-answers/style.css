@@ -115,7 +115,7 @@ a{text-decoration: none}
 #footerp{
   color: black;
 }
-#footerp a{
+#footerp a, a{
   color: #5589ff;
 }
 .footer-action{
@@ -134,7 +134,7 @@ a{text-decoration: none}
 }
 
 .alertify .alert>*, .alertify .dialog>*{
-    width: 75% !important;
+    width: 100% !important;
     max-width: 700px;
 }
 
@@ -148,6 +148,13 @@ div.awesomplete{
     margin-top: 40px;
     width: 650px;
     margin-left: calc(50% - 325px);
+    border-collapse: collapse;
+    background: white;
+}
+#table_s{
+    display: none;
+    margin-top: 40px;
+    width: calc(100%);
     border-collapse: collapse;
     background: white;
 }
@@ -183,4 +190,31 @@ tr, td{
 }
 .green{
     color: #00ad00;
+}
+@media only screen and (max-width: 650px) {
+  #header {
+    font-size: 48px;
+  }
+  #table {
+    display: none;
+  }
+  #table_s{
+    display: table;
+  }
+  #inputDiv{
+    width: 100%;
+  }
+  #input{
+    width: 100%;
+    padding: 5px;
+  }
+  #clear{
+    display: none;
+  }
+  .tres{
+    width: calc(100% - 10px)
+  }
+  #resp_sm{
+    font-size: 12px;
+  }
 }

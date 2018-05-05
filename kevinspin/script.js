@@ -49,6 +49,9 @@ window.onload = function(){
       window.open('../kevinspinmobile', '_self');
     });
   }
+  if(audio.paused){
+    noAudio_notice.style.display = 'block';
+  }
 }
 
 function msConfirm(){

@@ -1,0 +1,114 @@
+html{
+  color: white;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+}
+
+h1, h2, h3{
+  color: white;
+  text-shadow: 1px 1px 2px #222, 0px 0px 1px black;
+}
+
+h1{
+  line-height: 0;
+  margin-top: 80px;
+}
+
+h3{
+  margin-bottom: 0;
+}
+
+hr{
+  border: 1px solid #fff;
+  box-shadow: 1px 1px 3px #333;
+  border-bottom: none;
+}
+
+.new{
+  background: rgba(0, 180, 170, 0.3);
+  padding: 1px 3px;
+  font-size: 14px;
+  text-shadow: none;
+  margin-left: 7px;
+}
+
+.fl{
+  float: left;
+}
+
+#footer{
+  font-size: 12px;
+  text-align: center;
+  text-shadow: 1px 1px 2px #333;
+}
+
+#bk{
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#content{
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+button{
+  color: white;
+  width: 100%;
+  height: 40px;
+  margin: 5px 0px;
+  border: 1px solid #fff;
+  background: rgba(92, 169, 226, 0.4);
+  text-shadow: 1px 1px 2px #333;
+  border-radius: 2px;
+  transition: all 0.2s;
+  font-size: 18px;
+}
+
+button:hover{
+  background-color: rgba(166, 214, 255, 0.55);
+  cursor: pointer;
+}
+
+button:focus{
+  outline: none;
+  border-color :#4af;
+  box-shadow: 0px 0px 4px rgb(92, 169, 226);
+}
+
+button:active{
+  background-color: rgba(192, 235, 255, 0.55);
+  border-color :#7bf;
+}
+
+
+#bk {
+  background-image: url(lake-s.jpg);
+  background-position: center;
+  background-size: cover;
+  filter: blur(7px);
+  transform: scale(1.02);
+}
+
+.rsp_s{
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  h1{
+    margin-top: 25px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .rsp {
+    display: none;
+  }
+  .rsp_s{
+    display: initial;
+  }
+}

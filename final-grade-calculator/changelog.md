@@ -4,6 +4,12 @@ As of right now, the source code for FGC is fully available but is not fully ope
 All notable changes are documented within this file. 
 *On a side note, this happens to be the first changelog written in a Markdown file and not a text file, making it **so** much easier to read.*
 
+## [0.1.2] - 2018-5-12
+**BETA BUILD**
+### Changed
+ - Somewhat improved SEO, brushed up certain parts of the "FAQ"
+ - Moved notices to load after the rest of the page has loaded
+
 ## [0.1.1] - 2018-5-2
 **BETA BUILD**
 ### New

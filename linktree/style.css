@@ -1,6 +1,9 @@
 html{
   color: white;
   font-family: 'Open Sans', 'Arial', sans-serif;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 h1, h2, h3{
@@ -35,6 +38,23 @@ hr{
   float: left;
 }
 
+.clkb{ /*Clickable*/
+  color: #8cf;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.clkb:hover, .clkb:focus{
+  outline: none;
+  text-decoration: underline;
+  color: #adf;
+}
+
+.clkb:active{
+  color: #cef;
+}
+
 #footer{
   font-size: 12px;
   text-align: center;
@@ -48,6 +68,12 @@ hr{
   left: 0;
   width: 100%;
   height: 100%;
+  transition: all 0.4s;
+  background-image: url(lake-s.jpg);
+  background-position: center;
+  background-size: cover;
+  filter: blur(7px);
+  transform: scale(1.02);
 }
 
 #content{
@@ -69,7 +95,7 @@ button{
   font-size: 18px;
 }
 
-button:hover{
+button:hover:not([disabled]){
   background-color: rgba(166, 214, 255, 0.55);
   cursor: pointer;
 }
@@ -80,18 +106,9 @@ button:focus{
   box-shadow: 0px 0px 4px rgb(92, 169, 226);
 }
 
-button:active{
+button:active:not([disabled]){
   background-color: rgba(192, 235, 255, 0.55);
   border-color :#7bf;
-}
-
-
-#bk {
-  background-image: url(lake-s.jpg);
-  background-position: center;
-  background-size: cover;
-  filter: blur(7px);
-  transform: scale(1.02);
 }
 
 .rsp_s{

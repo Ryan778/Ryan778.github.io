@@ -3,8 +3,8 @@
 <head>
   <meta charset='utf-8'>
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <meta name="description" content="Determine what score you need on your final to get a certain grade; supports both weighted (percentage) and unweighted (points). Also supports test dropping policies or grade replacement direcly (unlike RogerHub)! Designed to be simple and efficient. "/>
   <meta name="keywords" content="final grade calculator, test grade calculator, final grade calculator points, final grade calculator with weights"/>
+  <meta name="description" content="Determine what score you need on your final to get a certain grade in seconds! Supports both weighted (percentage) and unweighted (points). Also supports test dropping policies and grade replacement policies. Designed to be simple and efficient. "/>
   <title>Final / Test Grade Calculator</title>
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Open+Sans:400,400i,600" rel="stylesheet">
   <link rel='icon' href='favicon.ico'/>
@@ -41,7 +41,7 @@
       <div class='halert halert-info' style='display: none'>
         <p><i class='material-icons'>info</i> <b>Notice: </b><br>Final Grade Calculator is currently in <b>alpha</b> and is missing many features that will be in the final version. <br>FGC will likely enter beta in the next few days while any major bugs are being fixed and features are being finalized. Thanks!</p>
       </div>
-      <div class='halert halert-info' style='display: block'>
+      <div id='al_beta' class='halert halert-info' style='display: none'>
         <p><i class='material-icons'>info</i> <b>Notice: </b><br>Final Grade Calculator is currently in <b>beta</b>, and certain, smaller features are incomplete. There may also be bugs which may affect the overall result. While this app should be fairly stable, please let me know if something is clearly wrong. Thanks!</p>
       </div>
       <p>A tool designed to help you figure out what grade you need to get on your final in order to reach a certain grade, or to see how your test score will affect your grade. Supports both <b>weighted (percentage)</b> grades and <b>unweighted (points) </b>grades. Lowest test dropped? Test replacement policy? They're supported too! </p>
@@ -142,8 +142,8 @@
         <li>A (hopefully) more intuitive and modern design</li>
         <li>Supports more features with fewer steps (ex. unweighted grades, test grades, typo catching, etc)</li>
         <li>A developer that still actively develops this site and listens to feedback (<a href='https://bit.ly/fgc-feedback' target='_blank'>send feedback here</a>)</li>
-        <li>Completly ad free because ads are annoying and GitHub hosts this site for free anyways</li>
-        <li class='gray'>Support someone who's still a HS student and <a href='https://rogerhub.com/'>doesn't already have a job at Google</a> (congrats Roger?)</li>
+        <li>Completly ad free (no popup ads, no banner ads, no video ads, no ads whatsoever!)</li>
+        <li class='gray'>Support someone who's still a HS student where as <a href='https://rogerhub.com/'>Roger already appears rather successful</a></li>
       </ul>
       <p>2) Why does this site exist?</p>
       <ul>
@@ -152,11 +152,10 @@
         <li>^ even though it would definitely uses a lot more time <a href='https://xkcd.com/1205/'>in the long run</a></li>
         <li>Make something people actually want and search for (but currently doesn't exist)</li>
         <li class='gray'>Get more traffic on my website so I might eventually make a small profit off of here</li>
-        <li class='gray'>If this gets support and is noticed on Google, I might have an easier time getting into colleges for CS?</li>
       </ul>
       <div id='footer'>
         <hr/>
-        <p>&copy; 2018 Ryan Zhang - All Rights Reserved. Not affiliated with RogerHub in any way.<br>v0.1.1 beta (5.2.18) | <a href='https://bit.ly/fgc-feedback' target='_blank'>Send Feedback</a> | <a href='#'>Return to Top</a></p>
+        <p>&copy; 2018 Ryan Zhang - All Rights Reserved. Not affiliated with RogerHub in any way.<br>v0.1.2 beta (5.11.18) | <a href='https://bit.ly/fgc-feedback' target='_blank'>Send Feedback</a> | <a href='#'>Return to Top</a></p>
       </div>
     </div>
   </div>

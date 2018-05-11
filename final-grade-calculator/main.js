@@ -613,3 +613,5 @@ $(document).ready(function () {
   $('#calc-load').hide();
   $('#calc-inner').show();
 });
+
+$('#al_beta').show();

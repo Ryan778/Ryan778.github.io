@@ -39,6 +39,12 @@ iframe {
   z-index: 2;
 }
 
+#safari-is-bad{
+  margin-top: 10px;
+  background: #ffd994;
+  padding: 5px 4px;
+}
+
 #ifrfs-ft{
   position: fixed;
   z-index: 3;

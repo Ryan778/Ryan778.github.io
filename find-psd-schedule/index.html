@@ -22,7 +22,7 @@
   <body>
     <h1>Find My (PSD) Class Schedule</h1>
     <div class='container'>
-      <div id='safari-is-bad' style='display: none'>It looks like you're using Safari (or any other iOS browser). While this page <b>will function fine</b>, it may not work as well as, say, Chrome (but NOT on iOS!) due to the complicated nature of this page. For a better user experience, visit this page on a non-iOS device. </div>
+      <div id='safari-is-bad' style='display: none'><b>It looks like you're on an iOS device. </b><br>Due to the quirks of Safari (fun fact: every browser on iOS is actually a re-skinned version of Safari!), this page <b>will not likely work</b>. Please use a desktop browser or an Andriod device for this page to work. </div>
       <p><b>Works For: </b>All Fossil students, most other high school students within PSD, most middle school PSD students</p>
       <p>Did you know that you can view your schedule even though it's not available on the public SVUE page anymore? </p>
       <p>This page will let you view your schedule for next year ahead of time in two easy steps! <br><br><b>Step 1: </b>Login to SVUE below the same way you normally login. <br><b>Step 2: </b>Once logged in, press the blue "Load My Schedule!" button. You should see your classes after a few seconds!</p>
@@ -33,7 +33,7 @@
       </div>
       <br>
     </div>
-    <iframe id='ifr' src='https://svue.psdschools.org/PXP2_Login_Student.aspx?regenerateSessionId=True#ctl00_MainContent_LoginMessage' referrerpolicy='no-referrer'></iframe>
+    <div id='ifr-p'><iframe id='ifr' src='https://svue.psdschools.org/PXP2_Login_Student.aspx?regenerateSessionId=True#ctl00_MainContent_LoginMessage' referrerpolicy='no-referrer'></iframe></div>
     <div id='ifrfs-ft' style='display: none'>
       <button onclick='ls()' class='btn btn-small waves-effect waves-light blue' id='btn_f2'>Load My Schedule!</button>
       <button class='btn btn-small waves-effect waves-light light-green' id='btn_f1'>Minimize SVUE</button> 
@@ -43,7 +43,7 @@
         <h2>More Actions</h2>
         <button class='btn btn-small waves-effect waves-light teal accent-4' id='btn_o2' onclick='rs()'>Reset Login Page</button> (Logs you out)
       </div>
-      <footer><hr>v1.1 | &copy; 2018 Ryan Zhang. All Rights Reserved.</footer>
+      <footer><hr>v1.1.1 | &copy; 2018 Ryan Zhang. All Rights Reserved.</footer>
     </div>
   </body>
 </html>

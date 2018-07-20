@@ -6,11 +6,23 @@ let gb_lurl = 'https://svue.psdschools.org/PXP2_Login_Student.aspx?regenerateSes
 let gb_url = 'https://svue.psdschools.org/PXP2_Gradebook.aspx?AGU=0&studentGU=2E5A6429-NOTA-REAL-GUID-D0D8B4625006#ctl00_ctl00_MainContent_PXPMainContent_repSchoolClasses_ctl00_ctl00_SchoolClassesPanel';
 
 function ls(){
-  ifr.src = gb_url; 
+  jQuery.ajax({
+     type: 'GET',
+     url: gb_url,
+     success: function() {
+        ifr.src = gb_url;
+     }
+  });
 }
 
 function rs(){
-  ifr.src = gb_lurl;
+  jQuery.ajax({
+     type: 'GET',
+     url: gb_lurl,
+     success: function() {
+        ifr.src = gb_lurl;
+     }
+  });
 }
 
 $(document).ready(function() {

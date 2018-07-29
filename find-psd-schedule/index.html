@@ -22,20 +22,20 @@
   <body>
     <h1>Find My (PSD) Class Schedule</h1>
     <div class='container'>
-      <div id='safari-is-bad' style='display: none'><b>It looks like you're on an iOS device. </b><br>Due to the quirks of Safari (fun fact: every browser on iOS is actually a re-skinned version of Safari!), this page <b>will not likely work</b>. Please use a desktop browser or an Andriod device for this page to work. </div>
+      <div id='safari-is-bad'><b>Due to the new interface being disabled, this page will no longer work. </b><br>PSD has recently opted to completely disable the new Gradebook interface (which may or may not be a direct result of this), and as a result this page will no longer work. Schedules are officially "released" on <b>August 1st</b> (for most schools), so check StudentVUE the normal way then!</div>
       <p><b>Works For: </b>All Fossil students, most other high school students within PSD, most middle school PSD students</p>
       <p>Did you know that you can view your schedule even though it's not available on the public SVUE page anymore? </p>
       <p>This page will let you view your schedule for next year ahead of time in two easy steps! <br><br><b>Step 1: </b>Login to SVUE below the same way you normally login. <br><b>Step 2: </b>Once logged in, press the blue "Load My Schedule!" button. You should see your classes after a few seconds!</p>
       <p><b>Note: </b>If you see a login page after pressing "Load My Schedule!", then you're not logged in. If it happens repeatedly, reloading the page usually fixes it. <br>DM me if you have other issues and/or general feedback! </p>
       <p><i>Incentive for making this: bored and had no friends to hang out with (or the social skills to do so?)</i></p>
       <div class='s12 m6'>
-        <button class='btn waves-effect waves-light green' id='btn_o1'>Expand SVUE</button> <button class='btn waves-effect waves-light blue' id='btn_o2' onclick='ls()'>Load My Schedule!</button>
+        <button class='btn waves-effect waves-light green' id='btn_o1'>Expand SVUE</button> <button class='btn waves-effect waves-light blue' id='btn_o2' disabled onclick='ls()'>Load My Schedule!</button>
       </div>
       <br>
     </div>
     <div id='ifr-p'><iframe id='ifr' src='https://svue.psdschools.org/PXP2_Login_Student.aspx?regenerateSessionId=True#ctl00_MainContent_LoginMessage' referrerpolicy='no-referrer'></iframe></div>
     <div id='ifrfs-ft' style='display: none'>
-      <button onclick='ls()' class='btn btn-small waves-effect waves-light blue' id='btn_f2'>Load My Schedule!</button>
+      <button disabled onclick='ls()' class='btn btn-small waves-effect waves-light blue' id='btn_f2'>Load My Schedule!</button>
       <button class='btn btn-small waves-effect waves-light light-green' id='btn_f1'>Minimize SVUE</button> 
     </div>
     <div class='container'>

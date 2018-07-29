@@ -22,9 +22,6 @@ function rs(){
 }
 
 $(document).ready(function() {
-  if(iOS){
-    $('#safari-is-bad').show();
-  }
   $('#btn_o1').click(() => {
     $('#ifr').addClass('ifr-fs');
     $('#ifrfs-ft').show();

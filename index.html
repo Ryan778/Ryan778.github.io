@@ -1,215 +1,70 @@
 <!doctype html>
 <html>
 <head>
-    <title>Ryan's Projects</title>
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <meta name="msvalidate.01" content="4762F664AFBB935E55163A61999891A5" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="icon" href="//ryan778.github.io/favicon.ico" type="image/x-icon"/>
-    <script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <!--TODO: add ga.js-->
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+  <meta name='msvalidate.01' content='4762F664AFBB935E55163A61999891A5'/>
+  <title>Look, it's Ryan! | Ryan's Projects</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css' integrity='sha256-zvFVp826siCUuxc2KZRdlkALzLZWNb7FaJm9K1mRxW0=' crossorigin='anonymous' />
+  <link async rel='stylesheet' href='resources/template.css'/>
+  <link async rel='stylesheet' href='resources/style.css'/>
+  <script defer
+  src='http://code.jquery.com/jquery-3.3.1.slim.min.js'
+  integrity='sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E='
+  crossorigin='anonymous'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js' integrity='sha256-T6iGJTr91LvmSE0OD+GJ79ArVNS0JClRUKJuTPDr0ac=' crossorigin='anonymous'></script>
+  <script defer src='resources/script.js'></script>
+  <script>
+    /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-91409078-1', 'auto');
-	  ga('send', 'pageview');
-	  </script>
-    <style>
-        html{
-            background: #fafafa;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-            cursor: default;
-            font-family: "Open Sans", sans-serif;
-            text-align: center;
-        }
-        #f{
-            line-height: 0;
-            font-size: 10px;
-        }
-        a, a:link{
-            text-decoration: none;
-            color: #5979ff;
-            transition: all 0.2s;
-        }
-        a:visited{
-            color: #7359ff;
-        }
-        a:hover{
-            text-shadow: 0px 0px 3px #cef;
-            color: #599fff;
-        }
-        a:active{
-            text-shadow: none;
-            color: #76b0ff;
-        }
-        a:hover .textOverlay{
-            opacity: 1;
-        }
-        img{
-            width: 600px;
-            filter: blur(0px);
-            -webkit-filter: blur(0px);
-            transition: all 0.2s;
-        }
-        .blur{
-            filter: blur(2px);
-            -webkit-filter: blur(2px);
-        }
-        #div-items{
-            margin-left: calc(50% - 350px);
-            text-align: center;
-            width: 700px;
-        }
-        .textOverlay{
-            position: absolute;
-            left: calc(50% - 80px);
-            top: 90px;
-            font-size: 60px;
-            color: white;
-            text-shadow: 1px 1px 8px black;
-            transition: all 0.2s;
-            opacity: 0;
-        }
-        hr{
-            border-bottom: none;
-        }
-        .div_rel{
-            position: relative;
-        }
-        #div-msg{
-            background: #cce6ff;
-            border: 1px solid #aaccdd;
-        }
-    </style>
+    ga('create', 'UA-91409078-1', 'auto');
+    ga('send', 'pageview'); /**/
+  </script>
 </head>
 <body>
-    <h1>Ryan's Projects</h1>
-    <p>Hello there! I make random projects in my free time, mostly dynamic pages but some static pages;<br> On here are all of the static pages (as dynamic pages can't be hosted on GitHub Pages)</p>
-    <div id='div-items'>
-        <div id='div-msg'>
-          <h3>Coming Soon(?): Final Grade Calculator</h3>
-          <p>Will hopefully be released and put out there before finals week (for most high schools and universities); check this page regularly for updates :D</p>
-        </div><br>
-        <div id='div-msg'>
-            <h3>Notice: This page is pretty outdated. </h3>
-            <p>I'll redesign the homepage when I have time, but right now I need to deal with school and stuff (because school life), though it's pretty cool that this small little side project is being noticed by strangers (95% of which came here looking for Google Feud Answers) :D<br><br>Check out my <b><a href='about-me/'>About Me</a></b> page for more info about me and some of my other projects.</p>
-        </div>
-        <div id='div_noJS'>
-            <hr>
-            <h2>JavaScript Unavailable or Disabled</h2>
-            <p>It appears that you do not have JavaScript or JavaScript is disabled.<br>For full functionality, enable JavaScript or <a target='_blank' href='http://enable-javascript.com/'>click here</a> if you don't know how.<br>Note that most of the links below <b>require</b> JavaScript to work.</p>
-            <script>div_noJS.innerHTML=''</script>
-        </div>
-        <hr>
-        <div class='div_rel'>
-            <a id='a5' target='_blank' href='https://ryan778.github.io/google-feud-answers'>
-        <img id='img5' class='noblur' src='images/google-feud-answers.png'><br>
-            <span class='textOverlay'>Open</span>
-        Google Feud Answers</a>
-        </div>
-        <hr>
-        <div class='div_rel'>
-            <a id='a3' target='_blank' href='https://ryan778.github.io/sobvc'>
-        <img id='img3' class='noblur' src='images/sobvc.png'><br>
-            <span class='textOverlay'>Open</span>
-        State of Being Verb Checker</a>
-        </div>
-        <hr>
-        <div class='div_rel'>
-            <a id='a1' target='_blank' href='https://ryan778.github.io/kevinspin'>
-          <img id='img1' class='noblur' src='images/kevin.jpg'><br>
-            <span class='textOverlay'>Open</span>
-        Kevin Spin</a>
-        </div>
-        <hr>
-        <div class='div_rel'>
-            <a id='a2' target='_blank' href='https://ryan778.github.io/flop'>
-          <img id='img2' class='noblur' src='images/flop.png'><br>
-            <span class='textOverlay'>Open</span>
-        flop</a>
-        </div>
-        <hr>
-        <div class='div_rel'>
-            <a id='a4' target='_blank' href='https://ryan778.github.io/bkmusic'>
-        <img id='img4' class='noblur' src='images/bkmusic.png'><br>
-            <span class='textOverlay'>Open</span>
-        Background Music Player (Prank?)</a>
-        </div>
-        <hr>
-        <div class='div_rel'>
-            <b>More Pages</b><br>
-            <a href='https://ryan778.herokuapp.com/personal/servers'>List of All Servers + Server Status</a>
-            <br>
-            <a href='https://ryan778.herokuapp.com/personal/codekeeper'>CodeKeeper</a>
-            <br>
-            <a href='https://anxietysteps.github.io'>Anxiety Steps</a>
-        </div>
-        <hr>
-        <div class='div_rel'>
-            <b>Protected Pages (Not on GitHub)</b><br>
-            <a id='a_showProtected' href='#' onclick='(function(){a_showProtected.innerHTML="";protectedPages.style.display="initial"})()'>Show Links</a>
-            <span id='protectedPages' style='display:none'>
-            <a href='https://ryan778.herokuapp.com'>Personal NodeJS Server</a>
-            <br>
-            <a href='http://67.173.228.237:8097'>My Account / Account Manager</a>
-            <br>
-            <a href='http://67.173.228.237:8081/protected/yt'>YouTube Search API</a>
-            </span>
-        </div>
-        <hr>
-        <div class='div_rel'>
-            <b>Private Pages (Not on GitHub)</b><br>
-            <a id='a_showPrivate' href='#' onclick='(function(){a_showPrivate.innerHTML="";privatePages.style.display="initial"})()'>Show Links</a>
-            <span id='privatePages' style='display:none'>
-            <a href='http://67.173.228.237:8081/protected/private/yt'>YouTube Search API+</a>
-            <br>
-            <a href='http://67.173.228.237:8081/protected/private/files/scatterhack/obfuscated.js'>Quizlet Hack for Scatter/Match</a>
-            <br>
-            <a href='http://67.173.228.237:8081/protected/private/files/gravityhack/main.js'>Quizlet Hack for Gravity</a>
-            </span>
-        </div>
-        <hr>
+  <div id='top' class='parallax-container'>
+    <div class='parallax'><img src='resources/mtn.jpg'></div>
+    <div class='container ns cont-align' id='parallax-head'>
+      <h3>ryan778.github.io</h3><h2>Random Tools and Stuff!</h2>
     </div>
-    <p id='f'>&copy; 2017 Ryan Zhang. All Rights Reserved unless otherwise stated. | Favicon provided by <a href="//freepik.com">Freepik</a> from <a href="http://flaticon.com">www.flaticon.com</a></p>
-    <script>
-        img1.className = '';
-        a1.onmouseover = function(){
-            img1.className = 'blur';
-        }
-        a1.onmouseout = function(){
-            img1.className = '';
-        }
-	      img2.className = '';
-        a2.onmouseover = function(){
-            img2.className = 'blur';
-        }
-        a2.onmouseout = function(){
-            img2.className = '';
-        }
-	      img3.className = '';
-        a3.onmouseover = function(){
-            img3.className = 'blur';
-        }
-        a3.onmouseout = function(){
-            img3.className = '';
-        }
-	      img4.className = '';
-        a4.onmouseover = function(){
-            img4.className = 'blur';
-        }
-        a4.onmouseout = function(){
-            img4.className = '';
-        }
-	      img5.className = '';
-        a5.onmouseover = function(){
-            img5.className = 'blur';
-        }
-        a5.onmouseout = function(){
-            img5.className = '';
-        }
-    </script>
+  </div>
+  <div class='cont-outer blue lighten-5'>
+    <div class='container'>
+      <h3>What's this? </h3>
+      <p>Well, since you've somehow stumbled here, this is a fairly small site with all of the random and potentially useful tools, gadgets, and other general creations I've made over the years. Who knows, maybe you'll find something that you always wanted but could never find! </p>
+    </div>
+  </div>
+  <div class='cont-outer teal lighten-5'>
+    <div id='div-mainProj' class='container'>
+      <h3>Main Projects</h3>
+      <h4><a href='final-grade-calculator'>Final Grade Calculator</a></h4>
+      <p>What's Unique: Supports various common test policies (lowest test replaced, dropped, half replaced) and unweighted tests (unweighted coming hopefully soon!)</p>
+      <p>Find out what you need to get on your final in a simple, intuitive interface! </p>
+      <h4><a href='google-feud-answers'>Google Feud Answers</a></h4>
+      <p>What's Unique: You won't have to scroll through tens of pages to find what you're looking for!</p>
+      <p>Getting distracted in class, but want to one up your friends (or just bored)? Use this!</p>
+      <p class='grey-text'>Disclaimer: Google is a registered trademark of Google Inc. Family Feud is a registered trademark of FremantleMedia North America, Inc. This page is not related to or endorsed by either of these companies. </p>
+      <h4><a href='sobvc'>State of Being Verb Checker</a></h4>
+      <p>Currently too specific of a thing to exist elsewhere! In the unlikely event that you're required to have zero state of being verbs, this checker will catch all 28 common SOBVs!</p>
+      <h4><a href='kevinspin'>Kevin Spin</a></h4>
+      <p>Like Taco Spin or Leek Spin, but with a guy (whose name is, unsurprisingly, Kevin) spinning around instead.</p>
+    </div>
+  </div>
+  <div class='cont-outer grey lighten-3'>
+    <div class='container'>
+      <h3>More <span class='grey-text'>(as if you're interested)</span></h3>
+      <h4>My <a href='about-me'>About Me Page</a></h4>
+      <p>(the above page will also give links to my first CS projects on Khan and more!)</p>
+      <h4>The <a href='old'>Original Homepage</a></h4>
+      <p>A "homepage" that wasn't really a homepage, and more of a placeholder shouting "check out these random things!"</p>
+      <h4>My <a href='https://ryan778.herokuapp.com'>Heroku Server</a></h4>
+      <p>Doesn't have anything interesting unless you know me in person or something.</p>
+      <hr>
+      <p class='center-align ns'>&copy; 2018 Ryan Zhang. All Rights Reserved. | <a href='privacy-policy'>Privacy Policy</a> | <a href='#top'>Return to Top</a></p>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,0 +1,32 @@
+#parallax-head{
+  color: white;
+  text-shadow: 2px 2px 2px #333;
+  position: absolute;
+  bottom: 10%;
+  width: auto;
+  padding: 0 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+#parallax-head h3{
+  color: #ddd;
+  line-height: 0;
+}
+
+h4 a{
+  color: #013aba;
+  transition: all 0.2s;
+}
+
+h4 a:hover, h4 a:focus{
+  color: #3d78ff;
+}
+
+p{
+  font-size: 1.1em;
+}
+
+@media only screen and (max-width: 601px) {
+  #parallax-head{
+    width: calc(100% - 10%);
+  }
+}

@@ -1,0 +1,43 @@
+html {
+  cursor: default;
+}
+::selection {
+  background: #cdf;
+}
+.ns {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+hr{
+  border: 1px solid #555;
+  border-top: none;
+}
+h2 {
+  font-size: 2.7rem;
+}
+h3 {
+  font-size: 2.0rem;
+}
+h4 {
+  font-size: 1.6rem;
+}
+.cont-outer {
+  display: flex;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.cont-align {
+  left: 5%;
+}
+@media only screen and (min-width: 601px) {
+  .cont-align {
+    left: 7.5%;
+  }
+}
+@media only screen and (min-width: 993px) {
+  .cont-align {
+    left: 15%;
+  }
+}

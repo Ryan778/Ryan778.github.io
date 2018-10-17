@@ -1,0 +1,66 @@
+body{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+h2{
+  font-size: 32px;
+  vertical-align: top;
+  margin: 10px 0;
+
+}
+img{
+  height: 42px;
+  padding-right: 10px;
+  padding-top: 10px;
+  vertical-align: text-bottom;
+}
+
+#ad{
+  background: #eee;
+  padding: 10px 10px 2px;
+  line-height: 0;
+  position: relative;
+}
+#ad img{
+  padding: 0;
+}
+
+#adm{
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
+
+#ad2{
+  position: absolute;
+  top: 0px;
+  right: 30px;
+  line-height: 1.15;
+  font-size: 12px;
+}
+
+#ad2 span{
+  font-size: 11px;
+  color: #888;
+}
+
+.btn{
+  text-transform: none;
+  width: calc(50% - 2px);
+  margin-top: 5px;
+  height: 50px;
+}
+
+#res{
+  margin-top: 10px;
+  display: inline-block;
+  background: #f6f8ff;
+  padding: 5px;
+  font-size: 16px;
+}
+#res span{
+  margin-left: 10px;
+}
+#res .preloader-wrapper{
+  vertical-align: middle;
+}

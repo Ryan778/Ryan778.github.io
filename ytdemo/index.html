@@ -24,7 +24,7 @@
     <p id='adm'>Ad</p>
   </div>
   <button class='btn red waves-effect' onclick='this.disabled=true; res.style.display=""'>Shutdown YouTube</button>
-  <button class='btn red'>Webcam Access</button><br>
+  <button class='btn red'>Webcam Access</button>
   <button class='btn red'>Shutdown Google+</button>
   <button class='btn red'>Sell User Data</button>
   <div id='res' style='display: none'>
@@ -41,8 +41,19 @@
     </div>
     <span> Shutting down YouTube...</span>
     <script>
-      //Turns out, you don't actually need a lot of js for making a reddit meme.
-      setTimeout(function(){ad.style.display=''}, 7000)
+      //Turns out, you don't actually need a lot of js for making a reddit meme
+      let waitMS = 7000;
+      setTimeout(function(){ad.style.display=''}, waitMS);
+
+      //countdown so we known when to click
+      let countdownAt = waitMS / 1000;
+      let countdownInterval = setInterval(function() {
+          console.log(--countdownAt);
+          if (countdownAt <= 0) {
+              clearInterval(countdownInterval);
+              console.warn('Blast off!')
+          }
+      }, 1000);
     </script>
   </div>
 </body>

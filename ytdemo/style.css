@@ -3,6 +3,7 @@ body{
   margin-right: 20px;
   min-width: 475px;
   max-width: 750px;
+  cursor: default;
 }
 h2{
   font-size: 32px;
@@ -70,4 +71,15 @@ img{
 }
 #res .preloader-wrapper{
   vertical-align: middle;
+}
+
+#cpr{
+  user-select: none;
+  transition: all 0.2s;
+  opacity: 0.3;
+  color:#888;
+  font-size: 12px;
+}
+#cpr:hover{
+  opacity: 1 !important;
 }

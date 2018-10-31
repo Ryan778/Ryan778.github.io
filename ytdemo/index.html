@@ -32,10 +32,10 @@
     <p id='ad2'>Ad-free &amp; offline video!<br>Uninterrupted Music and Original Shows!<br><span>we're losing revenue from adblock users</span></p>
     <p id='adm'>Ad</p>
   </div>
-  <button class='btn red waves-effect' onclick='this.disabled=true; res.style.display=""'>Shutdown YouTube</button>
-  <button class='btn red'>Webcam Access</button>
-  <button class='btn red'>Shutdown Google+</button>
-  <button class='btn red'>Sell User Data</button>
+  <button id='btn_yt' class='btn red waves-effect' onclick='this.disabled=true; res.style.display=""'>Shutdown YouTube</button>
+  <button class='btn red'><a href='https://www.reddit.com/r/ProgrammerHumor/comments/9ov9o1/this_is_what_really_happened_to_youtube/' style='color:white' target='_blank'>Webcam Access</a></button>
+  <button id='btn_google' class='btn red'>Shutdown Google+</button>
+  <button class='btn red' onclick='this.disabled=true;alert("Nah, your user data has already been sold.")'>Sell User Data</button>
   <div id='res' style='display: none'>
      <div class="preloader-wrapper small active">
       <div class="spinner-layer spinner-blue-only">
@@ -49,20 +49,42 @@
       </div>
     </div>
     <span> Shutting down YouTube...</span>
-    <script>
-      //Turns out, you don't actually need a lot of js for making a Reddit meme
-      let waitMS = 7000;
-      setTimeout(function(){ad.style.display=''}, waitMS);
-
-      //countdown so we known when to click
-      let countdownAt = waitMS / 1000;
-      let countdownInterval = setInterval(function() {
-          console.log(--countdownAt);
-          if (countdownAt <= 0) {
-              clearInterval(countdownInterval);
-              console.warn('Blast off!')
-          }
-      }, 1000);
-    </script>
   </div>
+  <span id='cpr'><br>&copy;2018 <a href='https://ryan778.github.io/about-me/' target='_blank'>Ryan Zhang</a> | <a href='https://creativecommons.org/licenses/by-sa/4.0/legalcode' target='_blank'>Some Rights Reserved</a><span id='cpr_more' style='display:none'> | See my <a href='https://ryan778.github.io' target='_blank'>Full Website</a> for more!</span></span>
+  <script>
+    //Turns out, you don't actually need a lot of js for making a Reddit meme
+    let waitMS = 7000;
+    setTimeout(function(){ad.style.display=''}, waitMS);
+
+    //countdown so we known when to click
+    let countdownAt = waitMS / 1000;
+    let countdownInterval = setInterval(function() {
+        console.log(--countdownAt);
+        if (countdownAt <= 0) {
+            clearInterval(countdownInterval);
+            console.warn('Blast off!')
+        }
+    }, 1000);
+
+    //Update 10.30.18 - Even though most of the traffic is gone, I felt it'd be helpful to make a few small beneficial changes since this post's on the top of all time in r/ProgrammerHumur now :D
+
+    document.getElementById('btn_google').onclick = function(){
+      if(ad.style.display !== ''){
+        //Now, if you click on Shutdown Google+, the ad will pop up anyways!
+        ad.style.display = '';
+        btn_yt.click();
+      }
+      else{
+        //If the ad's already there, politely ask the user to care less about Google+
+        alert('Don\'t you have to worry about YouTube first?');
+      }
+    }
+
+    if(window.top !== window){
+      //Check for iframe detection (itwire embeds this page without credit, but I can put credit in myself :D)
+      document.getElementById('cpr').style.opacity = '1';
+      document.getElementById('cpr_more').style.display = 'initial';
+    }
+
+  </script>
 </body>

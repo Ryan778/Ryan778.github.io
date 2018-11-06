@@ -1,0 +1,126 @@
+::scrollbar{
+  background: black;
+}
+
+html{
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+#slide-outer{
+  scroll-snap-type: y mandatory;
+}
+
+.slide{
+  scroll-snap-align: start;
+  background: linen;
+  width: 100%;
+  height: 100vh;
+  padding: 18px;
+  font-size: 1.5em;
+  border-bottom: 1px solid #aaa;
+}
+
+.spacer{
+  background: linen;
+  border-bottom: 1px solid #aaa;
+  padding: 48px 18px 96px;
+  text-align: center;
+  color: #aaa;
+}
+
+.spacer::before{
+  content: "- this blank section will dissapear when you finish the task above, and you'll be able to continue -"
+}
+
+.lg{
+  font-size: 1em
+}
+
+.sm{
+  font-size: 0.75em
+}
+
+.inl{
+  display: inline;
+}
+
+.i-num{
+  width: 60px;
+}
+
+.gr{
+  color: #888;
+}
+
+h1, h2, h3, h4, h5, h6{
+  margin-top: 0
+}
+
+h1{
+  font-size: 2.5em}
+
+h2{
+  font-size: 2em}
+
+h3{
+  font-size: 2em}
+
+h4{
+  font-size: 1.75em}
+
+h5, h6{
+  font-size: 1.5em}
+
+.mt{
+  margin-left: 15%;
+  width: 70%;
+  margin-top: 20vh;
+}
+
+.int{
+  width: 100%;
+  background: #f0deb5;
+  padding: 12px;
+}
+
+.comment::before{
+  content: '('
+}
+
+.comment::after{
+  content: ')'
+}
+
+.comment{
+  font-size: 16px;
+  color: #888;
+  font-style: italic;
+}
+
+.nm{ /*no margin*/
+  margin: 0
+}
+
+label{
+  color: black;
+}
+
+/*Chart sections*/
+
+.canv-div{
+  display: inline-block;
+  width: 60%;
+  height: 300px;
+}
+
+.canv-supp{
+  vertical-align: top;
+  display: inline-block;
+  width: calc(40% - 8px);
+  height: 300px;
+}
+
+/*Slide 1 (friends, part 1)*/
+
+/*Slide 2 (friends, part 2)*/

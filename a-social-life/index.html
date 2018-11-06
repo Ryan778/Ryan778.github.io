@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha256-vrn14y7WH7zgEElyQqm2uCGSQrX/xjYDjniRUQx3NyU=" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc=" crossorigin="anonymous"></script>
+  <link defer rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/solid.css' integrity='sha384-uKQOWcYZKOuKmpYpvT0xCFAs/wE157X5Ua3H5onoRAOCNkJAMX/6QF0iXGGQV9cP' crossorigin='anonymous'>
+  <link defer rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/brands.css' integrity='sha384-BCEeiNUiLzxxoeYaIu7jJqq0aVVz2O2Ig4WbWEmRQ2Dx/AAxNV1wMDBXyyrxw1Zd' crossorigin='anonymous'>
+  <link defer rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/fontawesome.css' integrity='sha384-HU5rcgG/yUrsDGWsVACclYdzdCcn5yU8V/3V84zSrPDHwZEdjykadlgI6RHrxGrJ' crossorigin='anonymous'>
+  <link rel='stylesheet' href='styles.css'/>
+</head>
+<body>
+<div id='slide-outer'>
+  <div id='banner' class='orange accent-1' style='font-size: 1.5em; padding: 10px;'>Notice: Page Incomplete<br><span class='sm'>The text on this page is more or less done, but the interactivity is not finalized. If you came back tomorrow (11/6), it should be completely done. Thanks!</span></div>
+  <div id='s0' class='slide'>
+    <div class='container mt'>
+      <h2>Hi! I'm Ryan. </h2>
+      <p class='lg'>How's your social life?<br>Is there anything you wanted to change but couldn't?</p><hr/><p>Is there even a point in listening to a stranger that you don't know on the internet? </p>
+      <p class='sm'>This is not a blog post, nor a life story that takes forever to read, nor is it a bland, meaningless article. <br>This is something new I'm trying, something that hopefully won't bore you to death. Willing to try it out? Scroll down!</p>
+      <div class='center-align'>
+        <br>
+        <a href='#s1' class='btn-floating btn-large waves-effect waves-light teal accent-4'><i class='fas fa-arrow-down'></i></a></div>
+    </div>
+  </div>
+  <div id='s1' class='slide'>
+    <div class='container'>
+      <p class='lg'><b>Some Backstory</b></p>
+      <p class='sm'><i>(that's really short and to the point)</i></p>
+      <p class='sm'>In fifth grade, I had one friend who I knew thanks to our parents' relation, and that friend managed to make a couple more friends, which I tagged along with. <br>In sixth grade, I went to middle school with the few friends I had, and they made more friends, which joined our group. <br>By eighth grade, our group was fairly large with around eight people, and life was fine. Three of my friends were going to the same high school I was going to, and I could tag along some more. Right?</p>
+      <p class='sm'><b>Of course that didn't happen.</b> In a turn of events, none of them ended up with me. One person went to the other neighboring school, and the others actually moved out of town. Turns out, it's hard to tag along with someone when you don't have anyone to do so!</p>
+      <div id='canv-a-div' class='canv-div' class='center-align'>
+        <canvas id='canv-a' class='canv' height='280px'></canvas>
+      </div>
+      <div id='canv-a-supp' class='canv-supp'>
+        <p class='lg' style='margin-top: 0'>Hmm, that's pretty sad. </p>
+        <p class='sm'><br>(Unless you're doing even worse off)<br><br><span class='gr'>So this isn't a great start, yeah?</span></p>
+        <a class='sm' href='#s2'><i class='fa fa-arrow-down'></i> Keep Going!</a>
+      </div>
+    </div>
+  </div>
+  <div id='s2' class='slide'>
+    <div class='container'>
+      <p class='lg'>We'll stop there on that depressing note. <br>Before we continue, let's try something with you, the reader! </p>
+      <p class='gr sm'>this sounds super cheesy (and it is), but this webpage will be slightly tailored depending on whether you're better off than I was or not from now on! :D<br>also, don't worry that you're missing the other half of the website! only enough will be changed so that it flows with your situation. </p>
+      <div class='int'>
+        <p class='nm'>Select the boxes and options that apply to you. </p>
+        <p class='sm nm'>Do you think you're doing well at your school (in terms of social life)?</p>
+        <label><input type='checkbox' id='i1_ck1'/><span>Yeah, I think I'm doing well</span></label><br>
+        <div id='int1-a' style='display: none'><p class='sm'>Great! Ok, how many friends do you have? <br><span class='gr'>It's up to you to decide what you want</span></p>
+        <label><input type='radio' name='i1_r1'/><span>Yeah, <a>uh no</a>.</span></label><br>
+        <label><input type='radio' name='i1_r1'/><span>More than two</span></label><br>
+        <label><input type='radio' name='i1_r1'/><span>A lot of friends</span></label><br>
+        <p class='sm'>Are you involved in extra-cirricular activites?</p>
+        <label><input type='checkbox' id='i1_ck2'/><span>Yeah, I'm definitely doing something!</span></label><br>
+        <label><input type='checkbox' id='i1_ck3'/><span>I'm in at least three clubs!</span></label>
+        </div>
+        <div id='int1-b' style='display: none'>
+        <p class='sm'>Ok, but have you founded or co-founded something at your school?<br><span class='gr'>For example, a club that you wanted to be in but didn't exist</span></p>
+        <label><input type='checkbox' id='i1_ck4'/><span>Yes! I have! It was great!</span></label>
+        </div>
+        <div id='int1-c' style='display: none'>
+        <p class='sm gr'>Changed your mind? That's fine!</p>
+        </div>
+        <hr>
+        <button class='btn btn-flat green accent-3 waves-effect' onclick='w_cont(1)'>Continue</button>
+        <p class='sm gr' style='display: inline'>Be honest! Nobody's going to judge you here!</p>
+      </div>
+    </div>
+  </div>
+  <div id='sp1' class='spacer'></div>
+  <div id='s3' class='slide'>
+    <div class='container'>
+      <p class='lg'>Remember the chart from two slides ago?</p>
+      <p class='lg'><b>It was slightly skewed. </b></p>
+      <p class='sm'>Just a tad bit more of backstory - I was in a fairly high math class at that time such that most of my classmates were a grade or two higher. Some of these people were really smart and really social, and they talked to me! Amazing!</p>
+      <p class='sm'>If you paid close attention to the chart, you may have noticed that there was a small discrepancy between what I said and the data on the chart. So, what if we removed all of the super-social upper classmen that knew me?</p>
+      <div id='canv-b-div' class='canv-div center-align'>
+        <canvas id='canv-b' class='canv' height='280px'></canvas>
+      </div>
+      <div id='canv-b-supp' class='canv-supp'>
+        <p class='lg' style='margin-top: 0'>Oh. Yup, 0!</p>
+        <p class='sm'><br>And you're way better off than I was!<br><br><span class='gr'>So this <b>really </b> isn't a great start, yeah?</span></p>
+        <a href='#s4' class='btn-floating btn-small waves-effect waves-light green'><i class='fas fa-arrow-down'></i></a>
+        <span class='sm'>"But where are we going?"</span>
+      </div>
+    </div>
+  </div>
+  <div id='s4' class='slide'>
+    <div class='container'>
+      <p class='lg'>At this point, <b>you may be wondering</b>:</p>
+      <p class='sm'>Where are we going with this? </p>
+      <a href='#s5' class='sm'>No, I know where we're going. Can I skip this? (If you want to, yes!)</a>
+      <p class='sm int1-resA'>Well, you said you were in pretty much the same boat I was in.</p>
+      <p class='sm int1-resB'>Well, you were clearly better off than I was. But you haven't really gotten involved with your school yet!</p>
+      <p class='sm int1-resC'>Well, hmm, you're one of the few people who actually knows what they're doing!</p>
+    </div>
+  </div>
+  <div id='s5' class='slide'>
+    <div class='container'>
+      <span class='comment'>Note that from this point forward, interactive aspects are incomplete (which will be done and polished out in a day or two)! The text and written content, however, is more or less finished.</span>
+      <p class='lg'>As you may or may not have already figured out, but extra-cirricular activites are pretty valuable. </p>
+      <p class='sm int1-res2A'>And since you're already in a few, whether it's because of peer pressure or because you're genuinely interested (or a combination of these two), you at least do care about what you're doing (hopefully!)</p>
+      <p class='sm int1-res2B'>While you're not heavily involved yet, you have probably heard from teachers, counselors, etc. about how important clubs are. </p>
+      <p class='sm'>But how important are clubs? How much time do you, or would you really spend on them? Let's find out! </p>
+      <p class='sm gr'>You likely (whether you'd admit it or not) know that actually spending time with other people is pretty much one of, if not the only way to make new friends. </p>
+      <a href='#s6' class='btn waves-effect'>Let's See!</a>
+    </div>
+  </div>
+  <div id='s6' class='slide'>
+    <div class='container'>
+      <p class='lg'>Alright, take a look at how much time you do / can spend!</p>
+      <div class='int'>
+        <p class='comment'>This box is currently formatted weirdly, and will be fixed later. The content is working though!</p>
+        <p class='nm sm'>Feel free to enter in your current situation, or an ideal situation. </p>
+        <p class='sm inl'>How many extra-cirricular activites do you do / want to do? </p>
+        <div class="input-field inline i-num">
+          <input id="int2_1" type="number">
+          <label for="int2_1">i.e: 2</label>
+        </div>
+        <br>
+        <p class='sm inl'>On average, how long would each activity take  each week (in <b>minutes</b>)?</p>
+        <div class="input-field inline i-num">
+          <input id="int2_2" type="number">
+          <label for="int2_2">i.e: 45</label>
+        </div>
+        <p>Over the course of a school year, you'll spend about <b id='int2_res'>0</b> hours doing these clubs, sports, etc!</p>
+        <p class='sm'>Was this surprising to you? How long is this, really? <a href='#s7'>Keep Going</a></p>
+    </div>
+    </div>
+  </div>
+  <div id='sp2' class='spacer'></div>
+  <div id='s7' class='slide'>
+    <div class='container'>
+      <p class='lg'>Pretty significant now, isn't it? </p>
+      <p class='sm'>If you had <b class='int2_res_comp' data-factor='1'>0</b> <b>hours</b>, you could watch, say, Coco <b class='int2_res_comp' data-factor='1.81667'>0</b> <b>complete times</b> (w/ credits!).</p>
+      <p class='sm'>You could slowly read Dr. Seuss' Cat in the Hat <b class='int2_res_comp' data-factor='0.136'>0</b> <b>times</b>.</p>
+      <p class='sm'>You could play <b class='int2_res_comp' data-factor='0.5'>0</b> <b>rounds of laser tag</b> (actually, wouldn't recommend).</p>
+      <p class='sm gr'>(Nor would I recommend doing any of these things that many times.)</p>
+      <p>That aside, think about the end goal of this:</p>
+      <p class='sm'>With that much time, you can really form a close bond with the people doing the same thing that you're doing!</p>
+      <p class='sm'>Think about it. How long does it take for you to get to know someone in your class? A few weeks, maybe a month or two? The same would apply to extra-cirricular activites, except you have the added benefit of sharing the same thing in that club, sport, etc!</p>
+      <div class='center-align'><br>
+        <a href='#s8' class='btn-floating btn-large waves-effect waves-light orange accent-3'><i class='fas fa-arrow-down'></i></a>
+      </div>
+    </div>
+  </div>
+  <div id='s8' class='slide'>
+    <div class='container'>
+      <p class='lg'>Isn't that pretty neat?</p>
+      <p class='sm'>Now consider leading or starting a club on your own!</p>
+      <p class='sm'>I know firsthand that it can be a terrifying thought, trying to lead other students over something that you're passionate about, not knowing whether anyone else cares or not. Despite this, this is something <b>you</b> should consider doing!</p>
+      <p class='sm'>If this sounds terrifying to you, you can still take away how valuable getting more involved is! </p>
+    </div>
+  </div>
+  <div id='s9' class='slide'>
+    <div class='container'>
+      <p>So what happened next (for me)?</p>
+      <p class='sm'>After all, if I was still in that "sad, lonely, friendless" period, this webpage would not have existed. Thus, you may be wondering what happened. <a href='#s10'>Or maybe not? [Skip]</a></p>
+
+    </div>
+  </div>
+  <div id='s10' class='slide'>
+    <div class='container'>
+      <p>As it turns out, leadership is not something people are simply born with. </p>
+      <p class='sm'>Some people may be slighly more social and better off at this than others, but this is nonetheless something that requires practice. </p>
+      <p>So why am I saying this? </p>
+      <p class='sm'>I know that both things (starting high school without friends and also going far enough to start and lead a club) have happened to me! <br>And while part of this page is a backstory about me, it really leads down to what <b>you</b> are able to do given the effort. </p>
+      <p class='sm'>(If you checked everything) While you're really social (or simply lying), you clearly seem to be doing fine. </p>
+      <p>Of course, don't let social skills get in the way of everything else!</p>
+      <p class='sm'>While it's very helpful to have such skills in life, don't let academics or anything else get pushed aside for the sake of this. It's not worth it!<br>That said, having strong social and interpersonal skills will help you out in the future! Is this sounding like a generic pep-talk now? Well, I'll need to fix that ¯\_(ツ)_/¯</p>
+    </div>
+  </div>
+  <div id='s11' class='slide'>
+    <div class='container'>
+      <p class='lg'>Credits</p>
+      <p class='sm'>Programming, design, and planning: <a href='https://ryan778.github.io/about-me' target='_blank'>Ryan Zhang</a></p>
+      <p class='sm'>Done for an English project with the topic "anything that matters to you".</p>
+      <p class='sm'>Inspired by these creative people and their sites, <a href='https://neal.fun/where-does-the-day-go/?ref=ryan778.github.io' target='_blank'>Neal.fun</a> and <a href='https://theoatmeal.com/comics/believe/?ref=ryan778.github.io' target='_blank'>The Oatmeal</a>.</p>
+      <p>Thanks for going through this entire page!</p>
+      <p class='sm'>If you have feedback, you can <a href='https://docs.google.com/forms/d/e/1FAIpQLScnAPVbEqzHzSnD_yC2Bl2nsXk967Ai3y1TsJhWPC9kXMmfxg/viewform?usp=sf_link' target='_blank'>send it here</a>.</p>
+    </div>
+  </div>
+</div>
+<script defer src='script.js'></script>
+</body>
+</html>

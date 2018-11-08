@@ -1,5 +1,5 @@
 var inputs = [];
-var stage = 999; //set to 0 when done testing
+var stage = 0; //set to 0 when done testing
 
 var ctx = document.getElementById("canv-a").getContext('2d');
 var chart1 = new Chart(ctx, {
@@ -261,5 +261,17 @@ function w_cont(v){
     sp1.style.display = 'none';
     window.scrollTo(0, s3.offsetTop);
     M.toast({html: 'Great! Let\'s keep going!', classes: 'green'})
+  }
+  else if(v === 2){
+    stage = 2; 
+    sp2.style.display = 'none';
+    window.scrollTo(0, s7.offsetTop);
+    M.toast({html: 'Great! Let\'s keep going!', classes: 'green'});
+  }
+}
+
+window.onload = function(){
+  if(s1.offsetHeight < 650){
+    $('.slide').css('font-size', '1.4em')
   }
 }

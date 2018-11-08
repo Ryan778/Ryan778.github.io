@@ -11,6 +11,10 @@ html{
   scroll-snap-type: y mandatory;
 }
 
+.btn-nt{ /*No transform*/
+  text-transform: none;
+}
+
 .slide{
   scroll-snap-align: start;
   background: linen;
@@ -19,6 +23,12 @@ html{
   padding: 18px;
   font-size: 1.5em;
   border-bottom: 1px solid #aaa;
+}
+
+.slide-vh{
+  background: #fce7ca;
+  min-height: 100vh;
+  height: auto;
 }
 
 .spacer{
@@ -104,6 +114,10 @@ h5, h6{
 
 label{
   color: black;
+}
+
+.int1-resA, .int1-resB, .int1-resC{
+  display: none;
 }
 
 /*Chart sections*/

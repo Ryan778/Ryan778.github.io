@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+  <title>A Social Life</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js" integrity="sha256-vrn14y7WH7zgEElyQqm2uCGSQrX/xjYDjniRUQx3NyU=" crossorigin="anonymous"></script>
@@ -13,7 +14,7 @@
 </head>
 <body>
 <div id='slide-outer'>
-  <div id='banner' class='orange accent-1' style='font-size: 1.5em; padding: 10px;'>Notice: Page Incomplete<br><span class='sm'>The text on this page is more or less done, but the interactivity is not finalized. If you came back tomorrow (11/6), it should be completely done. Thanks!</span></div>
+  <div id='banner' class='orange accent-1' style='font-size: 1.5em; padding: 10px;'>Notice: Page (Almost) Complete<br><span class='sm'>The story, the text, and the end messages are <b>complete</b>, and can be read as is now. At the same time, I still want to revise it with advice from others, so lemme know your thoughts!<br><i>(Also, some of the more subtle interactive parts are not currently working from technical difficulties. They'll be fixed in a day or two. Sorry!)</i></span></div>
   <div id='s0' class='slide'>
     <div class='container mt'>
       <h2>Hi! I'm Ryan. </h2>
@@ -40,18 +41,18 @@
       </div>
     </div>
   </div>
-  <div id='s2' class='slide'>
+  <div id='s2' class='slide slide-vh'>
     <div class='container'>
-      <p class='lg'>We'll stop there on that depressing note. <br>Before we continue, let's try something with you, the reader! </p>
+      <p class='lg'>Let's stop there on that depressing note. <br>Before we continue, let's try something with you, the reader! </p>
       <p class='gr sm'>this sounds super cheesy (and it is), but this webpage will be slightly tailored depending on whether you're better off than I was or not from now on! :D<br>also, don't worry that you're missing the other half of the website! only enough will be changed so that it flows with your situation. </p>
       <div class='int'>
         <p class='nm'>Select the boxes and options that apply to you. </p>
         <p class='sm nm'>Do you think you're doing well at your school (in terms of social life)?</p>
         <label><input type='checkbox' id='i1_ck1'/><span>Yeah, I think I'm doing well</span></label><br>
         <div id='int1-a' style='display: none'><p class='sm'>Great! Ok, how many friends do you have? <br><span class='gr'>It's up to you to decide what you want</span></p>
-        <label><input type='radio' name='i1_r1'/><span>Yeah, <a>uh no</a>.</span></label><br>
-        <label><input type='radio' name='i1_r1'/><span>More than two</span></label><br>
-        <label><input type='radio' name='i1_r1'/><span>A lot of friends</span></label><br>
+        <label><input type='radio' id='i1_o1' name='i1_r1'/><span>Yeah, <a>uh no</a>.</span></label><br>
+        <label><input type='radio' id='i1_o2' name='i1_r1'/><span>More than two</span></label><br>
+        <label><input type='radio' id='i1_o3' name='i1_r1'/><span>A lot of friends</span></label><br>
         <p class='sm'>Are you involved in extra-cirricular activites?</p>
         <label><input type='checkbox' id='i1_ck2'/><span>Yeah, I'm definitely doing something!</span></label><br>
         <label><input type='checkbox' id='i1_ck3'/><span>I'm in at least three clubs!</span></label>
@@ -73,7 +74,7 @@
   <div id='s3' class='slide'>
     <div class='container'>
       <p class='lg'>Remember the chart from two slides ago?</p>
-      <p class='lg'><b>It was slightly skewed. </b></p>
+      <p class='lg'><b>Turns out, it was slightly exaggerated. </b></p>
       <p class='sm'>Just a tad bit more of backstory - I was in a fairly high math class at that time such that most of my classmates were a grade or two higher. Some of these people were really smart and really social, and they talked to me! Amazing!</p>
       <p class='sm'>If you paid close attention to the chart, you may have noticed that there was a small discrepancy between what I said and the data on the chart. So, what if we removed all of the super-social upper classmen that knew me?</p>
       <div id='canv-b-div' class='canv-div center-align'>
@@ -95,6 +96,10 @@
       <p class='sm int1-resA'>Well, you said you were in pretty much the same boat I was in.</p>
       <p class='sm int1-resB'>Well, you were clearly better off than I was. But you haven't really gotten involved with your school yet!</p>
       <p class='sm int1-resC'>Well, hmm, you're one of the few people who actually knows what they're doing!</p>
+      <p>I want to show you how important something like adding one more extra-cirricular activity can be. </p>
+      <p class='sm'>You may know in the back of your head, that it's something helpful, or you may already be in some. Despite this, do you really know how long you'd spend doing something you love in just one school year?</p>
+      <p class='sm'>Would looking at it make you more interested, more proactive in getting more involved?</p>
+      <a href='#s5' class='sm'>Let's figure that out. </a>
     </div>
   </div>
   <div id='s5' class='slide'>
@@ -108,7 +113,7 @@
       <a href='#s6' class='btn waves-effect'>Let's See!</a>
     </div>
   </div>
-  <div id='s6' class='slide'>
+  <div id='s6' class='slide slide-vh'>
     <div class='container'>
       <p class='lg'>Alright, take a look at how much time you do / can spend!</p>
       <div class='int'>
@@ -126,7 +131,7 @@
           <label for="int2_2">i.e: 45</label>
         </div>
         <p>Over the course of a school year, you'll spend about <b id='int2_res'>0</b> hours doing these clubs, sports, etc!</p>
-        <p class='sm'>Was this surprising to you? How long is this, really? <a href='#s7'>Keep Going</a></p>
+        <p class='sm'>Was this surprising to you? How long is this, really? <br><a id='contBtn_s7' onclick='w_cont(2)' disabled href='#s7' class='btn btn-flat lime accent-3 waves-effect'>Continue...</a></p>
     </div>
     </div>
   </div>
@@ -152,13 +157,24 @@
       <p class='sm'>Now consider leading or starting a club on your own!</p>
       <p class='sm'>I know firsthand that it can be a terrifying thought, trying to lead other students over something that you're passionate about, not knowing whether anyone else cares or not. Despite this, this is something <b>you</b> should consider doing!</p>
       <p class='sm'>If this sounds terrifying to you, you can still take away how valuable getting more involved is! </p>
+      <a href='#s9' class='btn btn-nt green accent-4 waves-effect'>Ok, So where are you now? Did you ever recover?</a><br style='line-height: 2.75'>
+      <a href='#s10' class='btn btn-nt grey lighten-2 btn-flat waves-effect'>What can I take away? (Skip what happened to me)</a>
     </div>
   </div>
   <div id='s9' class='slide'>
     <div class='container'>
       <p>So what happened next (for me)?</p>
       <p class='sm'>After all, if I was still in that "sad, lonely, friendless" period, this webpage would not have existed. Thus, you may be wondering what happened. <a href='#s10'>Or maybe not? [Skip]</a></p>
-
+      <p class='sm'>I got back in touch with my friends who went to other schools, while I also met new people through many clubs.<br><br>I'm now co-founding a new club after being at the rock bottom of social skills for a while. No matter where you are right now, you can always push yourself forward!</p>
+      <p class='sm'>While I still have a lot more to go, the hardest step - the first step is complete. Whether you have one step until the end or many steps until you're truly involved, taking the first step is the first thing to do. </p>
+      <div id='canv-c-div' class='canv-div center-align'>
+        <canvas id='canv-c' class='canv' height='280px'></canvas>
+      </div>
+      <div id='canv-c-supp' class='canv-supp'>
+        <p class='lg' style='margin-top: 0'>Look at those new bars!</p>
+        <p class='sm'><br>Interestingly enough, this also ties into the "single story" phenomenon. You may have heard one negative thing about a club or activity and chose to avoid it, but it turns out that such club is actually a lot different than you expected!<br><br>
+        <a href='#s10' class='btn btn-nt green accent-2 black-text'>Cool! What about me?</a>
+      </div>
     </div>
   </div>
   <div id='s10' class='slide'>
@@ -169,7 +185,9 @@
       <p class='sm'>I know that both things (starting high school without friends and also going far enough to start and lead a club) have happened to me! <br>And while part of this page is a backstory about me, it really leads down to what <b>you</b> are able to do given the effort. </p>
       <p class='sm'>(If you checked everything) While you're really social (or simply lying), you clearly seem to be doing fine. </p>
       <p>Of course, don't let social skills get in the way of everything else!</p>
-      <p class='sm'>While it's very helpful to have such skills in life, don't let academics or anything else get pushed aside for the sake of this. It's not worth it!<br>That said, having strong social and interpersonal skills will help you out in the future! Is this sounding like a generic pep-talk now? Well, I'll need to fix that ¯\_(ツ)_/¯</p>
+      <p class='sm'>While it's very helpful to have such skills in life, don't let academics or anything else get pushed aside for the sake of this. It's not worth it!<br>That said, having strong social and interpersonal skills will help you out in the future! </p>
+      <p class='sm gr'>Is this starting to sound like a generic pep-talk now again? Turns out, all of those inspiration TED talks share similar messages, just in different ways. Yet, at the same time, there's many, many ways to execute it. Has looking at raw numbers, or having something that's more about <b>you</b> and <b>not everyone else</b> helped give you a different perspective? That's the end goal!</p>
+      <a href='#s11' class='btn green accent-3 black-text'>Credits</a>
     </div>
   </div>
   <div id='s11' class='slide'>

@@ -1,10 +1,33 @@
-::scrollbar{
-  background: black;
+::selection{
+  background: rgba(140, 200, 255, 0.4);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: linen;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+hr{
+  border: none;
+  border-bottom: 1px solid black;
 }
 
 html{
   min-height: 100%;
   scroll-behavior: smooth;
+  cursor: default;
 }
 
 #slide-outer{
@@ -116,7 +139,7 @@ label{
   color: black;
 }
 
-.int1-resA, .int1-resB, .int1-resC{
+.int1-resA, .int1-resB, .int1-resC, .int1-resD, .int1-resE, .int1-resF{
   display: none;
 }
 

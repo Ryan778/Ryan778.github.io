@@ -1,6 +1,13 @@
 var inputs = [];
 var stage = 0; //set to 0 when done testing
 
+var startTime = Date.now();
+
+setInterval(function(){
+  let dt = Date.now() - startTime;
+  $('#timestamp').text(`${Math.floor(dt/60000)}m ${Math.round(dt/1000)%60}s`)
+});
+
 var ctx = document.getElementById("canv-a").getContext('2d');
 var chart1 = new Chart(ctx, {
     type: 'bar',
@@ -258,6 +265,16 @@ function w_cont(v){
       $('.int1-resC').show()}
     else {
       $('.int1-resA').show()}
+    if($('#i1_ck2')[0].checked || $('#i1_ck3')[0].checked){
+      $('.int1-resD').show();
+      if($('#i1_ck2')[0].checked){
+        $('.int1-resE').show();
+      }
+    }
+    else{
+      $('.int1-resF').show();
+    }
+    $('.i1_inp').prop('disabled', true)
     sp1.style.display = 'none';
     window.scrollTo(0, s3.offsetTop);
     M.toast({html: 'Great! Let\'s keep going!', classes: 'green'})

@@ -14,7 +14,6 @@
 </head>
 <body>
 <div id='slide-outer'>
-  <div id='banner' class='orange accent-1' style='font-size: 1.5em; padding: 10px;'>Notice: Page (Almost) Complete<br><span class='sm'>The story, the text, and the end messages are <b>complete</b>, and can be read as is now. At the same time, I still want to revise it with advice from others, so lemme know your thoughts!<br><i>(Also, some of the more subtle interactive parts are not currently working from technical difficulties. They'll be fixed in a day or two. Sorry!)</i></span></div>
   <div id='s0' class='slide'>
     <div class='container mt'>
       <h2>Hi! I'm Ryan. </h2>
@@ -48,18 +47,20 @@
       <div class='int'>
         <p class='nm'>Select the boxes and options that apply to you. </p>
         <p class='sm nm'>Do you think you're doing well at your school (in terms of social life)?</p>
-        <label><input type='checkbox' id='i1_ck1'/><span>Yeah, I think I'm doing well</span></label><br>
+        <label><input class='i1_inp' type='checkbox' id='i1_ck1'/><span>Yeah, I think I'm doing at least fairly well</span></label><br>
         <div id='int1-a' style='display: none'><p class='sm'>Great! Ok, how many friends do you have? <br><span class='gr'>It's up to you to decide what you want</span></p>
-        <label><input type='radio' id='i1_o1' name='i1_r1'/><span>Yeah, <a>uh no</a>.</span></label><br>
-        <label><input type='radio' id='i1_o2' name='i1_r1'/><span>More than two</span></label><br>
-        <label><input type='radio' id='i1_o3' name='i1_r1'/><span>A lot of friends</span></label><br>
+        <label><input class='i1_inp' type='radio' id='i1_o1' name='i1_r1'/><span>Yeah, <a href='images/tweet.jpg' target='_blank'>uh no</a>.</span></label><br>
+        <label><input class='i1_inp' type='radio' id='i1_o2' name='i1_r1'/><span>More than two</span></label><br>
+        <label><input class='i1_inp' type='radio' id='i1_o3' name='i1_r1'/><span>A lot of friends</span></label><br>
         <p class='sm'>Are you involved in extra-cirricular activites?</p>
-        <label><input type='checkbox' id='i1_ck2'/><span>Yeah, I'm definitely doing something!</span></label><br>
-        <label><input type='checkbox' id='i1_ck3'/><span>I'm in at least three clubs!</span></label>
+        <label><input class='i1_inp' type='checkbox' id='i1_ck2'/><span>Yeah, I'm definitely doing something!</span></label><br>
+        <label><input class='i1_inp' oninput='$("#int1-b").show()' type='checkbox' id='i1_ck3'/><span>I'm in at least three clubs!</span></label>
         </div>
         <div id='int1-b' style='display: none'>
         <p class='sm'>Ok, but have you founded or co-founded something at your school?<br><span class='gr'>For example, a club that you wanted to be in but didn't exist</span></p>
-        <label><input type='checkbox' id='i1_ck4'/><span>Yes! I have! It was great!</span></label>
+        <label><input class='i1_inp' type='checkbox' oninput='$(".int1-b-r").show()' id='i1_ck4'/><span>Yes! I have! It was great!</span></label>
+        <p class='sm int1-b-r' style='display: none'>Really? Congratulations! You seem to already know exactly what you're doing. <br>Since you already seem to have everything more or less together, this page might not apply as much to do. At the same time, it's still pretty cool to see how long you spend each year - do you know? We'll find that out!</p>
+        <p class='sm gr int1-b-r' style='display: none'>And if that wasn't emphasized enough, this is a really good thing that few people do! Unless you're lying (you're not, right?) then you should really be proud of this!</p>
         </div>
         <div id='int1-c' style='display: none'>
         <p class='sm gr'>Changed your mind? That's fine!</p>
@@ -82,7 +83,8 @@
       </div>
       <div id='canv-b-supp' class='canv-supp'>
         <p class='lg' style='margin-top: 0'>Oh. Yup, 0!</p>
-        <p class='sm'><br>And you're way better off than I was!<br><br><span class='gr'>So this <b>really </b> isn't a great start, yeah?</span></p>
+        <p class='sm int1-resA'>Did you think you had fewer friends than I did? Well you're not any worse off than I was!<br><span class='gr'>And this entire webpage is here, for <b>you</b>, to help you do better social-wise.</span></p>
+        <p class='sm int1-resB int1-resC'><br>And you're way better off than I was!<br><br><span class='gr'>So this <b>really </b> isn't a great start, yeah?</span></p>
         <a href='#s4' class='btn-floating btn-small waves-effect waves-light green'><i class='fas fa-arrow-down'></i></a>
         <span class='sm'>"But where are we going?"</span>
       </div>
@@ -93,23 +95,26 @@
       <p class='lg'>At this point, <b>you may be wondering</b>:</p>
       <p class='sm'>Where are we going with this? </p>
       <a href='#s5' class='sm'>No, I know where we're going. Can I skip this? (If you want to, yes!)</a>
-      <p class='sm int1-resA'>Well, you said you were in pretty much the same boat I was in.</p>
+      <p class='sm int1-resA'>Well, you said you were in pretty much the same boat I was in.<br>But it can change! Even if that sounds obvious and unhelpful, it's still true. That's why (almost) every motivational article tells you to get involved... though there's something I'll try here that plain-text articles simply can't do. </p>
       <p class='sm int1-resB'>Well, you were clearly better off than I was. But you haven't really gotten involved with your school yet!</p>
-      <p class='sm int1-resC'>Well, hmm, you're one of the few people who actually knows what they're doing!</p>
-      <p>I want to show you how important something like adding one more extra-cirricular activity can be. </p>
-      <p class='sm'>You may know in the back of your head, that it's something helpful, or you may already be in some. Despite this, do you really know how long you'd spend doing something you love in just one school year?</p>
-      <p class='sm'>Would looking at it make you more interested, more proactive in getting more involved?</p>
+      <p class='sm int1-resC'>Well, you're doing fine social wise! That doesn't necessarily mean you're completely set, but it's already a good point to be at. How about extra-cirriculars?</p>
+      <p class='int1-resF'>I'll try to show you how beneficial doing just one extra-cirricular activity can be. </p>
+      <p class='int1-resD'>I'll still try to emphasize how important and how beneficial those extra-cirricular activites are! </p>
+      <p class='sm int1-resF'>You may know in the back of your head, that it's something helpful. Despite this, do you really know how long you'd spend doing something you love in just one school year?</p>
+      <p class='sm int1-resD'>Well yes, you're already involved with your school. <span class='int1-resE'>In fact, you're not just a little involved, you're really involved! That's good! </span>Are you involved because you're genuinely interested in those clubs, or becasue of peer pressure? Maybe both? </p>
+      <p class='sm int1-resF'>Would looking at how quickly a single club adds up make you more interested, more proactive in getting more involved?</p>
+      <p class='sm int1-resD'>Have you ever wondered how quickly these add up? Maybe you were considering dropping out of a club or adding another one? How much of an impact will that one club have?</p>
       <a href='#s5' class='sm'>Let's figure that out. </a>
     </div>
   </div>
   <div id='s5' class='slide'>
     <div class='container'>
-      <span class='comment'>Note that from this point forward, interactive aspects are incomplete (which will be done and polished out in a day or two)! The text and written content, however, is more or less finished.</span>
       <p class='lg'>As you may or may not have already figured out, but extra-cirricular activites are pretty valuable. </p>
-      <p class='sm int1-res2A'>And since you're already in a few, whether it's because of peer pressure or because you're genuinely interested (or a combination of these two), you at least do care about what you're doing (hopefully!)</p>
-      <p class='sm int1-res2B'>While you're not heavily involved yet, you have probably heard from teachers, counselors, etc. about how important clubs are. </p>
+      <p class='sm'>There are so many clubs out there, and you probably know a lot just from walking around in your school. Posters, announcements, etc, every school has plenty of clubs!<br><span class='gr'>(And of course, if something you want isn't there, you can always start something new...)</span></p>
+      <p class='sm int1-resD'>And since you're already in a few, whether it's because of peer pressure or because you're genuinely interested (or a combination of these two), you at least do care about what you're doing (hopefully!)</p>
+      <p class='sm int1-resF'>While you're not heavily involved yet, you have probably heard from teachers, counselors, etc. about how important clubs are. </p>
       <p class='sm'>But how important are clubs? How much time do you, or would you really spend on them? Let's find out! </p>
-      <p class='sm gr'>You likely (whether you'd admit it or not) know that actually spending time with other people is pretty much one of, if not the only way to make new friends. </p>
+      <p class='sm gr'>You likely (whether you'd admit it or not) know that actually spending time with other people is pretty much one of, if not the best way to make new friends. <span class='int1-resC'>Of course, you're doing fine, but it's still a thought to keep in mind.</span></p>
       <a href='#s6' class='btn waves-effect'>Let's See!</a>
     </div>
   </div>
@@ -117,28 +122,27 @@
     <div class='container'>
       <p class='lg'>Alright, take a look at how much time you do / can spend!</p>
       <div class='int'>
-        <p class='comment'>This box is currently formatted weirdly, and will be fixed later. The content is working though!</p>
-        <p class='nm sm'>Feel free to enter in your current situation, or an ideal situation. </p>
+        <p class='nm sm'>Feel free to enter in your current situation, or an ideal situation for you. </p>
         <p class='sm inl'>How many extra-cirricular activites do you do / want to do? </p>
-        <div class="input-field inline i-num">
+        <div class="input-field inline i-num" style='margin-bottom: 0'>
           <input id="int2_1" type="number">
           <label for="int2_1">i.e: 2</label>
         </div>
         <br>
         <p class='sm inl'>On average, how long would each activity take  each week (in <b>minutes</b>)?</p>
-        <div class="input-field inline i-num">
+        <div class="input-field inline i-num" style='margin-bottom: 0'>
           <input id="int2_2" type="number">
           <label for="int2_2">i.e: 45</label>
         </div>
         <p>Over the course of a school year, you'll spend about <b id='int2_res'>0</b> hours doing these clubs, sports, etc!</p>
-        <p class='sm'>Was this surprising to you? How long is this, really? <br><a id='contBtn_s7' onclick='w_cont(2)' disabled href='#s7' class='btn btn-flat lime accent-3 waves-effect'>Continue...</a></p>
+        <p class='sm'>Was this surprising to you? Do you really know how long this is? <br><a id='contBtn_s7' onclick='w_cont(2)' disabled href='#s7' class='btn btn-flat lime accent-3 waves-effect'>Continue...</a></p>
     </div>
     </div>
   </div>
   <div id='sp2' class='spacer'></div>
   <div id='s7' class='slide'>
     <div class='container'>
-      <p class='lg'>Pretty significant now, isn't it? </p>
+      <p class='lg'>Pretty significant now, yeah? </p>
       <p class='sm'>If you had <b class='int2_res_comp' data-factor='1'>0</b> <b>hours</b>, you could watch, say, Coco <b class='int2_res_comp' data-factor='1.81667'>0</b> <b>complete times</b> (w/ credits!).</p>
       <p class='sm'>You could slowly read Dr. Seuss' Cat in the Hat <b class='int2_res_comp' data-factor='0.136'>0</b> <b>times</b>.</p>
       <p class='sm'>You could play <b class='int2_res_comp' data-factor='0.5'>0</b> <b>rounds of laser tag</b> (actually, wouldn't recommend).</p>
@@ -183,20 +187,25 @@
       <p class='sm'>Some people may be slighly more social and better off at this than others, but this is nonetheless something that requires practice. </p>
       <p>So why am I saying this? </p>
       <p class='sm'>I know that both things (starting high school without friends and also going far enough to start and lead a club) have happened to me! <br>And while part of this page is a backstory about me, it really leads down to what <b>you</b> are able to do given the effort. </p>
-      <p class='sm'>(If you checked everything) While you're really social (or simply lying), you clearly seem to be doing fine. </p>
+      <p class='sm int1-resC'>Sure, you seem to be doing completely fine right now social wise.</p>
+      <p class='sm int1-resD'>And you are already involved to an extent with your school, which is great! </p>
+      <p class='sm int1-resF'>And even though you're not quite involved with your school, it's never too late to start! Seriously! </p>
       <p>Of course, don't let social skills get in the way of everything else!</p>
       <p class='sm'>While it's very helpful to have such skills in life, don't let academics or anything else get pushed aside for the sake of this. It's not worth it!<br>That said, having strong social and interpersonal skills will help you out in the future! </p>
-      <p class='sm gr'>Is this starting to sound like a generic pep-talk now again? Turns out, all of those inspiration TED talks share similar messages, just in different ways. Yet, at the same time, there's many, many ways to execute it. Has looking at raw numbers, or having something that's more about <b>you</b> and <b>not everyone else</b> helped give you a different perspective? That's the end goal!</p>
+      <p class='sm gr'>Is this starting to sound like a generic pep-talk now again? Turns out, all of those inspiration TED talks share similar messages, since there's only so many things to do in life. Yet, at the same time, there's many, many ways to execute even one thing. Has looking at raw numbers, or having something that's more about <b>you</b> and <b>not everyone else</b> helped give you a different perspective? That's the end goal!</p>
       <a href='#s11' class='btn green accent-3 black-text'>Credits</a>
     </div>
   </div>
-  <div id='s11' class='slide'>
+  <div id='s11' class='slide green lighten-5'>
     <div class='container'>
       <p class='lg'>Credits</p>
       <p class='sm'>Programming, design, and planning: <a href='https://ryan778.github.io/about-me' target='_blank'>Ryan Zhang</a></p>
       <p class='sm'>Done for an English project with the topic "anything that matters to you".</p>
       <p class='sm'>Inspired by these creative people and their sites, <a href='https://neal.fun/where-does-the-day-go/?ref=ryan778.github.io' target='_blank'>Neal.fun</a> and <a href='https://theoatmeal.com/comics/believe/?ref=ryan778.github.io' target='_blank'>The Oatmeal</a>.</p>
+      <hr>
+      <p>It's been <b id='timestamp'>0m 0s</b> since you first came to this page.</p>
       <p>Thanks for going through this entire page!</p>
+      <p class='sm'>So of course, this leads to the most important person in the credits, <b>you</b>! Without any readers, this page would be meaningless. So once again, thank you for stopping by and taking the time to look through it!</p>
       <p class='sm'>If you have feedback, you can <a href='https://docs.google.com/forms/d/e/1FAIpQLScnAPVbEqzHzSnD_yC2Bl2nsXk967Ai3y1TsJhWPC9kXMmfxg/viewform?usp=sf_link' target='_blank'>send it here</a>.</p>
     </div>
   </div>

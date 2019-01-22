@@ -1,45 +1,59 @@
 <!doctype html>
-<html class="no-js" lang="">
-
+<html class='no-js' lang=''>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset='utf-8'>
+  <meta http-equiv='x-ua-compatible' content='ie=edge'>
   <title>America's Got Talent</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="css/main.css">
+  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+  <link rel='stylesheet' href='main.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css' integrity='sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=' crossorigin='anonymous' />
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' integrity='sha256-U/cHDMTIHCeMcvehBv1xQ052bPSbJtbuiw4QA9cTKz0=' crossorigin='anonymous'></script>
 </head>
 
 <body>
   <!--[if lte IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <p class='browserupgrade'>You are using an <strong>outdated</strong> browser. Please <a href='https://browsehappy.com/'>upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
-  <!-- Add your site or application content here -->
-  <button onclick='reset()'>Reset all tracks</button>
-  <p>Mii #1</p>
-  <audio src='tracks/wii-theme-1.mp3' preload='auto' controls></audio>
-  <p>Elephant</p>
-  <audio src='tracks/elephant.wav' preload='auto' controls></audio>
-  <p>Mii #2</p>
-  <audio src='tracks/wii-theme-2.mp3' preload='auto' controls></audio>
-  <p>Kero Kero</p>
-  <audio src='tracks/kero-kero.mp3' preload='auto' controls></audio>
-  <p>Mii #3</p>
-  <audio src='tracks/wii-theme-3.mp3' preload='auto' controls></audio>
-  <p>PPAP</p>
-  <audio src='tracks/ppap.mp3' preload='auto' controls></audio>
-  <p>Mii #4</p>
-  <audio src='tracks/wii-theme-4.mp3' preload='auto' controls></audio>
-  <p>Baby Shark</p>
-  <audio src='tracks/baby-shark.mp3' preload='auto' controls></audio>
-  <script>
-    function reset(){
-      let a = document.getElementsByTagName('audio');
-      for(let i = 0; i < a.length; i++){
-        a[i]['currentTime'] = 0;
-        a[i].pause();
+  <div class='container'>
+    <h3><span style='text-decoration: line-through'>Fossil's</span> America's Got Talent!</h3>
+    <h5>Whoa it's some copyrighted music</h5>
+    <p>Hopefully GitHub and/or Nintendo don't notice this and take it down</p>
+    <button class='btn red lighten-2 waves-effect waves-light' style='text-transform: none' onclick='reset()'>Reset all tracks</button>
+    <hr>
+    <p>Mii #1</p>
+    <audio src='tracks/wii-theme-1.mp3' preload='auto' controls></audio>
+    <hr>
+    <p>Elephant</p>
+    <audio src='tracks/elephant.wav' preload='auto' controls></audio>
+    <hr>
+    <p>Mii #2</p>
+    <audio src='tracks/wii-theme-2.mp3' preload='auto' controls></audio>
+    <hr>
+    <p>Kero Kero</p>
+    <audio src='tracks/kero-kero.mp3' preload='auto' controls></audio>
+    <hr>
+    <p>Mii #3</p>
+    <audio src='tracks/wii-theme-3.mp3' preload='auto' controls></audio>
+    <hr>
+    <p>PPAP</p>
+    <audio src='tracks/ppap.mp3' preload='auto' controls></audio>
+    <hr>
+    <p>Mii #4</p>
+    <audio src='tracks/wii-theme-4.mp3' preload='auto' controls></audio>
+    <hr>
+    <p>Baby Shark</p>
+    <audio src='tracks/baby-shark.mp3' preload='auto' controls></audio>
+    <br><br>
+    <script>
+      function reset(){
+        let a = document.getElementsByTagName('audio');
+        for(let i = 0; i < a.length; i++){
+          a[i]['currentTime'] = 0;
+          a[i].pause();
+        }
       }
-    }
-  </script>
+    </script>
+  </div>
 </body>
 </html>

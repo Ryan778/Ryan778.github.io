@@ -1,0 +1,51 @@
+/*  style.css (/badui/volume)
+(C) 2019 Ryan Zhang. See index.html for legal. */
+
+html{
+  margin: 40px;
+}
+
+img{
+  width: 384px;
+  cursor: pointer;
+  transform: rotate(-45deg);
+  transition: all 0.08s;
+}
+
+#button{
+  position: absolute;
+  top: 450px;
+  left: 430px;
+  width: 80px;
+  height: 25px;
+  transition: all 0.08s;
+  transition-delay: 0.04s;
+}
+
+#range-outer{
+  width: 600px;
+  padding: 20px;
+  position: absolute;
+  top: 460px;
+  left: 410px;
+}
+
+#vol-outer{
+  position: absolute;
+  width: 140px;
+  font-size: 18px;
+  height: 30px;
+  left: 870px;
+  top: 440px;
+  height: 35px;
+  line-height: 0;
+  padding-left: 10px;
+}
+
+#info{
+  position: absolute;
+  width: 360px;
+  padding: 10px;
+  top: 40px;
+  left: 650px;
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <!--
+    BadUI: Volume (C) 2019 Ryan Zhang. Some rights reserved.
+    It's been a while since there's any Bad UI, you know?
+
+    If for some reason you think this code isn't complete trash (like fixed position for everything is a good idea), feel free to reuse parts of this under CC-BY-NC 4.0  (aka don't sell it and profit from it).
+    Thanks for stopping by!
+  -->
+  <!-- Compiled and minified CSS (from Materialize, as they're cool)-->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+  <!-- Compiled and minified JavaScript -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js' integrity='sha256-vrn14y7WH7zgEElyQqm2uCGSQrX/xjYDjniRUQx3NyU=' crossorigin='anonymous'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
+  <link rel='stylesheet' href='style.css'/>
+  <script> // yes, leave me alone, go install the 'disable google analytics' thingy if you really want to
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-91409078-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+<body>
+  <audio id='audio' src='patience.mp3' loop></audio>
+  <img id='hammer' src='hammer.svg'>
+  <script src='script.js'></script>
+  <div id='button' class='yellow accent-4'></div>
+  <div id='info' class='light-blue lighten-5'>
+    <span style='font-size: 18px'>Click the hammer to increase the volume! Don't stop, or it'll go back down :D</span><span class='grey-text'><br><br>Music: <b>Patience</b> by <a href='https://www.hooksounds.com/?ref=ryan778.github.io' target='_blank'>HookSounds</a><br>Legally licensed under <a href='https://creativecommons.org/licenses/by-nd/4.0/' target='_blank'>Creative Commons</a><br>Hammer image under <a href='https://commons.wikimedia.org/wiki/File:Tools-hammer.svg' target='_blank'>public domain</a>.</span>
+  </div>
+  <div>
+    <p id='range-outer' class='range-field lime lighten-3'>
+      <input type='range' id='range' disabled value='0' min='0' max='100' />
+    </p>
+  </div>
+  <div id='vol-outer' class='lime lighten-3'>
+    <p>Volume: <b id='vol-text'>0.00%</b></p>
+  </div>
+</body>
+</html>

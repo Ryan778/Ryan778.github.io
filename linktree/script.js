@@ -17,11 +17,8 @@ for(let i = 0; i < a.length; i++){
 function spc(n){//Show photo credits
   if(n === 0){
     document.getElementById('pc').style.display = 'none';
-    document.getElementById('bk').style.filter = 'blur(7px)';
   }
   else{
-    document.getElementById('bk').style.backgroundImage = 'url(lake.jpg)';
-    document.getElementById('bk').style.filter = 'none';
     document.getElementById('pc').style.display = 'initial';
   }
 }

@@ -1,9 +1,24 @@
 html{
   color: white;
   font-family: 'Open Sans', 'Arial', sans-serif;
+  scrollbar-color: #628bb9 #2c2d55;
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track-piece  {
+  background-color: #2c2d55;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 30px;
+  background-color: #628bb9;
+  border-radius: 4px;
 }
 
 h1, h2, h3{
@@ -13,7 +28,7 @@ h1, h2, h3{
 
 h1{
   line-height: 0;
-  margin-top: 80px;
+  margin-top: 70px;
 }
 
 h3{
@@ -27,7 +42,8 @@ hr{
 }
 
 .new{
-  background: rgba(0, 180, 170, 0.3);
+  background: rgba(72, 173, 219, 0.5);
+  border-radius: 2px;
   padding: 1px 3px;
   font-size: 14px;
   text-shadow: none;
@@ -69,10 +85,9 @@ hr{
   width: 100%;
   height: 100%;
   transition: all 0.4s;
-  background-image: url(lake-s.jpg);
+  background-image: url(lake-night.jpg);
   background-position: center;
   background-size: cover;
-  filter: blur(7px);
   transform: scale(1.02);
 }
 
@@ -88,7 +103,7 @@ button{
   height: 40px;
   margin: 5px 0px;
   border: 1px solid #fff;
-  background: rgba(92, 169, 226, 0.4);
+  background: rgba(60, 137, 196, 0.4);
   text-shadow: 1px 1px 2px #333;
   border-radius: 2px;
   transition: all 0.2s;
@@ -96,7 +111,7 @@ button{
 }
 
 button:hover:not([disabled]){
-  background-color: rgba(166, 214, 255, 0.55);
+  background-color: rgba(114, 170, 219, 0.55);
   cursor: pointer;
 }
 

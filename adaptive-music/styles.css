@@ -1,0 +1,66 @@
+html{
+  background: #f0fbff;
+}
+h1{
+  font-size: 2.5em}
+
+h2{
+  font-size: 2.25em}
+p{
+  font-size: 1.25em}
+.btn{
+  text-transform: none}
+.inl{
+  display: inline-block}
+
+#main{
+  padding: 5px 10px 5px;
+  background: #ebfaff;
+}
+
+#btn_reqMic{
+  width: 150px;
+}
+#vol-total{
+  position: relative;
+  width: 202px;
+  height: 22px;
+  background: #eee;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+#vol-peak{
+  overflow: hidden;
+  width: 0px;
+  height: 20px;
+  top: 0;
+  border-right: 1px solid #a5a5a5;
+  background: #e4ffe7;
+  transition: width 0.1s;
+  text-align: right;
+  font-size: 11px;
+  padding-top: 2px;
+  color: #222;
+}
+
+#vol-peak span{
+  padding-right: 4px;
+  opacity: 0.1;
+  transition: opacity 0.4s;
+}
+
+#vol-cur{
+  opacity: 0.85;
+  position: absolute;
+  width: 0px;
+  height: 20px;
+  top: 0;
+  border-right: 1px solid #00b94a;
+  background: linear-gradient(to right, #bfc, #afc);
+  transition: width 0.1s, opacity 0.1s;
+}
+
+#vol-cur:hover{
+  opacity: 0.45; 
+}

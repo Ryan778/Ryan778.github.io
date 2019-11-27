@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+  <title>The Adaptive Music Player</title>
+  <link defer rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+  <link rel='stylesheet' href='styles.css'/>
+</head>
+<body>
+  <div class='container'>
+    <div id='main'>
+      <h1 class='header blue-text text-darken-3'>The Adaptive Music Player</h1>
+      <p>An experimental browser based mp3 player that plays around with the browser's audio context and mic input. <br> - Utilizes the user's microphone to adjust the music's volume with noise<br> - Creates a bar chart visualization of the audio levels at different frequencies (future plan)</p>
+      <p class='grey-text'>Practical uses: None (that I know of), but maybe you'll find something!</p>
+      <button id='btn_reqMic' onclick='reqMicPermission()' class='btn waves-effect waves-light'>Get Mic. Perms</button>
+      <br><br>
+      <div id='volbar-outer'>
+        <div class='inl'>Vol: <span id='vol-val'>(n/a)</span>%</div>  
+        <div class='inl'>
+          <div id='vol-total'><div id='vol-peak'><span id='vp-val'>0.00%</span></div><div id='vol-cur'></div></div>
+        </div>
+      </div>
+      <p>Note that this display has a square-root curve applied.<br>While the volume can technically go up to 120%, it realistically won't.</p>
+      <div>
+        <h5>Settings</h5>
+        <div class='switch'>
+          <label>
+            <input type='checkbox' class='inp-setting' data-for='pauseWhenQuiet'>
+            <span class='lever'></span>
+            Pause when Quiet (&lt;10% volume)
+          </label>
+        </div>
+        <div class='switch'>
+          <label>
+            <input type='checkbox' class='inp-setting' data-for='invertVolume'>
+            <span class='lever'></span>
+            Invert Volume (Louder mic = quieter music)
+          </label>
+        </div>
+        <div class='switch'>
+          <label>
+            <input type='checkbox' class='inp-setting' data-for='curveUp'>
+            <span class='lever'></span>
+            Curve Up (square root curve volume)
+          </label>
+        </div>
+        <div class='switch'>
+          <label>
+            <input type='checkbox' class='inp-setting' data-for='slowFade'>
+            <span class='lever'></span>
+            Slow Fade (volume)
+          </label>
+        </div>
+      </div>
+      <br/>
+      <div class='file-field input-field'>
+        <div class='btn'>
+          <span>Select</span>
+          <input id='inp_music' oninput='addFile(this)' type='file' accept='audio/x-mpeg,audio/mpeg,audio/ogg,audio/wav'>
+        </div>
+        <div class='file-path-wrapper'>
+          <input class='file-path validate' type='text' placeholder='Select a music file to play'>
+        </div>
+      </div>
+      <p>Currently Playing: <b id='audio_name'>Adventure by Bensound</b></p>
+      <audio id='audio' src='music/bensound-adventure.mp3' controls loop></audio>
+      <p>Audio speed: <span id='as'>1.00</span>x</p>
+    </div>
+  </div>
+  <div id='m_permDenied' class='modal'>
+    <div class='modal-content'>
+      <h4>Uh Oh!</h4>
+      <p>It looks like we didn't get access to your microphone!<br>This error may occur due to your computer not supporting the feature, or if you denied permission. <hr/>If you're using an outdated browser (yes, this includes every version of IE), then you'll need to get one that's not outdated.<br><br>If you denied permission, you'll need to clear that setting and then reload the page.</p>
+    </div>
+    <div class='modal-footer'>
+      <a href='#!' class='teal white-text lighten-1 waves-effect waves-light btn-flat modal-close'>OK</a>
+    </div>
+  </div>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
+  <script defer src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.js' integrity='sha256-U+vPaw6wGRNjtBRznIBWHgpzNvNI8pRs8fQC313cxfs=' crossorigin='anonymous'></script>
+  <script defer src='https://use.fontawesome.com/releases/v5.6.1/js/all.js' integrity='sha384-R5JkiUweZpJjELPWqttAYmYM1P3SNEJRM6ecTQF05pFFtxmCO+Y1CiUhvuDzgSVZ' crossorigin='anonymous'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.0/jsmediatags.min.js' integrity='sha256-t7BzGgtF/ZOG2Usn4ANDa9no/e8rFhsIwo+vgDld+z8=' crossorigin='anonymous'></script>
+  <script defer src='vol-meter.js'></script>
+  <script defer src='script.js'></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Just a Phone Input</title>
+		<meta charset="utf8">
+		<style>
+			body {
+				font-family: sans-serif;
+				
+				background: rgb(191, 210, 218);
+				-moz-transition: background-color 0.5s;
+				-webkit-transition: background-color 0.5s;
+				-o-transition: background-color 0.5s;
+				transition: background-color 0.5s;
+			}
+			body.dragging {
+				background-color: #F0E6DC;
+			}
+			#main {
+				margin-right: auto;
+				margin-left: auto;
+				padding: 10px;
+				width: 600px;
+			}
+			h1 {
+				font-size: 200%;
+				margin-top: 30px;
+
+			}
+			div.content {
+				padding: 50px;
+			}
+			.output {
+				background: rgb(255, 245, 211);
+			}
+			#output {
+				padding: 20px;
+				padding-bottom: 0;
+				text-align: center; 
+				min-height: 80px;
+				-moz-transition: background-color 0.5s;
+				-webkit-transition: background-color 0.5s;
+				-o-transition: background-color 0.5s;
+				transition: background-color 0.5s;
+			}
+			.content {
+				background: white;
+				margin-bottom: 50px;
+				line-height: 1.5em;
+			}
+			.content.inverse {
+				background: rgb(56, 56, 56);
+				color: white;
+			}
+
+			.processing {
+				background-color: rgb(211, 232, 255);
+			}
+			a {
+				text-decoration: none;
+				font-weight: bold;
+			}
+			h3 {
+				text-align: center;
+				font-style: italic;
+			}
+			.footer {
+				font-size: x-small;
+				text-align: center;
+				margin-bottom: 50px;
+			}
+			#squish.squish { font-size: xx-small; }
+			#squish.squishsquish { font-size: 7px; }
+			#squish.squishsquishsquish { font-size: 5px; }
+			#squish.squishsquishsquishsquish { font-size: 2px; }
+			#squish.squishsquishsquishsquishsquish { display: none; }
+
+			.buttons {
+				position: absolute;
+				margin-left: -60px;
+				margin-top: -250px;
+			}
+			#demo {
+				box-shadow: 0px 0px 35px rgba(0,0,0,0.2);
+				margin-bottom: 50px;
+				background: white;
+			}
+			#timing {
+				font-size: x-small;
+			}
+			hr {
+				border: none;
+			}
+			.buttons #clear { color: red; font-size: 400%; font-weight: bold; cursor: pointer;}
+			.buttons #word { color: blue; font-size: 300%; font-weight: bold; cursor: pointer; margin-left: -2px;}
+			.nose {
+				-moz-transition: background-color 0.5s;
+				-webkit-transition: background-color 0.5s;
+				-o-transition: background-color 0.5s;
+				transition: background-color 0.5s;
+			}
+			.nose:hover {
+				background-color: rgb(255, 222, 211);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<h1>Phone Verification&nbsp;<div style="font-size: small; font-weight: normal; display: inline">By Ryan • u/Ryan778</div></h1>
+			
+			<div class="content inverse">
+				Welcome to <b>super secret site</b>! <br/>We just need to verify your phone number before continuing. Please enter your number below.
+				<hr>
+			</div>
+			<div id="demo">
+				<div class="output">
+
+					<div id="output">
+						<div id="text"></div>
+						<span id="timing"></span>
+					</div>
+				</div>
+				<canvas id='c' class="" width="600" height="300"></canvas>
+				<div class="buttons">
+					<!-- <div id="clear" onclick="reset_canvas()">&times;</div>
+					<div id="word" onclick="da_word()">&#8635;</div> -->
+				</div>
+				<div class="output nose" style="padding: 25px; cursor: pointer" onclick="open_picker()">
+					Use the canvas to enter your phone number.
+					<br>
+					<div id='outputVal' style='display: none;'>
+						You entered: <b id='inputNum'></b>
+						<br/>
+						<button onclick='clearInput()'>Clear</button> <button onclick='finishInput()'>Done</button>
+					</div>
+				</div>
+
+			</div>
+
+			<div class='footer'><div id='squish'>Hi. This UI is made by <a href='https://ryan778.github.io'>Ryan Zhang</a>, and uses ocrad.js by <a href="http://antimatter15.com">Kevin Kwok</a> for OCR. It shamelessly plagiarizes his <a href='https://antimatter15.com/ocrad.js/demo.html'>demo.html</a> because I'm too lazy to make something from scratch. But it's licensed under GPLv3, and this... thing?... is too, so it's technically legal! <br/>I am already a tiny footer, please don't <a href="javascript:void(document.getElementById('squish').className+='squish')">squish</a> me.</div>
+			</div>
+		</div>
+		<script src="ocrad.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
+
+		<script>
+			var c = document.getElementById('c'),
+				o = c.getContext('2d');
+
+			var num = ''; 
+
+			function reset_canvas(){
+				o.fillStyle = 'white'
+				o.fillRect(0, 0, c.width, c.height)
+				o.fillStyle = 'black'	
+			}
+
+			// here's a really simple little drawing app so people can try their luck at
+			// the lottery that is offline handwriting recognition
+			var drag = false, lastX, lastY;
+			c.onmousedown = function(e){ drag = true; lastX = 0; lastY = 0; e.preventDefault(); c.onmousemove(e) }
+			c.onmouseup   = function(e){ drag = false; e.preventDefault(); runOCR() }
+			c.onmousemove = function(e){
+				e.preventDefault()
+				var rect = c.getBoundingClientRect();
+				var r = 5;
+
+				function dot(x, y){
+					o.beginPath()
+					o.moveTo(x + r, y)
+					o.arc(x, y, r, 0, Math.PI * 2)
+					o.fill()
+				}
+				if(drag){
+					var x = e.clientX - rect.left, 
+						y = e.clientY - rect.top;
+					
+					if(lastX && lastY){
+						var dx = x - lastX, dy = y - lastY;
+						var d = Math.sqrt(dx * dx + dy * dy);
+						for(var i = 1; i < d; i += 2){
+							dot(lastX + dx / d * i, lastY + dy / d * i)
+						}
+					}
+					dot(x, y)
+
+					lastX = x;
+					lastY = y;
+				}
+			}
+
+
+			document.body.ondragover = function(){ document.body.className = 'dragging'; return false }
+			document.body.ondragend = function(){ document.body.className = ''; return false }
+			document.body.onclick = function(){document.body.className = '';}
+			document.body.ondrop = function(e){
+				e.preventDefault();
+				document.body.className = '';
+				picked_file(e.dataTransfer.files[0]);
+				return false;
+			}
+
+			var lastWorker;
+			var worker = new Worker('worker.js')
+			function runOCR(image_data, raw_feed){
+				document.getElementById("output").className = 'processing'
+				worker.onmessage = function(e){
+
+					document.getElementById("output").className = ''
+					
+					if('innerText' in document.getElementById("text")){
+						document.getElementById("text").innerText = e.data; 
+						document.getElementById("outputVal").style.display = 'block';
+						let inp = e.data.replace('\n', ''); 
+						num += inp; 
+						document.getElementById("inputNum").innerText = num; 
+						setTimeout(reset_canvas, 1000);
+					}else{
+						alert('uh oh looks like your browser is a rock and won\'t work, please use something from the last few years thanks');
+					}
+					document.getElementById('timing').innerHTML = 'recognition took ' + ((Date.now() - start)/1000).toFixed(2) + 's';
+				}
+				var start = Date.now()
+				if(!raw_feed){
+					image_data = o.getImageData(0, 0, c.width, c.height);	
+				}
+
+				worker.postMessage(image_data)
+				lastWorker = worker;
+			}
+		
+			function clearInput(){
+				num = ''; 
+				document.getElementById("inputNum").innerText = num; 
+			}
+
+			function finishInput(){
+				if(num.length < 10){
+					alert('Your number is long enough.'); 
+				}
+				else if(parseInt(num) !== num){
+					alert(`There are non-numerical values in your number. Please try again.`); 
+					clearInput(); 
+				}
+				else{
+					alert(`It looks like you might be a robot based on your input, so unfortunantely we cannot accept it.`);
+					clearInput(); 
+				}
+			}
+
+
+			reset_canvas()
+			// o.font = '30px sans-serif'
+			// o.fillText("Write out your phone number here.", 50, 100);
+			// runOCR();
+		</script>
+	</body>
+</html>

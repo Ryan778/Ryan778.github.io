@@ -1,103 +1,45 @@
 /* main.js
- * (C) 2018 Ryan Zhang. All Rights Reserved; please contact me if anything interests you though! (let's be honest, that's not going to happen)
- * Functions and scripts specific to FGC (calculations, handlers, etc)
+ * Functions and scripts specific to FGC page (rendering, handlers, etc)
+ * (C) 2019 Ryan Zhang. All Rights Reserved. 
+ * Interested in anything on here? Contact me at https://ryan778.github.io/about-me/ and we can discuss. 
  */
 
-let globalData = {//Contains all information inputted, makes life easier
-  gradeType: 0, //0=weighted, 1=unweighted
-  testPolicy: 0, //0=none, 1=drop lowest, 2=make up difference, 3=make up half of difference
-  calcType: 0, //0=see what you need, 1=already took test, 2=auto detect
+let globalData = {// Contains all information inputted, makes life easier
+  gradeType: 0, // 0=weighted, 1=unweighted
+  examType: 0, // 0=final, 1=test
+  unequalTests: 0, // whether tests are weighted equally or not
+  testPolicy: 0, // 0=none, 1=drop lowest, 2=make up difference, 3=make up half of difference
+  calcType: 0, // 0=see what you need, 1=already took test, 2=auto detect
   currentGrade: -1,
-  finalWorth: -1, //Weight of final (or points)
+  currentGradePts: -1, // for unweighted
+  currentGradeTotalPts: -1, // also for unweighted
+  finalWorth: -1, // weight of final (weighted)
+  finalWorthPts: -1, // weight of final (unweighted)
   targetGrade: -1,
   finalGrade: -1,
-  equalTestWeight: 1, //0=no (use totalTestScore), 1=yes (use totalTests)
-  testWorth: -1, //Weight of test (or points)
-  testAvg: -1, //Average grade across all tests
+  equalTestWeight: 1, // 0=no (use totalTestScore), 1=yes (use totalTests)
+  testWorth: -1, // weight of test (or points)
+  testAvg: -1, // average grade across all tests
   totalTests: -1,
-  lowestTest: -1 //Lowest test
+  testCatPts: -1, 
+  testCatTotalPts: -1, 
+  lowestTest: -1, // lowest test
+  curvePolicy: 0, // 0=none, 1=to highest test, 2=square root, 3=nth root
+  curveTo: -1, // highest score (assuming scores curve to this score)
+  curveStrength: -1 // for nth root curves
 };
 
 let alertMessages = {
-  'weight': `<b>Grade Weighting</b><br>Most colleges and many high school classes use a <b>weighted</b> grading system so that different assignments have different "weights" (e.g. final, tests, and homework). If your grade has any kind of categories, then you have a weighted grading system. <br><br>Some classes give point values to assignments instead, usually with the final being worth a lot more than say, homework. If that's your case, then you have an <b>unweighted</b> grading system.`
+  'weight': `<b>Grade Weighting</b><br>Most colleges and many high school classes use a <b>weighted</b> grading system so that different assignments have different "weights" (e.g. final, tests, and homework). If your grade has any kind of categories, then you have a weighted grading system. <br><br>Some classes give point values to assignments instead, usually with the final being worth a lot more than say, homework. If that's your case, then you have an <b>unweighted</b> grading system.`, 
+  'examType': `<b>Exam Type</b><br>If your final has its own category (most common for weighted classes, default on RogerHub), select <b>Final</b>.<br>If you're taking a test/exam, select <b>Test/Exam</b>.<br>If you're taking a final but the final is counted as a test/exam (less common, but some classes do this), also select <b>Test/Exam</b>.<br>The difference between the two is that selecting "final" assumes your "final" exam goes into its own category, whereas "test/exam" assumes there's already other tests/exams in the category.`,
+  'calcTypes': `<b>Grade Calculation Types</b><br>First of all, there's two main categories for weighted calculations - tests and finals. A final is put <b>into its own category</b> for weighing, whereas a test is put <b>with other tests</b>. <br><br>If you already took the test/final, you'll need to select an option that begins with "<b>I took a...</b>". Otherwise, the calculator will tell you how much you need to get on the test/final in order to <b>maintain a specified grade</b>.`,
+  'equalTests': `<b>Equal Test Weights</b><br>If each test is worth the same number of points (e.g., 100 pts per test), then select "yes". If each test is put in as a different number of points (e.g., one test is worth 30 pts, another is 35 pts, etc.) then select "no".<br/><br/>Note that "Test/Exam" does not have to be used on tests; it can be used for any category where you already have tests/assignments. Simply select "no" and enter the point total of the category you want to use grade calculator on.`, 
+  'legal': `<b>Legal</b><br/>&copy; 2019 Ryan Zhang.<br/>core.js is written by me and is used for grade calculations. It's licensed under <a href='https://www.gnu.org/licenses/gpl-3.0.en.html' target='_blank'>GPLv3</a>.</br>Everything else unlicensed for the time being (albeit being open source); <a href='https://ryan778.github.io/about-me/'>contact me</a> if interested.`
 }
 
-let testAdjInfo = [`Your lowest test grade will be completely removed.`, `The higher score between your lowest test and your final will replace your lowest test grade.`, `You'll get half the difference (if applicable) between your lowest test grade and the final.`];
+let testAdjInfo = [`Your lowest test grade will be completely removed.`, `If your grade on the final is better than your lowest test, it'll replace your lowest test grade.`, `You'll get half the difference (if applicable) between your lowest test grade and the final.`];
 
-function convToGrade(letter){
-  //Returns number: approximate of letter grade, -1 if unknown
-  letter = letter.toLowerCase();
-  letter = letter.replace(/ /g, '');
-  if(letter.length > 3){return -1}
-  let val = letter.charCodeAt(0);
-  let grade = -1;
-  if(val >= 97 && val <= 100){ //A through D
-    grade = 105 - 10*(val-96); //Returns middle of grade (ex. A -> 95)
-    let mod = letter.slice(1, 3);
-    switch(mod){
-      case '+':
-        grade += 3;
-        break;
-      case '-':
-        grade -= 3;
-        break;
-      case '++':
-        grade += 5;
-        break;
-      case '--':
-        grade -= 5;
-        break;
-      case '':
-        break;
-      default:
-        grade = -1; //Unknown grade
-    }
-  }
-  else if(letter === 'f'){
-    grade = 50}
-  else if(letter === 'f-' || letter === 'f--'){
-    grade = 0}
-  else if(letter === 's'){grade = 100} //"Satisfactory"
-  else if(letter === 'u'){grade = 0} //"Unsatisfactory"
-  return grade;
-}
-
-function convToLetter(grade){
-  // Returns string: letter grade, input number
-  if(typeof grade !== 'number'){
-    return '??'
-  }
-  grade = Math.round(grade*100)/100 //Fix floating point rounding errors
-  if(grade > 100){return 'A++'}
-  else if(grade === 100){return 'A+'}
-  else if(grade < 60){
-    if(grade < 50){
-      return 'F-'}
-    return 'F'
-  }
-  let letter = String.fromCharCode(Math.floor((199.9999-grade)/10)+87).toUpperCase();
-  if(grade%10 >= 8){letter += '+'}
-  else if(grade%10 < 4){letter += '-'}
-  return letter;
-}
-
-function handleQueryAction(t, n) {
-  //Returns undefined, sends event to ga
-  ga('send', 'event', {
-    eventCategory: 'Interactive',
-    eventAction: 'query',
-    eventLabel: 'Final Grade Calculator (Type '+(t)+')',
-    eventValue: n
-  });
-  if(globalData.calcType === 0){
-    ga('send', 'event', {
-      eventCategory: 'Interactive',
-      eventAction: 'data',
-      eventLabel: 'Final Grade Calculator (Target Grade)',
-      eventValue: Math.round(globalData.targetGrade*100)
-    });
-  }
-}
+let testReqInputs = ['finalWorth']; // required inputs tied to test adjustment and/or "test/exam" input requirements
 
 function validateInput(val, type){
   //Returns object {st: number, val: number, msg: string}; status 0=success, 1=warn, 2=error
@@ -117,7 +59,6 @@ function validateInput(val, type){
         return {st: 0, val: convToGrade(val), msg: `<span class='nt-hidden-ltGrd'></span>Using ${val.toUpperCase()} as ${convToGrade(val)}%`}
       }
       return {st: 2, msg: `Invalid input (is it a number/letter grade?)`}
-      break;
     case 'weight': //Weight value (ex: 20%)
       if(parseFloat(val).toString() === val){
         if(parseFloat(val) > 65){
@@ -129,22 +70,32 @@ function validateInput(val, type){
         return {st: 0, val: parseFloat(val)}
       }
       return {st: 2, msg: `Invalid input (is it a number?)`}
-      break;
-    case 'num': //Numerical value (ex: 5)
+    case 'num': // Numerical value (ex: 5)
       if(parseInt(val).toString() === val){
         if(parseInt(val) >= 50){
           return {st: 1, val: parseInt(val), msg: 'This looks rather high. Is there a typo?'};
         }
-        else if(parseFloat(val) < 2){
-          if(parseFloat(val) < 1){
-            return {st: 2, msg: `You need a positive integer here!`}
+        else if(parseFloat(val) < 1){
+          if(parseFloat(val) < 0){
+            return {st: 2, msg: `You need a non-negative integer here!`}
           }
           return {st: 1, val: parseInt(val), msg: 'This looks rather low. Is there a typo?'};
         }
         return {st: 0, val: parseInt(val)}
       }
       return {st: 2, msg: `Invalid input (is it a whole number?)`}
-      break;
+    case 'pts': // Points
+    case 'ptsSingle': // Points
+      if(val.match(/^\d*\.?\d*$/)){
+        if(parseFloat(val) >= 4000 || (type==='ptsSingle' && parseFloat(val) > 400)){
+          return {st: 1, val: parseFloat(val), msg: 'This looks rather high. Is there a typo?'};
+        }
+        else if(parseFloat(val) <= 10){
+          return {st: 1, val: parseFloat(val), msg: 'This looks rather low. Is there a typo?'};
+        }
+        return {st: 0, val: parseFloat(val)}
+      }
+      return {st: 2, msg: `Invalid input (is it a decimal number?)`}
     case 'sp:testAvg': //Special: Test Average - Treated as a number, but is weighted depending on the value entered
       if(parseFloat(val).toString() === val || parseFloat(val).toString() === val.slice(0, val.length-1) && val.slice(-1) === '0'){
         if(parseFloat(val) > 150){
@@ -167,7 +118,17 @@ function validateInput(val, type){
         return {st: 0, val: convToGrade(val), msg: `Using ${convToGrade(val)}% as overall test grade (${(parseFloat(val)*globalData.testWorth/100).toFixed(2)}% weighted)`}
       }
       return {st: 2, msg: `Invalid input (is it a number/letter grade?)`}
-      break;
+    case 'root': // similar to case "num", but allows decimals - only used in "what is n" question
+      if(val.match(/^\d*\.?\d*$/)){
+        if(parseFloat(val) >= 5){
+          return {st: 1, val: parseFloat(val), msg: 'This looks rather high. Is there a typo?'};
+        }
+        else if(parseFloat(val) <= 1){
+          return {st: 1, val: parseFloat(val), msg: 'This looks rather low. Is there a typo?'};
+        }
+        return {st: 0, val: parseFloat(val)}
+      }
+      return {st: 2, msg: `Invalid input (is it a decimal number?)`}
     default:
       return {st: 2, msg: `An error occured and it's not your fault (report this as a bug!) - <type> inputted is invalid (${type})`}
   }
@@ -267,95 +228,15 @@ function getSubtitle(grade){
   else if(grade >= 70){
     return "Maybe study just a little bit...?"}
   else if(grade >= 60) {
-    return "Looks like you'll have no trouble reaching your goal!"}
+    return globalData.testPolicy===2?"Looks like you'll have no trouble!":"Looks like you'll have no trouble reaching your goal!"}
   else if(grade >= 0){
-    return "Maybe you could raise your expectations a little?"}
+    return globalData.testPolicy===2?"Well that seems pretty easy to do.":"Maybe you could raise your expectations a little?"}
   else{
     return "Looks like you don't even have to show up!"}
 }
 
-/* The "Math" section with lots and lots of somewhat complicated equations that even I barely / kinda understand */
-function calcTestDrop(){
-  //Requires: testWorth, testAvg, totalTests, lowestTest (from globalData)
-  //Returns [before (weighted), weighted, overall] rounded to four decimal places
-  let w = globalData.testWorth, a = globalData.testAvg, t = globalData.totalTests, l = globalData.lowestTest, s = globalData.totalTests*globalData.testAvg;
-  return [Math.round(10000*a*(w/100))/10000, Math.round((1000000*(s-l)/((t-1)*100))*(w/100))/10000, Math.round(1000000*(s-l)/((t-1)*100))/10000]
-}
-
-function calcTargetGradeS(t){
-  let c = globalData.currentGrade, f = globalData.finalWorth, w = globalData.testWorth, a = globalData.testAvg, o = globalData.totalTests, l = globalData.lowestTest;
-  return (t-c*(1-(f/100)))/(f/100);
-}
-
-function calcTargetGrade(t){
-  /* t = targetGrade
-  Requires: currentGrade, finalWorth, testPolicy, testWorth, testAvg, totalTests, lowestTest (from globalData)
-  Returns: Array [Weighted, Full] - Dynamic is only returned for testPolicy one and two, and is a multiplier of finalScore
-  */
-  //targetGrade = (finalWorth/100)*result + currentGrade*(1-(finalWorth/100))
-  let c = globalData.currentGrade, f = globalData.finalWorth, w = globalData.testWorth, a = globalData.testAvg, o = globalData.totalTests, l = globalData.lowestTest, s = globalData.totalTests*globalData.testAvg, res; //s = total test score
-  if(globalData.testPolicy !== 0){
-    $('#resi').find('b')[0].innerText = (a).toFixed(2);
-    $('#resi').find('b')[1].innerText = ((a*(w/100)).toFixed(2));
-    $('#resi').find('b')[2].innerText = (w).toFixed(2);
-  }
-  switch(globalData.testPolicy){
-    case 0:
-      //result = (targetGrade - currentGrade*(1-(finalWorth/100))) / (finalWorth/100)
-      return (t-c*(1-(f/100)))/(f/100);
-      break;
-    case 1: //Lowest test dropped
-      let td = calcTestDrop();
-      let diff = td[1] - td[0];
-      $('#resi_a').find('b')[0].innerText = (td[2]).toFixed(2);
-      $('#resi_a').find('b')[1].innerText = (td[1]).toFixed(2);
-      $('#resi_c').find('span')[0].innerText = detPlu(diff);
-      $('#resi_c').find('b')[0].innerText = (diff).toFixed(2);
-      return ((t - diff)-c*(1-(f/100)))/(f/100);
-      break;
-    case 2:
-      //targetGrade = (finalWorth/100)*result + currentGrade*(1-(finalWorth/100)) + testReplacementDifference
-      //targetGrade = (finalWorth/100)*result + currentGrade*(1-(finalWorth/100)) + (testWorth/100)*[ [(avgTestGrade * o_totalTests) + (result - lowestTest)]/(o_totalTests) - (avgTestGrade) ]
-      //targetGrade = (currentGrade * totalTests * (finalWorth - 100) + ((lowestTest * testWorth) + 100*totalTests*targetGrade) / (finalGrade*totalTests + testWorth)
-      //targetGrade = (F/100) * R + C(1 - (F/100)) + (W/100)*(R-L)/O
-      //https://www.wolframalpha.com/input/?i=T+%3D+(F%2F100)*R+%2B+C*(1-(F%2F100))+%2B+(W%2F100)*%5B(R-L)%5D%2FO,+solve+for+R
-      res = (c*(f - 100)*o + l*w + 100*o*t)/(f*o + w);
-      if(res > calcTargetGradeS(t)){
-        $('#res_moreInfo').hide();
-        $('#res-warn-grdAdj').show();
-        return calcTargetGradeS(t);
-      }
-      $('#res_moreInfo').show();
-      $('#res-warn-grdAdj').hide();
-      $('#resi_b').find('b')[0].innerText = (res - l).toFixed(2);
-      $('#resi_b').find('b')[1].innerText = ((res - l) / o).toFixed(2);
-      $('#resi_c').find('span')[0].innerText = detPlu((w / 100) * (res - l) / o);
-      $('#resi_c').find('b')[0].innerText = ((w / 100) * (res - l) / o).toFixed(2);
-      return res;
-      break;
-    case 3:
-      //Same as case 2 but with (0.5 * (result - lowestTest)) instead of (result - lowestTest)
-      //https://www.wolframalpha.com/input/?i=T+%3D+(F%2F100)*R+%2B+C*(1-(F%2F100))+%2B+(W%2F100)*%5B0.5(R-L)%5D%2FO,+solve+for+R
-      res = (2*c*(f - 100)*o + l*w + 200*o*t)/(2*f*o + w);
-      console.log(res); console.log(calcTargetGradeS(t));
-      if(res > calcTargetGradeS(t)){
-        $('#res_moreInfo').hide();
-        $('#res-warn-grdAdj').show();
-        return calcTargetGradeS(t);
-      }
-      $('#res_moreInfo').show();
-      $('#res-warn-grdAdj').hide();
-      $('#resi_b').find('b')[0].innerText = (0.5*(res - l)).toFixed(2);
-      $('#resi_b').find('b')[1].innerText = (0.5 * (res - l) / o).toFixed(2);
-      $('#resi_c').find('span')[0].innerText = detPlu((w / 100) * 0.5 * (res - l) / o);
-      $('#resi_c').find('b')[0].innerText = ((w / 100) * 0.5 *  (res - l) / o).toFixed(2);
-      return res;
-      break;
-  }
-}
-/* End of "Math" section */
-
 function processCalculations(){
+  let postCurveGrade = 0; 
   $('.calcRes').hide();
   $('.p-res').hide();
   $('#res_moreInfo').hide();
@@ -365,15 +246,23 @@ function processCalculations(){
     $('#res-warn-gr').show()}
   else{
     $('#res-warn-gr').hide()}
-  let t = globalData.targetGrade, w = globalData.finalWorth, c = globalData.currentGrade, f = globalData.finalGrade, r, vald;
-  if(globalData.testPolicy !== 0){
-    let valdArray = ['testWorth', 'totalTests', 'lowestTest'];
-    if(globalData.testPolicy === 1){valdArray.push('testAvg')}
-    vald = validateInputs(valdArray);
-    if(!vald){
-        $('#calcErr').show();
-        return}
-  }
+  // let t = globalData.targetGrade, w = globalData.finalWorth, wp = globalData.finalWorthPts, c = globalData.currentGrade, cp = globalData.currentGradePts, ct = globalData.currentGradeTotalPts, f = globalData.finalGrade, r, vald;
+    let f = globalData.finalGrade, c = globalData.currentGrade, t = globalData.targetGrade; 
+    if(globalData.gradeType){
+      c = 100 * globalData.currentGradePts / globalData.currentGradeTotalPts}
+/*  if(globalData.gradeType === 1){
+    if(!validateInputs(['currentGradePts', 'currentGradeTotalPts', 'targetGrade', 'finalWorthPts'])){
+      $('#calcErr').show();
+      return}
+    let out =  calcTargetGrade(t); 
+    r = out[0]; 
+    $('#res-0').show();
+    $('#res-an-0').text(detPlu(r));
+    $('#res-val-0').text(`${r.toFixed(2)}% (${convToLetter(r)})`);
+    postCurveGrade = r; 
+    $('#res-an-0b').text(detPlu(t));
+    $('#res-val-0b').text(`${t.toFixed(2)}% (${convToLetter(t)})`);
+  } */
   if(globalData.testPolicy > 0){
     if(globalData.testPolicy === 1){
       $('#resi').show();
@@ -387,7 +276,7 @@ function processCalculations(){
     case 0:
       //targetGrade = (finalWorth/100)*whatYouNeed + currentGrade*(1-(finalWorth/100))
       //whatYouNeed = (targetGrade - currentGrade*(1-(finalWorth/100))) / (finalWorth/100)
-      vald = validateInputs(['targetGrade', 'finalWorth', 'currentGrade']);
+      vald = globalData.gradeType?validateInputs(['currentGradePts', 'currentGradeTotalPts', 'targetGrade', 'finalWorthPts']):validateInputs(['targetGrade', 'currentGrade'].concat(testReqInputs));
       if(!vald){
         $('#calcErr').show();
         return}
@@ -397,19 +286,20 @@ function processCalculations(){
       $('#res-0').show();
       $('#res-an-0').text(detPlu(r));
       $('#res-val-0').text(`${r.toFixed(2)}% (${convToLetter(r)})`);
+      postCurveGrade = r; 
       $('#res-an-0b').text(detPlu(t));
       $('#res-val-0b').text(`${t.toFixed(2)}% (${convToLetter(t)})`);
-      $('#res_sub').text(getSubtitle(Math.floor(r)));
+      // $('#res_sub').text(getSubtitle(Math.floor(r)));
       if(vald === 2){$('#res-warn').show()}
       break;
     case 1:
       //finalGrade = (finalWorth/100)*finalExamGrade + currentGrade*(1-(finalWorth/100))
-      vald = validateInputs(['finalWorth', 'finalGrade', 'currentGrade']);
+      vald = globalData.gradeType?validateInputs(['currentGradePts', 'currentGradeTotalPts', 'finalGrade', 'finalWorthPts']):validateInputs(['finalGrade', 'currentGrade'].concat(testReqInputs));
       if(!vald){
         $('#calcErr').show();
         return}
-      r = (f*(w/100)) + (c*(1-(w/100)));
-      if(globalData.testPolicy > 0){
+      r = calcResultingGrade(f);
+      if(globalData.testPolicy > 0 && !globalData.gradeType){ // test adjustment policies don't exist for unweighted classes 
         let endDiff = 0;
         switch(globalData.testPolicy){
           case 1:
@@ -436,7 +326,7 @@ function processCalculations(){
       break;
     case 2:
       //whatYouNeed same as case 0, except used multiple times for various targetGrade to find the best one
-      vald = validateInputs(['finalWorth', 'currentGrade']);
+      vald = globalData.gradeType?validateInputs(['currentGradePts', 'currentGradeTotalPts', 'finalWorthPts']):validateInputs(['currentGrade'].concat(testReqInputs));
       if(!vald){
         $('#calcErr').show();
         return}
@@ -446,7 +336,8 @@ function processCalculations(){
       let r2 = calcTargetGrade(lower);
       //let r1 = (upper-c*(1-(w/100)))/(w/100); //Upper target
       //let r2 = (lower-c*(1-(w/100)))/(w/100); //Lower target
-      let r3 = (w) + (c*(1-(w/100))); //Final grade w/ 100%
+      // let r3 = globalData.gradeType ? ((cp + wp) / (ct + wp) * 100) : ((w) + (c*(1-(w/100)))); //Final grade w/ 100%
+      let r3 = calcResultingGrade(100); 
       if(upper == 100 || r1 > 100){ //Show info to keep current grade (if upper is not achievable or grade is already an A)
         calcTargetGrade(upper); //Calling this updates [More Info] section if necessary
         $('#res-0').show();
@@ -454,13 +345,16 @@ function processCalculations(){
         $('#res-val-0').text(`${r2.toFixed(2)}% (${convToLetter(r2)})`);
         $('#res-an-0b').text(detPlu(lower));
         $('#res-val-0b').text(`${lower.toFixed(2)}% (${convToLetter(lower)})`);
-        $('#res_sub').text(getSubtitle(Math.floor(r2)));
+        postCurveGrade = r2; 
+        // $('#res_sub').text(getSubtitle(Math.floor(r2)));
       }
       if(r1 > 100){ //Upper grade is not achievable
         $('#res-1s').show();
         $('#res-an-1s').text(detPlu(r3));
         $('#res-val-1s').text(`${r3.toFixed(2)}% (${convToLetter(r3)})`);
-        $('#res_sub').text('Maybe you can get extra credit somewhere to bump it up?');
+        calcTargetGrade(lower); 
+        postCurveGrade = r2;
+        if (lower < 90 && (r3 % 10 > 7)) {$('#res_sub').text('Maybe you can get extra credit somewhere to bump it up?')} //Hide message if the lower bound is already an A or if there's a large gap (>3%) until the next letter grade
       }
       else{ //Upper grade is achievable
         calcTargetGrade(upper); //Calling this updates [More Info] section if necessary
@@ -472,11 +366,41 @@ function processCalculations(){
         $('#res-0s').show();
         $('#res-an-0s').text(detPlu(r2));
         $('#res-val-0s').text(`${r2.toFixed(2)}% (${convToLetter(r2)})`);
-        $('#res_sub').text(getSubtitle(Math.floor(r1)));
+        postCurveGrade = r1; 
+        // $('#res_sub').text(getSubtitle(Math.floor(r1)));
       }
       break;
     default:
       alert(`An error occured. \nPlease report this bug!\nError: invalid calcType (${globalData.calcType})`)
+  }
+  if(globalData.curvePolicy){ // curving the output grade if selected
+    $('.res-hasCurve').show(); 
+    let g = postCurveGrade; 
+    if(globalData.curvePolicy >= 2){
+      if(globalData.curvePolicy == 3){
+        if(!validateInputs(['curveStrength'])){
+          $('#calcErr').show();
+          return}
+      }
+      let curveStrength = (globalData.curvePolicy==2)?2:globalData.curveStrength;
+      g = Math.pow(g/100, curveStrength)*100;
+    }
+    else{ // curvePolicy = 1
+      if(!validateInputs(['curveTo'])){
+        $('#calcErr').show();
+        return}
+      g = g * (globalData.curveTo/100);
+    }
+    $('#res-val-c').html(`${detPlu(g)} <b>${g.toFixed(2)}% (${convToLetter(g)})</b>`);
+    if(globalData.gradeType === 1){
+      $('#sp-pts-curve').show(); 
+      $('#res-val-curvePts').text(`${(g*globalData.finalWorthPts/100).toFixed(1)}/${globalData.finalWorthPts.toFixed(1)} pts`)
+    }
+    $('#res_sub').text(getSubtitle(Math.floor(g)));
+  }
+  else{
+    $('.res-hasCurve').hide(); 
+    $('#res_sub').text(getSubtitle(Math.floor(postCurveGrade)));
   }
   $('#calcRes').show();
 }
@@ -485,7 +409,28 @@ function registerHandlers(){
   $('#calc').find('button').each((n, ele) => {
     if($(ele).hasClass('btn-opt')){
       $(ele).click(() => {
-        alertify.alert(`<b>Feature In Progress</b><br>Unweighted grades are still being worked on and aren't ready yet. Check back in a few days!`)
+        $('.'+ele.classList[1]).prop('disabled', false);
+        globalData[$(ele).data('for')] = $(ele).data('val'); 
+        $(ele).prop('disabled', true); 
+        if($(ele).data('for') === 'examType' || $(ele).data('for') === 'unequalTests'){
+          updateTestInputs()}
+        else if($(ele).data('for') === 'gradeType'){
+          if($(ele).data('val') === 1){
+            $('.btn-opt.btn-opt-1')[0].click();
+            $('#sel_testAdj').val(0);
+            $('#sel_testAdj').change();
+            $('.p_weightedOnly').hide();
+            $('.p_unweightedOnly').show();
+            $('#opt_finalOrTest').hide(); 
+            $('.opt_testAdj').hide()
+          }
+          else{
+            $('.p_weightedOnly').show();
+            $('.p_unweightedOnly').hide();
+            $('.opt_testAdj').show();
+            $('#opt_finalOrTest').show();
+          }
+        }
       });
     }
     else if(ele.id === 'calcBtn'){
@@ -498,8 +443,12 @@ function registerHandlers(){
     }
   });
   $('#calc').find('input').each((n, ele) => {
-    if($(ele).data('vald') === 'grd'){ele.maxLength = 8}
-    if($(ele).data('vald') === 'weight'){ele.maxLength = 6}
+    if($(ele).data('vald') === 'grd'){
+      ele.inputMode='decimal';
+      ele.maxLength = 6}
+    else if($(ele).data('vald') === 'weight'){ele.maxLength = 6}
+    else if($(ele).data('vald') === 'root'){ele.maxLength = 5}
+    else if($(ele).data('vald') === 'pts'){$(ele).css('width', '52px')}
     $(ele).prop('id', 'inp_'+ele.dataset.for);
     $(ele).change(() => {
       let val = ele.value;
@@ -536,10 +485,15 @@ function registerHandlers(){
     $(ele).change(() => {
       $('#calcRes').hide();
       let val = ele.value;
+      if(!isNaN(parseInt(val))){val = parseInt(val)}
+      globalData[$(ele).data('for')] = val;
       if(ele.dataset.for==='calcType'){
-        $('#info_opt2').hide()
+        $('#info_opt2').hide(); 
+        let fg = (globalData.gradeType === 1?'#opt_finalWorthPts':'#opt_finalWorth'); 
         $('#opt_targetGrade').hide();
         $('#opt_finalGrade').hide();
+        $('.p_curve').show(); 
+        $(fg).show();
         switch(ele.value){
           case '0':
           default:
@@ -547,46 +501,33 @@ function registerHandlers(){
             break;
           case '1':
             $('#opt_finalGrade').show();
+            $('#sel_curve').val(0); 
+            $('#sel_curve').change();
+            $('.p_curve').hide(); 
             break;
           case '2':
             $('#info_opt2').show()
             break;
-          case '3':
-            ele.value = '2';
-            $('#info_opt2').show()
-            alertify.alert(`<b>Feature Not Supported</b><br>Sorry, this feature is not available yet. Come back again in a few weeks!`)
-            break;
         }
       }
       else if(ele.dataset.for==='testPolicy'){
-        $('.p_testAdj').hide();
-        switch(ele.value){
-          case '0':
-          default: //Hide everything
-            break;
-          case '1': //Lowest test dropped
-          case '2': //Difference between lowest and final grade
-          case '3': //Half of difference between lowest and final grade
-            $('.p_testAdj').show(); //All fields can be used for everything
-            $('#sp_testAdjInfo').text(testAdjInfo[parseInt(ele.value)-1]);
-            if(ele.value !== '1'){
-              $('#p_testAvgInfo').hide();
-              $('#opt_testAvg').hide()}
-            else{
-              $('#p_testAvgInfo').show();
-              $('#opt_testAvg').show()}
-            break;
-        }
+        updateTestInputs(); 
       }
-      if(!isNaN(parseInt(val))){val = parseInt(val)}
-      globalData[$(ele).data('for')] = val;
+      else if(ele.dataset.for='curvePolicy'){
+        $('#opt_curveTo').hide(); 
+        $('#opt_curveStrength').hide(); 
+        if(ele.value === '1'){
+          $('#opt_curveTo').show()}
+        else if(ele.value === '3'){
+          $('#opt_curveStrength').show()}
+      }
       setBorderClass(ele, 'gr');
       setTimeout(function(){
         setBorderClass(ele, -1);
       }, 1000);
     });
   });
-  $('#calc').find('.infoLink').each((n, ele) => {
+  $('html').find('.infoLink').each((n, ele) => {
     $(ele).click(() => {
       alertify.alert(alertMessages[ele.dataset.alertmsg])
     });
@@ -601,17 +542,78 @@ function registerHandlers(){
   });
 }
 
+function updateTestInputs(){
+  testReqInputs = []; 
+
+  if(globalData.examType === 1){
+    $('.opt_testAdj').hide(); 
+    if(globalData.testPolicy){ // test policies don't work 
+      $('#sel_testAdj').val(0);
+      $('#sel_testAdj').change();
+      return;
+    }
+    $('#opt_unequalTests').show()}
+  else{
+    $('.opt_testAdj').show();
+    $('#opt_unequalTests').hide()}
+
+  if(globalData.unequalTests){
+    $('.p_testAdjUnequal').show(); 
+    $('.p_testAdjEqual').hide(); 
+    testReqInputs = ['testWorth', 'testCatPts', 'testCatTotalPts', 'testWorthPts'];
+    return; 
+  }
+  else{
+    $('.p_testAdjUnequal').hide(); 
+    $('.p_testAdjEqual').show(); 
+  }
+
+  if(globalData.examType === 0 && globalData.testPolicy === 0){ // neither "test" type nor test policy
+    $('.p_testAdj').hide();
+    $('#opt_finalWorth').show();
+    testReqInputs.push('finalWorth');
+    return; 
+  }
+  $('.p_testAdj').show(); //All fields can be used for everything
+  testReqInputs.push('testWorth');
+  testReqInputs.push('totalTests');
+  if(globalData.testPolicy){ // test policy exists
+    $('#p_testAdjInfo').show();
+    $('#opt_lowestTest').show(); 
+    $('#sp_testAdjInfo').text(testAdjInfo[parseInt(globalData.testPolicy)-1]);
+    testReqInputs.push('lowestTest');
+  } else{
+    $('#p_testAdjInfo').hide(); 
+    $('#opt_lowestTest').hide(); 
+  }
+  if(globalData.examType == 1){
+    $('#opt_finalWorth').hide()}
+  else {
+    testReqInputs.push('finalWorth');
+    $('#opt_finalWorth').show()}
+  if(globalData.testPolicy !== 1 && globalData.examType == 0){
+    $('#p_testAvgInfo').hide();
+    $('#opt_testAvg').hide()}
+  else{
+    testReqInputs.push('testAvg');
+    $('#p_testAvgInfo').show();
+    $('#opt_testAvg').show()}
+}
+
 $(document).ready(function () {
   'use strict';
   let h = location.hostname;
-  if(['127.0.0.1', '67.173.228.237', 'ryan778.github.io', 'ryan778.herokuapp.com', 'ryan778.azurewebsites.net'].indexOf(h) === -1){
+  if(['127.0.0.1', '10.10.7.38', 'itsryan.org', 'ryan778.github.io', 'ryan778.herokuapp.com', 'ryan778.azurewebsites.net'].indexOf(h) === -1){
     $('#calc-load').html(`<i class='material-icons'>error</i> <b>Non-Whitelisted Domain</b><br>It looks like you're opening this page somewhere it's not supposed to be.<br>Make sure that you're on <a href='https://ryan778.github.io/final-grade-calculator/'>the official website</a>, and if this error persists, <a href='https://bit.ly/fgc-feedback'>contact us here</a>.`);
     return;
   }
   registerHandlers();
   $('.p_testAdj').hide();
+  $('#opt_curveTo').hide(); 
+  $('#opt_unequalTests').hide();
+  $('.p_unweightedOnly').hide();
+  $('.p_testAdjUnequal').hide(); 
+  $('#opt_curveStrength').hide(); 
   $('#calc-load').hide();
   $('#calc-inner').show();
 });
-
-$('#al_beta').show();

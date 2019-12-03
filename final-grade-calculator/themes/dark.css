@@ -1,0 +1,152 @@
+/* Everything NOT part of the calc box*/
+html{
+  background: #181818;
+  color: #eaeaea;
+}
+.halert-warn{
+  background: #b84004;
+}
+.halert-info{
+  background: #10204d;
+}
+#i-toggleTheme:hover, #i-toggleTheme:focus{
+  color: #fff;
+}
+#main{
+  background: #1d1e1f;
+}
+#calc{
+  background: #27262c;
+}
+#footer{
+  color: #888;
+}
+hr{
+  border: 1px solid #3a3f44;
+  border-bottom: none;
+}
+a{
+  text-decoration: none;
+  color: #b5cfff;
+}
+
+/* Dark inputs and dialogs */
+input, select{
+  background: #222;
+  color: #fff;
+}
+
+.alertify .alert>*, .alertify .dialog>*{
+  background: #282828;
+}
+
+.alertify .alert nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):active, .alertify .alert nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):hover, .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):active, .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button):hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.alertify .alert nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button), .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button) {
+  color: rgba(255, 255, 255, 0.87);
+}
+
+/* Formatting*/
+.gray{
+  color: #aaa}
+.gr{
+  color: #8c8}
+.gr-b{
+  border-color: #4fa14f}
+.gr-b:hover, .gr-b:focus{
+  border-color: #66cf66}
+.gr-bk{
+  background: #143b14}
+.org{
+  color: #ffb23d}
+.org-b{
+  border-color: #7c4d05}
+.org-bk{
+  background: #4d2418}
+.org-b:hover{
+  border-color: #a75}
+.red{
+  color: #e26363}
+.red-b{
+  border-color: #bb6969}
+.red-b:hover{
+  border-color: #f37a7a}
+
+.bl{
+  color: #16f;
+}
+.lbl{
+  color: #83a5e2;
+}
+.bl_i{
+  color: #16f;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.bl_i:hover{
+  color: #48f;
+}
+
+::selection{
+  background: #28d;
+}
+
+/* Everything that IS part of the calc box*/
+button, input, select{
+  border: 1px solid #555;
+}
+input:hover, select:hover{
+  border-color: #777;
+}
+input:focus, select:focus{
+  border-color: #999;
+  outline: none;
+}
+.btn-opt{
+  background: #414141;
+  color: #ddd;
+}
+.btn-opt:focus{
+  border-color: #8282c0;
+  outline: none;
+}
+.btn-opt:hover{
+  background: #1f4e24;
+  color: #fff;
+}
+.btn-opt:active{
+  background: #255a2a;
+  color: #fff;
+}
+.btn-opt:disabled{
+  background: #0b7415;
+  border-color: #329132;
+  color: #fff;
+}
+#calcBtn{
+  background: #33394e;
+  color: #eaeaea;
+  font-size: 16px;
+  padding: 4px 6px;
+}
+#calcBtn:hover, #calcBtn:focus{
+  background: #414863;
+  border-color: #888;
+  outline: none;
+}
+#calcBtn:active{
+  background: #485b74;
+  border-color: #aaa;
+}
+#res_return{
+  background: rgb(37, 56, 90);
+  padding: 1px 4px;
+  margin-bottom: 5px;
+}
+#res_return_or{
+  background: rgb(87, 53, 37);
+  padding: 1px 4px;
+  margin-bottom: 5px;
+}

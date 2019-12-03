@@ -9,6 +9,9 @@ html{
 .halert-info{
   background: #dde6ff;
 }
+#i-toggleTheme:hover, #i-toggleTheme:focus{
+  color: #000;
+}
 #main{
   background: #f1faff;
 }
@@ -100,8 +103,18 @@ input:focus, select:focus{
   color: black;
 }
 #calcBtn{
+  background: #eaefff;
   font-size: 16px;
   padding: 4px 6px;
+}
+#calcBtn:hover, #calcBtn:focus{
+  background: #dde5ff;
+  border-color: #888;
+  outline: none;
+}
+#calcBtn:active{
+  background: #dff8ff;
+  border-color: #555
 }
 #res_return{
   background: rgb(235, 242, 255);

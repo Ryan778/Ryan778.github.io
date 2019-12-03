@@ -44,9 +44,23 @@ option{
 }
 .halert{
   padding: 10px;
+  margin-bottom: 4px;
 }
 .halert p{
   margin: 0;
+}
+.btn-close{
+  float: right;
+  cursor: pointer;
+  color: #888;  
+}
+#i-toggleTheme{
+  float: right; 
+  color: #888;
+  transition: color 0.2s;
+}
+#i-toggleTheme:hover{
+  cursor: pointer;
 }
 #main-outer{
   padding: 20px 10px 10px;
@@ -103,23 +117,15 @@ option{
 #calc input{
   width: 80px;
 }
-#calcBtn{
-  background: #eaefff;
-}
-#calcBtn:hover, #calcBtn:focus{
-  background: #dde5ff;
-  border-color: #888;
-  outline: none;
-}
-#calcBtn:active{
-  background: #dff8ff;
-  border-color: #555
-}
 #calc-loadErr{
   display: none;
 }
 .res_return{
   display: none;
+}
+
+.alertify .alert>*, .alertify .dialog>*{
+  width: 600px; /*400px is way too small*/
 }
 
 /*Responsive design stuff*/
@@ -139,7 +145,7 @@ option{
   .rln{ /*Responsive Line*/
     display: block;
   }
-  input{
+  input, select{
     font-size: 16px;
   }
   #calc input{

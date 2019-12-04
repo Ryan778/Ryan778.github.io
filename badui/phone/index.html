@@ -154,8 +154,6 @@
 	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	  ga('create', 'UA-91409078-1', 'auto');
     ga('send', 'pageview');
-    if(!window.matchMedia('(prefers-color-scheme: light)').matches || new Date().getHours() > 22 || new Date().getHours() < 5){
-      document.getElementById('theme').href = 'themes/dark.css'}
 	</script>
 </head>
 <body>
@@ -182,7 +180,7 @@
 				<!-- <div id="clear" onclick="reset_canvas()">&times;</div>
 					<div id="word" onclick="da_word()">&#8635;</div> -->
 			</div>
-			<div class="output nose" style="padding: 25px; cursor: pointer" onclick="open_picker()">
+			<div class="output nose" style="padding: 25px; cursor: pointer">
 				Use the canvas to enter your phone number.
 				<br>
 				<div id='outputVal' style='display: none;'>
@@ -257,12 +255,6 @@
 		document.body.ondragover = function () { document.body.className = 'dragging'; return false }
 		document.body.ondragend = function () { document.body.className = ''; return false }
 		document.body.onclick = function () { document.body.className = ''; }
-		document.body.ondrop = function (e) {
-			e.preventDefault();
-			document.body.className = '';
-			picked_file(e.dataTransfer.files[0]);
-			return false;
-		}
 
 		var lastWorker;
 		var worker = new Worker('worker.js')
@@ -299,7 +291,7 @@
 		}
 
 		function finishInput() {
-			if (parseInt(num) !== num) {
+			if (parseInt(num).toString() !== num) {
 				alert(`There are non-numerical values in your number. Please try again.`);
 				clearInput();
 			}

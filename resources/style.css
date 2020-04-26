@@ -8,21 +8,57 @@
   background: rgba(0, 0, 0, 0.2);
 }
 #parallax-head h3{
-  color: #ddd;
+  color: rgb(206, 252, 180);
   line-height: 0;
 }
 
 h4 a{
-  color: #013aba;
+  color: #1e69d8;
   transition: all 0.2s;
 }
 
 h4 a:hover, h4 a:focus{
-  color: #3d78ff;
+  color: #68a2ec;
 }
 
 p{
   font-size: 1.1em;
+}
+
+.date{
+  color: #6c6caf;
+}
+
+.txt-wip{
+  color: #976810;
+}
+
+.txt-wip::before{
+  content: 'In Development';
+}
+
+.txt-cur{
+  color: #187220;
+}
+
+.txt-cur::before{
+  content: 'Active Development';
+}
+
+.txt-mt{ /*"maintenance"*/
+  color: #211872;
+}
+
+.txt-mt::before{
+  content: 'Maintenance Only';
+}
+
+.txt-dp{ /*"deprecated"*/
+  color: #610f0f;
+}
+
+.txt-dp::before{
+  content: 'No Longer Maintained';
 }
 
 @media only screen and (max-width: 601px) {

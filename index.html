@@ -29,45 +29,91 @@
   <div id='top' class='parallax-container'>
     <div class='parallax'><img src='resources/mtn.jpg'></div>
     <div class='container ns cont-align' id='parallax-head'>
-      <h3>ryan778.github.io</h3><h2>Random Tools and Stuff!</h2>
+      <h3>ryan778.github.io</h3><h2>Tools, Gadgets, and Fun</h2>
     </div>
   </div>
   <div class='cont-outer blue lighten-5'>
     <div class='container'>
       <h3>What's this? </h3>
       <p>Well, since you've somehow stumbled here, this is a fairly small site with all of the random and potentially useful tools, gadgets, and other general creations I've made over the years. Who knows, maybe you'll find something that you always wanted but could never find! </p>
+      <p><b>Key</b><br/>
+        <span class='date'>(Date) • (Tech)</span> - Date refers to when the project was <b>started</b>, not when it was completed/updated. Tech, if listed, refers to any primary libraries/languages used.<br/>
+        <i class='txt-wip'></i> - Project not ready for general use. <br/>
+        <i class='txt-cur'></i> - Project released to public, and new featuers are actively being worked on. <br/>
+        <i class='txt-mt'></i> - Project finished, with no new features planned, only maintenance updates. <br/>
+        <i class='txt-dp'></i> - Project no longer maintained. <br/>
+      </p>
     </div>
   </div>
   <div class='cont-outer teal lighten-5'>
     <div id='div-mainProj' class='container'>
       <h3>Main Projects</h3>
+      <h4><a href='https://github.com/Ryan778/OpenTrivia'>OpenTrivia</a></h4>
+      <p class='date'><i class='txt-wip'></i> - January 2020 • NodeJS + Socket.io</p>
+      <p>An all-in-one web application for hosting trivia events. Features a "presentation" page for displaying questions and stats, individual "participant" pages to answer questions, and a "host" page for tracking scores and managing what's displayed. </p>
+      <p class='grey-text'>ETA: Fall 2020</p>
+      <h4><a href='https://svue.itsryan.org'>StudentVUE+</a></h4>
+      <p class='date'><i class='txt-cur'></i> - February 2019 • NodeJS, Vue.js, Zepto, Materliaize</i></p>
+      <p>My largest project to date. A modern, responsive interface and app for Synergy's StudentVUE&trade; platform. Supports the features students want but don't currently have: grade calculation, "what-if" scores, text notifications, a GPA tab, and more. Planned to be made open source in 2021. </p>
+      <p>StudentVUE+ was made to emulate core aspects by reverse engineering the StudentVUE&trade; mobile app and website, similar to how something like Dolphin was made to emulate a Wii. While retrieving the data is done through emulation, the app design was self made (and thus looks completely different). Today, it has gained quite a significant presence, with about 20% of my school (of 2,000+ students) using it and the school administration ok with (although not quite endorsing) it.</p>
+      <p> Using StudentVUE+ requires you to have an existing StudentVUE&trade; account from your school district; while it was originally built for my own school district, it has since been expanded to behave similarly to Edupoint's mobile app, allowing you to select your own school district. However, curious users can take advantage of the demo account to explore what the app/site's like without having a StudentVUE&trade; account.</p>
       <h4><a href='final-grade-calculator'>Final Grade Calculator</a></h4>
-      <p>What's Unique: Supports various common test policies (lowest test replaced, dropped, half replaced) and unweighted tests (unweighted coming hopefully soon!)</p>
+      <p class='date'><i class='txt-mt'></i> - February 2018</p>
+      <p>RogerHub is great, but it doesn't work great with complex situations. FGC supports various common test policies (lowest test replaced, dropped, half replaced) and unweighted tests.</p>
       <p>Find out what you need to get on your final in a simple, intuitive interface! </p>
+      <h4><a href='https://static.itsryan.org/mscp'>MSCP</a></h4>
+      <p class='date'><i class='txt-dp'></i> - May 2017 • Electron</p>
+      <p>The Minecraft Server Control Panel. Contact for access; an all-in-one server control panel to make setting up a Minecraft server something so easy even a seven year old could do it (source: was made for that purpose)</p>
       <h4><a href='google-feud-answers'>Google Feud Answers</a></h4>
+      <p class='date'><i class='txt-mt'></i> • March 2017</p>
       <p>What's Unique: You won't have to scroll through tens of pages to find what you're looking for!</p>
       <p>Getting distracted in class, but want to one up your friends (or just bored)? Use this!</p>
       <p class='grey-text'>Disclaimer: Google is a registered trademark of Google Inc. Family Feud is a registered trademark of FremantleMedia North America, Inc. This page is not related to or endorsed by either of these companies. </p>
-      <h4><a href='https://svue.itsryan.org'>StudentVUE+</a></h4>
-      <p>A modern, responsive interface for Synergy's StudentVUE&trade; platform. Open-source version planned. </p>
-      <p class='grey-text'>Disclaimer: Hosted separately. Has a demo account for testing, but using it requires an existing StudentVUE&trade; account from your school district.</p>
       <h4><a href='sobvc'>State of Being Verb Checker</a></h4>
+      <p class='date'><i class='txt-dp'></i> - December 2016 • CKEditor</p>
       <p>Currently too specific of a thing to exist elsewhere! In the unlikely event that you're required to have zero state of being verbs, this checker will catch all 28 common SOBVs!</p>
+      <h4>The Store</h4>
+      <p class='date'><i class='txt-dp'></i> - May 2016 • NodeJS (Server), Electron (Game Hub)</p>
+      <p>My largest project up to the creation of StudentVUE+, and my first attept at making a server. At its peak, <i>The Store</i> featured a "Store" supporting sales, coupons, and email receipts, a "Movie Center" subpage that allowed for both requesting and streaming movies, and a "Game Hub" which allowed users to buy, download, and automatically update games. It also handled activation for MSCP (see above). Unfortunantely, <i>The Store</i> was built upon a rocky foundation (read: let's use sockets for every server-client interaction because what are ajax requests? and let's use the filesystem as our only database! and localstorage as the only form of client storage! did I forget to mention there was a single file handling everything server-side?) which meant something like having two users make a request simultaneously would crash the server due to a failed file-write operation.</p>
+      <p>I'm strongly considering dumping the source code of this mega-project onto GitHub along with screenshots of what it looked like on the rare occasion where every component worked, probably after I graduate, as an example of what not to do. For reference, the one and only script run by the server is 110 KB of 100% handwritten code over a span of three years, with a different coding style/notation every time I learned something new (so a third of it is pre-ES5, a third ES5, a third portions of ES6). However, it was how I learned much of the foundationals I now know today (and starting at the age of 12 :o), so this massive project still holds a special place.</p>
+    </div>
+  </div>
+  <div class='cont-outer light-blue lighten-5'>
+    <div class='container'>
+      <h3>Side Projects</h3>
+      <h4><a href='badui'>Bad UI</a></h4>
+      <p class='date'><i class='txt-dp'></i> - Oct 2018-Mar 2019</p>
+      <p>A collection of various forms of "Bad UI" I made for fun over the years; many of them are on Reddit (some of which are quite successful - go to r/ProgrammerHumor and sort by top of all time ;)</p>
+      <h4><a href='a-social-life'>A Social Life</a></h4>
+      <p class='date'><i class='txt-dp'></i> - November 2018 • Materialize</p>
+      <p>My final project for my first semester 10th grade English class.</p>
+      <h4><a href='flop'>Flop</a></h4>
+      <p class='date'><i class='txt-mt'></i> - July 2017 • Vanilla JS</p>
+      <p>Flop?</p>
+      <h4><a href='bkmusic'>BKMusic</a></h4>
+      <p class='date'><i class='txt-dp'></i> - June 2017 • JScript</p>
+      <p>Provides scripts to discreetly play music on your victim's computer. Some audio files no longer work.</p>
       <h4><a href='kevinspin'>Kevin Spin</a></h4>
+      <p class='date'><i class='txt-dp'></i> - May 2017 • Vanilla JS</p>
       <p>Like Taco Spin or Leek Spin, but with a guy (whose name is, unsurprisingly, Kevin) spinning around instead.</p>
+      <h4><a href='https://anxietysteps.github.io/'>Anxiety Steps</a></h4>
+      <p class='date'><i class='txt-dp'></i> - November 2016</p>
+      <p>Imagine a small group of seventh and eighth graders trying to make a website to do something in 24 hours. Well, this was what we came up with. (Also the only project on here that was a group project... and my first introduction to GitHub!)</p>
     </div>
   </div>
   <div class='cont-outer grey lighten-3'>
     <div class='container'>
-      <h3>More <span class='grey-text'>(as if you're interested)</span></h3>
+      <h3>More <span class='grey-text'>(other random stuff)</span></h3>
       <h4>My <a href='about-me'>About Me Page</a></h4>
       <p>(the above page will also give links to my first CS projects on Khan and more!)</p>
       <h4>The <a href='old'>Original Homepage</a></h4>
       <p>A "homepage" that wasn't really a homepage, and more of a placeholder shouting "check out these random things!"<br>Ok, maybe this homepage isn't that much different but this one's actually complete!</p>
+      <h4>My <a href='linktree'>Instagram "Linktree"</a></h4>
+      <p>Linktree managed to get wildly successful, but (reasonably so) puts top features behind a paywall. Didn't like the limitations of linktr.ee free, so I made my own. </p>
       <h4>My <a href='https://ryan778.herokuapp.com'>Heroku Server</a></h4>
-      <p>Doesn't have anything interesting unless you know me in person or something.</p>
+      <p>Not currently maintained. Has some fun secrets, like <a href='https://ryan778.herokuapp.com/personal/codekeeper'>CodeKeeper</a> (want to poke at? there's a <span data-code='MATH5864663'>code</span> hidden in this page's source code... note that the "reward" no longer does anything)</p>
       <hr>
-      <p class='center-align ns'>&copy; 2020 Ryan Zhang. All Rights Reserved. | <a href='privacy-policy'>Privacy Policy</a> | <a href='#top'>Return to Top</a></p>
+      <p class='ns'>&copy; 2020 Ryan Zhang. <a href='https://github.com/Ryan778/Ryan778.github.io/blob/master/README.md' target='_blank'>Some Rights Reserved</a>.  <span class='right'><a href='privacy-policy'>Privacy Policy</a> • <a href='#top'>Return to Top</a></span></p>
     </div>
   </div>
 </body>

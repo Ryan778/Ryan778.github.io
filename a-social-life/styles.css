@@ -54,18 +54,6 @@ html{
   height: auto;
 }
 
-.spacer{
-  background: linen;
-  border-bottom: 1px solid #aaa;
-  padding: 48px 18px 96px;
-  text-align: center;
-  color: #aaa;
-}
-
-.spacer::before{
-  content: "- this blank section will dissapear when you finish the task above, and you'll be able to continue -"
-}
-
 .lg{
   font-size: 1em
 }
@@ -110,54 +98,3 @@ h5, h6{
   width: 70%;
   margin-top: 20vh;
 }
-
-.int{
-  width: 100%;
-  background: #f0deb5;
-  padding: 12px;
-}
-
-.comment::before{
-  content: '('
-}
-
-.comment::after{
-  content: ')'
-}
-
-.comment{
-  font-size: 16px;
-  color: #888;
-  font-style: italic;
-}
-
-.nm{ /*no margin*/
-  margin: 0
-}
-
-label{
-  color: black;
-}
-
-.int1-resA, .int1-resB, .int1-resC, .int1-resD, .int1-resE, .int1-resF{
-  display: none;
-}
-
-/*Chart sections*/
-
-.canv-div{
-  display: inline-block;
-  width: 60%;
-  height: 300px;
-}
-
-.canv-supp{
-  vertical-align: top;
-  display: inline-block;
-  width: calc(40% - 8px);
-  height: 300px;
-}
-
-/*Slide 1 (friends, part 1)*/
-
-/*Slide 2 (friends, part 2)*/

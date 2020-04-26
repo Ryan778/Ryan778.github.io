@@ -1,0 +1,90 @@
+<!doctype html>
+<head>
+    <!-- 
+      Hi Reddit! Turns out the post was actually pouplar enough to make it to the top of r/all for a period of time, so here's some more info for fellow web devs!
+      - Feel free to reuse this code under either CC-BY-NC 4.0 or CC-BY-SA 4.0 (either don't sell it or continue the open source train as long as you attribute)
+        - This license doesn't apply to the rest of the website, though I license each project separately (as other parts of the website are just there because GitHub hosts it for free)
+      - I won't really try to maintain this from this point forward, but it is still 20 minutes of quality code (no it's not)
+      - In the unlikely event that you found this without seeing the Reddit post, the post is available at https://www.reddit.com/r/ProgrammerHumor/comments/9ozauu/a_more_accurate_representation_of_what_happened/
+      - Also feel free to contact me if you have anything other ideas / comments, I'm open to pretty much anything! 
+      
+      Thanks for stopping by!
+    -->
+    <!-- Compiled and minified CSS (from Materialize, as they're cool)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel='stylesheet' href='style.css'/>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-91409078-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+  <h2><img src='https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png'>Admin Page (Top Secret!!!)</h2>
+  <div id='ad' style=display:none>
+    <img src='https://www.youtube.com/premium/about/images/ytp-logo.svg?cache=1e4dcc0'>
+    <p>"It's like YouTube Red, except it costs more money"</p>
+    <p id='ad2'>Ad-free &amp; offline video!<br>Uninterrupted Music and Original Shows!<br><span>we're losing revenue from adblock users</span></p>
+    <p id='adm'>Ad</p>
+  </div>
+  <button id='btn_yt' class='btn red waves-effect' onclick='this.disabled=true; res.style.display=""'>Shutdown YouTube</button>
+  <button class='btn red'><a href='https://www.reddit.com/r/ProgrammerHumor/comments/9ov9o1/this_is_what_really_happened_to_youtube/' style='color:white' target='_blank'>Webcam Access</a></button>
+  <button id='btn_google' class='btn red'>Shutdown Google+</button>
+  <button class='btn red' onclick='this.disabled=true;alert("Nah, your user data has already been sold.")'>Sell User Data</button>
+  <div id='res' style='display: none'>
+     <div class="preloader-wrapper small active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+    <span> Shutting down YouTube...</span>
+  </div>
+  <span id='cpr'><br>&copy;2018 <a href='https://ryan778.github.io/about-me/' target='_blank'>Ryan Zhang</a> | <a href='https://creativecommons.org/licenses/by-sa/4.0/legalcode' target='_blank'>Some Rights Reserved</a><span id='cpr_more' style='display:none'> | See my <a href='https://ryan778.github.io' target='_blank'>Full Website</a> for more!</span></span>
+  <script>
+    //Turns out, you don't actually need a lot of js for making a Reddit meme
+    let waitMS = 7000;
+    setTimeout(function(){ad.style.display=''}, waitMS);
+
+    //countdown so we known when to click
+    let countdownAt = waitMS / 1000;
+    let countdownInterval = setInterval(function() {
+        console.log(--countdownAt);
+        if (countdownAt <= 0) {
+            clearInterval(countdownInterval);
+            console.warn('Blast off!')
+        }
+    }, 1000);
+
+    //Update 10.30.18 - Even though most of the traffic is gone, I felt it'd be helpful to make a few small beneficial changes since this post's on the top of all time in r/ProgrammerHumur now :D
+
+    document.getElementById('btn_google').onclick = function(){
+      if(ad.style.display !== ''){
+        //Now, if you click on Shutdown Google+, the ad will pop up anyways!
+        ad.style.display = '';
+        btn_yt.click();
+      }
+      else{
+        //If the ad's already there, politely ask the user to care less about Google+
+        alert('Don\'t you have to worry about YouTube first?');
+      }
+    }
+
+    if(window.top !== window){
+      //Check for iframe detection (itwire embeds this page without credit, but I can put credit in myself :D)
+      document.getElementById('cpr').style.opacity = '1';
+      document.getElementById('cpr_more').style.display = 'initial';
+    }
+
+  </script>
+</body>

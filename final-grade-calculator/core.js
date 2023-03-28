@@ -77,11 +77,9 @@ function convToLetter(grade){
 
 function handleQueryAction(t, n) {
   //Returns undefined, sends event to ga
-  ga('send', 'event', {
-    eventCategory: 'Interactive',
-    eventAction: 'query',
-    eventLabel: 'Final Grade Calculator (Type '+(t)+')',
-    eventValue: n
+  gtag('event', 'fgc_query', {
+    type: t,
+    value: n
   });
 }
 
